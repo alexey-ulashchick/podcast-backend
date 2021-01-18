@@ -1,5 +1,6 @@
 package com.ulashchick.dashboard.auth;
 
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.ulashchick.dashboard.auth.annotations.GrpcService;
 import io.grpc.BindableService;
@@ -7,31 +8,39 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.reflections.Reflections;
+import org.slf4j.Logger;
 
+/**
+ * Class responsible for preparing {@link io.grpc.Server}.
+ */
 public class ApplicationServerBuilder {
 
-  private static final Logger LOGGER = Logger.getLogger(ApplicationServerBuilder.class.getName());
+  @Inject
+  Logger logger;
+
   private int port;
   private List<BindableService> services;
 
-  private ApplicationServerBuilder() {
+  public ApplicationServerBuilder() {
+    // Required for DI.
   }
 
-  public static ApplicationServerBuilder newServer() {
-    return new ApplicationServerBuilder();
-  }
-
+  /**
+   * Sets the port for listening.
+   */
   public ApplicationServerBuilder forPort(int port) {
     this.port = port;
-
     return this;
   }
 
+  /**
+   * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to
+   * server configuration.
+   */
   public ApplicationServerBuilder bindAnnotatedServices() {
     final Reflections reflections = new Reflections(this.getClass().getPackage().getName());
     final Injector injector = DependencyManager.getInjector();
@@ -56,11 +65,10 @@ public class ApplicationServerBuilder {
   }
 
   private void addServiceToBuilder(@Nonnull ServerBuilder<?> serverBuilder,
-                                   @Nonnull BindableService service) {
-    LOGGER.info("Binding GrpcService: " + service.getClass().getName());
+      @Nonnull BindableService service) {
+    logger.info("Binding GrpcService: {}", service.getClass().getName());
     serverBuilder.addService(service);
   }
-
 
   @Nullable
   @SuppressWarnings("unchecked")
