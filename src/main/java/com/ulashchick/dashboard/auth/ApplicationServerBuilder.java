@@ -32,8 +32,9 @@ public class ApplicationServerBuilder {
     return this;
   }
 
-  public ApplicationServerBuilder bindAnnotatedServices(@Nonnull Injector injector) {
+  public ApplicationServerBuilder bindAnnotatedServices() {
     final Reflections reflections = new Reflections(this.getClass().getPackage().getName());
+    final Injector injector = DependencyManager.getInjector();
 
     services = reflections
         .getTypesAnnotatedWith(GrpcService.class)
@@ -49,17 +50,17 @@ public class ApplicationServerBuilder {
   public Server build() {
     final ServerBuilder<?> serverBuilder = ServerBuilder.forPort(port);
 
-    services
-        .stream()
-        .map(Object::getClass)
-        .map(Class::getName)
-        .map(name -> "Binding GrpcService: " + name)
-        .forEach(LOGGER::info);
-
-    services.forEach(serverBuilder::addService);
+    services.forEach(service -> addServiceToBuilder(serverBuilder, service));
 
     return serverBuilder.build();
   }
+
+  private void addServiceToBuilder(@Nonnull ServerBuilder<?> serverBuilder,
+                                   @Nonnull BindableService service) {
+    LOGGER.info("Binding GrpcService: " + service.getClass().getName());
+    serverBuilder.addService(service);
+  }
+
 
   @Nullable
   @SuppressWarnings("unchecked")
