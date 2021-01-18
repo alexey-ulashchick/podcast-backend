@@ -13,8 +13,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.ulashchick.dashboard:protos:1.0.19'
-    implementation 'com.ulashchick.dashboard:protos:1.0.24'
+    // https://mvnrepository.com/artifact/com.google.inject/guice
+    implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.reflections/reflections
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
+
+    // https://bintray.com/alexey-ulashchick/maven/dashboard-protos
+    implementation group: 'com.ulashchick.dashboard', name: 'protos', version: '1.0.24'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
 }
