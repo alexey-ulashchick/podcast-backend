@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth;
+package com.ulashchick.dashboard.auth.config;
 
 import com.google.inject.Singleton;
 import java.util.Arrays;
@@ -22,6 +22,8 @@ public class EnvironmentService {
     }
   }
 
+  private Environment currentEnvironment;
+
   public EnvironmentService() {
   }
 
@@ -30,11 +32,22 @@ public class EnvironmentService {
    * default environment will be set to {@code Environment.DEV}.
    */
   public Environment getCurrentEnvironment() {
+    return currentEnvironment != null ? currentEnvironment : checkCurrentEnvironment();
+  }
+
+  public String getCurrentEnvironmentAsString() {
+    return getCurrentEnvironment().getLabel().toLowerCase();
+  }
+
+  private Environment checkCurrentEnvironment() {
     final String env = System.getenv("ENV");
 
-    return Arrays.stream(Environment.values())
+    currentEnvironment = Arrays.stream(Environment.values())
         .filter(item -> item.label.equalsIgnoreCase(env))
         .findFirst()
         .orElse(Environment.DEV);
+
+    return currentEnvironment;
   }
+
 }
