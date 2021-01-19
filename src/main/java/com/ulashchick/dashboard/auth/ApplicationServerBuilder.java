@@ -2,6 +2,7 @@ package com.ulashchick.dashboard.auth;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import com.ulashchick.dashboard.auth.annotations.GrpcService;
 import io.grpc.BindableService;
 import io.grpc.Server;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 /**
  * Class responsible for preparing {@link io.grpc.Server}.
  */
+@Singleton
 public class ApplicationServerBuilder {
 
   @Inject

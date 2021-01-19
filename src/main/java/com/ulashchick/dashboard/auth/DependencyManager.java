@@ -17,7 +17,8 @@ public class DependencyManager {
   private DependencyManager() {
   }
 
-  public static void init(Module... modules) {
+  @Nonnull
+  public static Injector init(Module... modules) {
     validateInjector(false);
 
     final Stream<Module> moduleStream = Arrays.stream(modules).sequential();
@@ -26,6 +27,7 @@ public class DependencyManager {
         .collect(Collectors.toList());
 
     injector = Guice.createInjector(moduleList);
+    return injector;
   }
 
   @Nonnull
