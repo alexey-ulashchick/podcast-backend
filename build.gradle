@@ -1,20 +1,37 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'idea'
 }
 
 group 'com.ulashchick.dashboard'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     mavenCentral()
     maven {
-        url  "https://dl.bintray.com/alexey-ulashchick/maven"
+        url "https://dl.bintray.com/alexey-ulashchick/maven"
     }
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.1'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.12.1'
+
     // https://mvnrepository.com/artifact/com.google.inject/guice
     implementation group: 'com.google.inject', name: 'guice', version: '4.2.2'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
 
     // https://mvnrepository.com/artifact/org.reflections/reflections
     implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
@@ -22,6 +39,21 @@ dependencies {
     // https://bintray.com/alexey-ulashchick/maven/dashboard-protos
     implementation group: 'com.ulashchick.dashboard', name: 'protos', version: '1.0.24'
 
+    // https://mvnrepository.com/artifact/com.google.truth/truth
+    testImplementation group: 'com.google.truth', name: 'truth', version: '1.1'
+
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
+}
+
+mainClassName = 'com.ulashchick.dashboard.auth.Application'
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
