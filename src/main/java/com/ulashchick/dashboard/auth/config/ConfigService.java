@@ -7,6 +7,9 @@ import com.google.inject.Singleton;
 import com.ulashchick.dashboard.auth.config.pojo.ApplicationConfig;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 
 @Singleton
@@ -42,7 +45,17 @@ public class ConfigService {
     final File file = new File(appConfigPath);
     final ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
-    return objectMapper.readValue(file, ApplicationConfig.class);
+    applicationConfig = objectMapper.readValue(file, ApplicationConfig.class);
+
+    return applicationConfig;
+  }
+
+  public List<InetSocketAddress> getCassandraEndpoints() throws IOException {
+    return getApplicationConfig()
+        .getCassandraConfig()
+        .stream()
+        .map(casConfig -> new InetSocketAddress(casConfig.getHost(), casConfig.getPort()))
+        .collect(Collectors.toList());
   }
 
 }

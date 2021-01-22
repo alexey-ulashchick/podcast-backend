@@ -1,8 +1,8 @@
 package com.ulashchick.dashboard.auth;
 
 import com.google.inject.Inject;
-import com.ulashchick.dashboard.auth.config.pojo.ApplicationConfig;
 import com.ulashchick.dashboard.auth.config.ConfigService;
+import com.ulashchick.dashboard.auth.config.pojo.ApplicationConfig;
 import java.io.IOException;
 import org.apache.log4j.PropertyConfigurator;
 
