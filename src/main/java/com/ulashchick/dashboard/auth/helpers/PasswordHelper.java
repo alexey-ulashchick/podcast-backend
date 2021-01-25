@@ -12,7 +12,8 @@ import javax.crypto.spec.PBEKeySpec;
 
 public class PasswordHelper {
 
-  private PasswordHelper() {}
+  private PasswordHelper() {
+  }
 
   public static String hashPassword(@Nonnull String rawPassword) {
     final SecureRandom random = new SecureRandom();

@@ -4,14 +4,18 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import com.ulashchick.dashboard.auth.annotations.GrpcService;
+import com.ulashchick.dashboard.auth.config.ConfigService;
+import com.ulashchick.dashboard.auth.persistance.CassandraClient;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 
@@ -22,26 +26,19 @@ import org.slf4j.Logger;
 public class ApplicationServerBuilder {
 
   @Inject
-  Logger logger;
+  private Logger logger;
 
-  private int port;
+  @Inject
+  private CassandraClient cassandraClient;
+
+  @Inject
+  private ConfigService configService;
+
   private List<BindableService> services;
 
-  public ApplicationServerBuilder() {
-    // Required for DI.
-  }
-
   /**
-   * Sets the port for listening.
-   */
-  public ApplicationServerBuilder forPort(int port) {
-    this.port = port;
-    return this;
-  }
-
-  /**
-   * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to
-   * server configuration.
+   * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to server
+   * configuration.
    */
   public ApplicationServerBuilder bindAnnotatedServices() {
     final Reflections reflections = new Reflections(this.getClass().getPackage().getName());
@@ -58,7 +55,18 @@ public class ApplicationServerBuilder {
     return this;
   }
 
-  public Server build() {
+  public ApplicationServerBuilder initCassandraClient() {
+    cassandraClient.init();
+    return this;
+  }
+
+  public ApplicationServerBuilder initLogger() {
+    PropertyConfigurator.configure(configService.getLog4jPropertyFilePath());
+    return this;
+  }
+
+  public Server build() throws IOException {
+    final int port = configService.getApplicationConfig().getGrpcServerConfig().getPort();
     final ServerBuilder<?> serverBuilder = ServerBuilder.forPort(port);
 
     services.forEach(service -> addServiceToBuilder(serverBuilder, service));
