@@ -2,6 +2,7 @@ package com.ulashchick.dashboard.auth.config;
 
 import com.google.inject.Singleton;
 import java.util.Arrays;
+import javax.annotation.Nullable;
 
 @Singleton
 public class EnvironmentService {
@@ -37,6 +38,12 @@ public class EnvironmentService {
 
   public String getCurrentEnvironmentAsString() {
     return getCurrentEnvironment().getLabel().toLowerCase();
+  }
+
+  @Nullable
+  public String readEnvVariable(String variable) {
+    final String envValue = System.getenv(variable);
+    return envValue.isEmpty() ? null : envValue;
   }
 
   private Environment checkCurrentEnvironment() {
