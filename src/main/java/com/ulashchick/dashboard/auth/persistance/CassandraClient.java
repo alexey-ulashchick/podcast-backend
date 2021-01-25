@@ -1,6 +1,5 @@
 package com.ulashchick.dashboard.auth.persistance;
 
-import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.cql.AsyncResultSet;
 import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.datastax.oss.driver.api.querybuilder.QueryBuilder;
@@ -30,6 +29,10 @@ public class CassandraClient {
   @Inject
   private Logger logger;
 
+  /**
+   * Initialize Cassandra client. For any non-production environment, initialization runs a set of
+   * CQL scripts for setting up keyspace and tables.
+   */
   public void init() {
     if (environmentService.getCurrentEnvironment().equals(Environment.PROD)) {
       cassandraSession.initWithKeyspace(CassandraKeyspace.KEYSPACE);
@@ -37,14 +40,6 @@ public class CassandraClient {
       cassandraSession.initWithoutKeyspace();
       initCassandraKeyspaceAndTables();
     }
-  }
-
-  private void initCassandraKeyspaceAndTables() {
-    CqlSession session = cassandraSession.getSession();
-    configService.getCassandraInitStatements().forEach(statement -> {
-      logger.info("Executing: \n{}", statement.getQuery());
-      session.execute(statement.setTimeout(Duration.ofSeconds(10)));
-    });
   }
 
   public Single<AsyncResultSet> insertIntoUserByEmail(@Nonnull String email,
@@ -61,6 +56,25 @@ public class CassandraClient {
         .getSession()
         .executeAsync(insertStatement)
         .toCompletableFuture());
+  }
+
+  /**
+   * Method reads CQL scripts from resources/${ENV}/cql-init folder and executes them against
+   * Cassandra cluster.
+   */
+  private void initCassandraKeyspaceAndTables() {
+    // During initialization keyspace and tables will be created. It's quite a heavy operation
+    // and might take more than the standard 2000ms timeout. For these particular operations, we
+    // increase timeout allowing them to finish gracefully.
+    final Duration timeout = Duration.ofMillis(60_000);
+
+    configService.getCassandraInitStatements()
+        .stream()
+        .map(statement -> statement.setTimeout(timeout))
+        .forEach(statement -> {
+          logger.info("Executing: \n{}", statement.getQuery());
+          cassandraSession.getSession().execute(statement.setTimeout(timeout));
+        });
   }
 
 }
