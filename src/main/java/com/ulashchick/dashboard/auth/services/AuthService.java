@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.UUID;
 import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 import protos.com.dashboard.ulashchick.auth.RxAuthServiceGrpc;
@@ -39,8 +40,9 @@ public class AuthService extends RxAuthServiceGrpc.AuthServiceImplBase {
     return request
         .map(SignInUserRequest::getIdToken)
         .map(this::decodeToken)
-        .map(UserProfile::toString)
-        .map(str -> SignInUserResponse.newBuilder().setJwtToken(str).build());
+        .flatMap(cassandraClient::upsertUser)
+        .map(UUID::toString)
+        .map(uuid -> SignInUserResponse.newBuilder().setJwtToken(uuid).build());
   }
 
   private UserProfile decodeToken(String googleTokenId) {
