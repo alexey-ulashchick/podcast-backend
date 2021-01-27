@@ -52,14 +52,14 @@ public class CassandraClient {
   }
 
   public Single<UUID> upsertUser(@Nonnull UserProfile userProfile) {
-    return getUserByEmail(userProfile.getEmail())
+    return getUserUUIDByEmail(userProfile.getEmail())
         .defaultIfEmpty(Uuids.timeBased())
         .flatMapSingle(uuid ->
             insertUser(userProfile, uuid).andThen(Single.just(uuid))
         );
   }
 
-  public Maybe<UUID> getUserByEmail(@Nonnull String email) {
+  public Maybe<UUID> getUserUUIDByEmail(@Nonnull String email) {
     final SimpleStatement selectStatement = QueryBuilder.selectFrom(UserByEmailTable.TABLE_NAME)
         .column(UserByEmailTable.ID)
         .where(Relation.column(UserByEmailTable.EMAIL).isEqualTo(QueryBuilder.literal(email)))
