@@ -1,6 +1,7 @@
 package com.ulashchick.dashboard.auth.persistance;
 
 import com.datastax.oss.driver.api.core.AsyncPagingIterable;
+import com.datastax.oss.driver.api.core.ConsistencyLevel;
 import com.datastax.oss.driver.api.core.cql.AsyncResultSet;
 import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
@@ -12,7 +13,6 @@ import com.ulashchick.dashboard.auth.config.ConfigService;
 import com.ulashchick.dashboard.auth.config.EnvironmentService;
 import com.ulashchick.dashboard.auth.config.EnvironmentService.Environment;
 import com.ulashchick.dashboard.auth.persistance.CassandraKeyspace.UserByEmailTable;
-import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 import java.time.Duration;
@@ -52,11 +52,9 @@ public class CassandraClient {
   }
 
   public Single<UUID> upsertUser(@Nonnull UserProfile userProfile) {
-    return getUserUUIDByEmail(userProfile.getEmail())
-        .defaultIfEmpty(Uuids.timeBased())
-        .flatMapSingle(uuid ->
-            insertUser(userProfile, uuid).andThen(Single.just(uuid))
-        );
+    return insertIfNotExists(userProfile.getEmail())
+        .flatMap(res -> updateProfile(userProfile))
+        .flatMap(res -> getUserUUIDByEmail(userProfile.getEmail()).toSingle());
   }
 
   public Maybe<UUID> getUserUUIDByEmail(@Nonnull String email) {
@@ -65,12 +63,7 @@ public class CassandraClient {
         .where(Relation.column(UserByEmailTable.EMAIL).isEqualTo(QueryBuilder.literal(email)))
         .build();
 
-    final CompletableFuture<AsyncResultSet> completableFuture = cassandraSession.getSession()
-        .executeAsync(selectStatement)
-        .toCompletableFuture();
-
-    return Maybe
-        .fromFuture(completableFuture)
+    return execute(selectStatement)
         .map(AsyncPagingIterable::currentPage)
         .map(Iterable::iterator)
         .filter(Iterator::hasNext)
@@ -78,20 +71,43 @@ public class CassandraClient {
         .map(row -> row.get(UserByEmailTable.ID, UUID.class));
   }
 
-  public Completable insertUser(@Nonnull UserProfile userProfile, @Nonnull UUID timeBasedUuid) {
-    SimpleStatement insert = QueryBuilder.insertInto(UserByEmailTable.TABLE_NAME)
-        .value(UserByEmailTable.EMAIL, QueryBuilder.literal(userProfile.getEmail()))
-        .value(UserByEmailTable.ID, QueryBuilder.literal(timeBasedUuid))
-        .value(UserByEmailTable.FIRST_NAME, QueryBuilder.literal(userProfile.getFirstName()))
-        .value(UserByEmailTable.LAST_NAME, QueryBuilder.literal(userProfile.getLastName()))
-        .value(UserByEmailTable.IMAGE_URL, QueryBuilder.literal(userProfile.getPictureUrl()))
+  public Single<Boolean> updateProfile(@Nonnull UserProfile userProfile) {
+    SimpleStatement insert = QueryBuilder.update(UserByEmailTable.TABLE_NAME)
+        .setColumn(UserByEmailTable.FIRST_NAME, QueryBuilder.literal(userProfile.getFirstName()))
+        .setColumn(UserByEmailTable.LAST_NAME, QueryBuilder.literal(userProfile.getLastName()))
+        .setColumn(UserByEmailTable.IMAGE_URL, QueryBuilder.literal(userProfile.getPictureUrl()))
+        .whereColumn(UserByEmailTable.EMAIL).isEqualTo(QueryBuilder.literal(userProfile.getEmail()))
         .build();
 
+    return execute(insert)
+        .map(AsyncResultSet::wasApplied);
+  }
+
+  public Single<Boolean> insertIfNotExists(@Nonnull String email) {
+    final UUID uuid = Uuids.timeBased();
+    final SimpleStatement insertIfNotExists = QueryBuilder.insertInto(UserByEmailTable.TABLE_NAME)
+        .value(UserByEmailTable.EMAIL, QueryBuilder.literal(email))
+        .value(UserByEmailTable.ID, QueryBuilder.literal(uuid))
+        .ifNotExists()
+        .build();
+
+    return execute(insertIfNotExists)
+        .map(AsyncResultSet::wasApplied);
+  }
+
+  private Single<AsyncResultSet> execute(@Nonnull SimpleStatement simpleStatement) {
+    simpleStatement = simpleStatement
+        .setConsistencyLevel(ConsistencyLevel.LOCAL_QUORUM)
+        .setSerialConsistencyLevel(ConsistencyLevel.LOCAL_SERIAL);
+
+    logger.info("Executing {} with CL {}/{}", simpleStatement.getQuery(),
+        simpleStatement.getConsistencyLevel(), simpleStatement.getSerialConsistencyLevel());
+
     final CompletableFuture<AsyncResultSet> completableFuture = cassandraSession.getSession()
-        .executeAsync(insert)
+        .executeAsync(simpleStatement)
         .toCompletableFuture();
 
-    return Completable.fromFuture(completableFuture);
+    return Single.fromFuture(completableFuture);
   }
 
   /**
