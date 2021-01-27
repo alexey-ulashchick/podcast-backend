@@ -113,4 +113,11 @@ public class ConfigService {
     }
   }
 
+  public String getGoogleClientId() {
+    return environmentService.readEnvVariable("GOOGLE_CLIENT_ID");
+  }
+
+  public String getJwtSecret() {
+    return environmentService.readEnvVariable("JWT_SECRET");
+  }
 }
