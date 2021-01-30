@@ -52,8 +52,9 @@ public class ApplicationServerBuilder {
    * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to server
    * configuration.
    */
-  public ApplicationServerBuilder bindAnnotatedServices() {
-    final Reflections reflections = new Reflections(this.getClass().getPackage().getName());
+  @Nonnull
+  public ApplicationServerBuilder bindAnnotatedServices(@Nonnull String basePackage) {
+    final Reflections reflections = new Reflections(basePackage);
     final Injector injector = DependencyManager.getInjector();
 
     services = reflections
@@ -72,9 +73,10 @@ public class ApplicationServerBuilder {
     return this;
   }
 
-  public ApplicationServerBuilder initInterceptor() {
+  @Nonnull
+  public ApplicationServerBuilder initInterceptor(@Nonnull String basePackage) {
     final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
-        .setUrls(ClasspathHelper.forPackage(this.getClass().getPackage().getName()))
+        .setUrls(ClasspathHelper.forPackage(basePackage))
         .setScanners(new MethodAnnotationsScanner());
 
     final Reflections reflections = new Reflections(configurationBuilder);

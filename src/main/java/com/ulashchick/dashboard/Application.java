@@ -10,11 +10,13 @@ public class Application {
   @Inject
   ApplicationServerBuilder applicationServerBuilder;
 
+  private final String basePackage = getClass().getPackage().getName();
+
   public void run() throws IOException, InterruptedException {
     applicationServerBuilder
         .initLogger()
-        .bindAnnotatedServices()
-        .initInterceptor()
+        .bindAnnotatedServices(basePackage)
+        .initInterceptor(basePackage)
         .initCassandraClient()
         .build()
         .start()
