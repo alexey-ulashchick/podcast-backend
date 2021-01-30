@@ -1,8 +1,9 @@
-package com.ulashchick.dashboard.auth;
+package com.ulashchick.dashboard.common;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.ulashchick.dashboard.BaseModule;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
