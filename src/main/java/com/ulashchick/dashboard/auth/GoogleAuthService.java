@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.services;
+package com.ulashchick.dashboard.auth;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
@@ -7,8 +7,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier.Builde
 import com.google.api.client.http.apache.v2.ApacheHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.inject.Inject;
-import com.ulashchick.dashboard.auth.config.ConfigService;
-import com.ulashchick.dashboard.auth.exceptions.ApplicationException;
+import com.ulashchick.dashboard.common.config.ConfigService;
+import com.ulashchick.dashboard.common.exceptions.ApplicationException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;

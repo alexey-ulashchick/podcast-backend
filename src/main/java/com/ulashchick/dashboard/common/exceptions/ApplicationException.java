@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.exceptions;
+package com.ulashchick.dashboard.common.exceptions;
 
 public class ApplicationException extends RuntimeException{
 

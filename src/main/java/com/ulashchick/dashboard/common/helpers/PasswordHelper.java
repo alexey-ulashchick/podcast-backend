@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.helpers;
+package com.ulashchick.dashboard.common.helpers;
 
 
 import java.security.NoSuchAlgorithmException;

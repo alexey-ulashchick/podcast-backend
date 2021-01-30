@@ -1,13 +1,13 @@
-package com.ulashchick.dashboard.auth.services;
+package com.ulashchick.dashboard.auth;
 
 import com.google.inject.Inject;
-import com.ulashchick.dashboard.auth.annotations.GrpcService;
-import com.ulashchick.dashboard.auth.annotations.NoAuthRequired;
-import com.ulashchick.dashboard.auth.persistance.CassandraClient;
+import com.ulashchick.dashboard.common.annotations.GrpcService;
+import com.ulashchick.dashboard.common.annotations.NoAuthRequired;
+import com.ulashchick.dashboard.common.persistance.CassandraClient;
 import io.reactivex.Single;
-import protos.com.dashboard.ulashchick.auth.RxAuthServiceGrpc;
-import protos.com.dashboard.ulashchick.auth.SignInUserRequest;
-import protos.com.dashboard.ulashchick.auth.SignInUserResponse;
+import protos.com.ulashchick.dashboard.auth.RxAuthServiceGrpc;
+import protos.com.ulashchick.dashboard.auth.SignInUserRequest;
+import protos.com.ulashchick.dashboard.auth.SignInUserResponse;
 
 @GrpcService
 public class AuthService extends RxAuthServiceGrpc.AuthServiceImplBase {

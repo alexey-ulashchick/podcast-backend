@@ -5,7 +5,6 @@ import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.services.JwtService;
 import io.grpc.Context;
 import io.grpc.Contexts;
 import io.grpc.Metadata;

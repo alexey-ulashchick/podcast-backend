@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.persistance;
+package com.ulashchick.dashboard.common.persistance;
 
 public class CassandraKeyspace {
 

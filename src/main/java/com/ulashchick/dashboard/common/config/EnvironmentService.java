@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.config;
+package com.ulashchick.dashboard.common.config;
 
 import com.google.inject.Singleton;
 import java.util.Arrays;

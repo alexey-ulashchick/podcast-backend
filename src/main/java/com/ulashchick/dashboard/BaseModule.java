@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth;
+package com.ulashchick.dashboard;
 
 import com.google.inject.AbstractModule;
 import java.util.concurrent.ExecutorService;

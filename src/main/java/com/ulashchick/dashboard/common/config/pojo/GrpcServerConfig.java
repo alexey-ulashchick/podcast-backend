@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.config.pojo;
+package com.ulashchick.dashboard.common.config.pojo;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

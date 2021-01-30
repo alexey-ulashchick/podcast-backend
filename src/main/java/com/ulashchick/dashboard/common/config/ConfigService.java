@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.config;
+package com.ulashchick.dashboard.common.config;
 
 import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.config.pojo.ApplicationConfig;
+import com.ulashchick.dashboard.common.config.pojo.ApplicationConfig;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;

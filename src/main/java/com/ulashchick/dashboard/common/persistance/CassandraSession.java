@@ -1,10 +1,10 @@
-package com.ulashchick.dashboard.auth.persistance;
+package com.ulashchick.dashboard.common.persistance;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import com.datastax.oss.driver.api.core.CqlSessionBuilder;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.config.ConfigService;
+import com.ulashchick.dashboard.common.config.ConfigService;
 import java.io.IOException;
 import java.util.Optional;
 import javax.annotation.Nonnull;

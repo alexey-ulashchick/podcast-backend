@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.persistance;
+package com.ulashchick.dashboard.common.persistance;
 
 import com.datastax.oss.driver.api.core.AsyncPagingIterable;
 import com.datastax.oss.driver.api.core.ConsistencyLevel;
@@ -9,10 +9,10 @@ import com.datastax.oss.driver.api.querybuilder.QueryBuilder;
 import com.datastax.oss.driver.api.querybuilder.relation.Relation;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.config.ConfigService;
-import com.ulashchick.dashboard.auth.config.EnvironmentService;
-import com.ulashchick.dashboard.auth.config.EnvironmentService.Environment;
-import com.ulashchick.dashboard.auth.persistance.CassandraKeyspace.UserByEmailTable;
+import com.ulashchick.dashboard.common.config.ConfigService;
+import com.ulashchick.dashboard.common.config.EnvironmentService;
+import com.ulashchick.dashboard.common.config.EnvironmentService.Environment;
+import com.ulashchick.dashboard.common.persistance.CassandraKeyspace.UserByEmailTable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;

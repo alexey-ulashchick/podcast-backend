@@ -1,4 +1,4 @@
-package com.ulashchick.dashboard.auth.services;
+package com.ulashchick.dashboard.auth;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -6,7 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.config.ConfigService;
+import com.ulashchick.dashboard.common.config.ConfigService;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;

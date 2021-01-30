@@ -1,6 +1,8 @@
-package com.ulashchick.dashboard.auth;
+package com.ulashchick.dashboard;
 
 import com.google.inject.Inject;
+import com.ulashchick.dashboard.common.DependencyManager;
+import com.ulashchick.dashboard.common.ApplicationServerBuilder;
 import java.io.IOException;
 
 public class Application {

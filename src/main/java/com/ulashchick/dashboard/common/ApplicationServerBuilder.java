@@ -1,12 +1,13 @@
-package com.ulashchick.dashboard.auth;
+package com.ulashchick.dashboard.common;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
-import com.ulashchick.dashboard.auth.annotations.GrpcService;
-import com.ulashchick.dashboard.auth.annotations.NoAuthRequired;
-import com.ulashchick.dashboard.auth.config.ConfigService;
-import com.ulashchick.dashboard.auth.persistance.CassandraClient;
+import com.ulashchick.dashboard.auth.AuthInterceptor;
+import com.ulashchick.dashboard.common.annotations.GrpcService;
+import com.ulashchick.dashboard.common.annotations.NoAuthRequired;
+import com.ulashchick.dashboard.common.config.ConfigService;
+import com.ulashchick.dashboard.common.persistance.CassandraClient;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
