@@ -12,7 +12,7 @@ public class ApplicationConfig {
   private final GrpcServerConfig grpcServerConfig;
 
   public ApplicationConfig(List<CassandraConfig> cassandraConfig,
-      GrpcServerConfig grpcServerConfig) {
+                           GrpcServerConfig grpcServerConfig) {
 
     this.cassandraConfig = cassandraConfig;
     this.grpcServerConfig = grpcServerConfig;
