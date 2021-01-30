@@ -42,9 +42,10 @@ public class AuthInterceptor implements ServerInterceptor {
   }
 
   @Override
-  public <R, T> Listener<R> interceptCall(ServerCall<R, T> call,
-      Metadata headers,
-      ServerCallHandler<R, T> next) {
+  @Nonnull
+  public <R, T> Listener<R> interceptCall(@Nonnull ServerCall<R, T> call,
+                                          @Nonnull Metadata headers,
+                                          @Nonnull ServerCallHandler<R, T> next) {
 
     final MethodDescriptor<R, T> methodDescriptor = call.getMethodDescriptor();
     final String fullJavaMethodName = String
@@ -72,12 +73,14 @@ public class AuthInterceptor implements ServerInterceptor {
     }
   }
 
+  @Nonnull
   private static String getAuthorizationHeader(@Nonnull Metadata headers) {
     return Optional
         .ofNullable(headers.get(AUTHORIZATION_METADATA_KEY))
         .orElseThrow(() -> new JWTVerificationException("Authorization token is missing"));
   }
 
+  @Nonnull
   private static String validatePrefixAndReturnRawToken(@Nonnull String headerValue) {
     return Optional
         .of(headerValue)

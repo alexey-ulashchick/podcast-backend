@@ -5,6 +5,7 @@ import com.ulashchick.dashboard.common.annotations.GrpcService;
 import com.ulashchick.dashboard.common.annotations.NoAuthRequired;
 import com.ulashchick.dashboard.common.persistance.CassandraClient;
 import io.reactivex.Single;
+import javax.annotation.Nonnull;
 import protos.com.ulashchick.dashboard.auth.RxAuthServiceGrpc;
 import protos.com.ulashchick.dashboard.auth.SignInUserRequest;
 import protos.com.ulashchick.dashboard.auth.SignInUserResponse;
@@ -22,8 +23,9 @@ public class AuthService extends RxAuthServiceGrpc.AuthServiceImplBase {
   private JwtService jwtService;
 
   @Override
+  @Nonnull
   @NoAuthRequired
-  public Single<SignInUserResponse> signIn(Single<SignInUserRequest> request) {
+  public Single<SignInUserResponse> signIn(@Nonnull Single<SignInUserRequest> request) {
     return request
         .map(SignInUserRequest::getIdToken)
         .map(googleAuthService::verifyAndDecode)

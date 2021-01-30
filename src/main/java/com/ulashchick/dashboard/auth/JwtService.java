@@ -25,6 +25,7 @@ public class JwtService {
   private static final String CLAIM_NAME = "user-uuid";
   private static final int EXPIRATION_TIME_SECONDS = 60 * 60 * 24; // 24 hours
 
+  @Nonnull
   public String createToken(@Nonnull UUID uuid) {
     final Instant expiresAt = Instant.now().plusSeconds(EXPIRATION_TIME_SECONDS);
 
@@ -34,6 +35,7 @@ public class JwtService {
         .sign(getAlgorithm());
   }
 
+  @Nonnull
   public UUID validateAndGetUUID(@Nonnull String token) {
     final DecodedJWT decodedJWT = getVerifier().verify(token);
     final String uuidString = decodedJWT.getClaim(CLAIM_NAME).as(String.class);
@@ -41,6 +43,7 @@ public class JwtService {
     return UUID.fromString(uuidString);
   }
 
+  @Nonnull
   private Algorithm getAlgorithm() {
     algorithm = Optional
         .ofNullable(algorithm)
@@ -49,6 +52,7 @@ public class JwtService {
     return algorithm;
   }
 
+  @Nonnull
   private JWTVerifier getVerifier() {
     jwtVerifier = Optional
         .ofNullable(jwtVerifier)

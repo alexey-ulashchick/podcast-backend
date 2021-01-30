@@ -23,7 +23,8 @@ public class GoogleAuthService {
 
   private GoogleIdTokenVerifier googleIdTokenVerifier;
 
-  public UserProfile verifyAndDecode(String googleTokenId) {
+  @Nonnull
+  public UserProfile verifyAndDecode(@Nonnull String googleTokenId) {
     final GoogleIdTokenVerifier verifier = Optional
         .ofNullable(googleIdTokenVerifier)
         .orElseGet(this::getGoogleTokenVerifier);
@@ -40,7 +41,7 @@ public class GoogleAuthService {
   }
 
   @Nonnull
-  private UserProfile fromPayload(Payload payload) {
+  private UserProfile fromPayload(@Nonnull Payload payload) {
     return UserProfile.newBuilder()
         .setEmail(payload.getEmail())
         .setFirstName((String) payload.get("given_name"))
