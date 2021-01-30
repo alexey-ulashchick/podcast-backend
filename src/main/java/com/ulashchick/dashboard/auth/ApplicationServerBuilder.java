@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import com.ulashchick.dashboard.auth.annotations.GrpcService;
+import com.ulashchick.dashboard.auth.annotations.NoAuthRequired;
 import com.ulashchick.dashboard.auth.config.ConfigService;
 import com.ulashchick.dashboard.auth.persistance.CassandraClient;
 import io.grpc.BindableService;
@@ -12,11 +13,15 @@ import io.grpc.ServerBuilder;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
+import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
 
 /**
@@ -33,6 +38,12 @@ public class ApplicationServerBuilder {
 
   @Inject
   private ConfigService configService;
+
+  @Inject
+  private AuthInterceptor authInterceptor;
+
+  @Inject
+  private ExecutorService executorService;
 
   private List<BindableService> services;
 
@@ -60,6 +71,24 @@ public class ApplicationServerBuilder {
     return this;
   }
 
+  public ApplicationServerBuilder initInterceptor() {
+    final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+        .setUrls(ClasspathHelper.forPackage(this.getClass().getPackage().getName()))
+        .setScanners(new MethodAnnotationsScanner());
+
+    final Reflections reflections = new Reflections(configurationBuilder);
+    final List<String> servicesToExcludeFromInterception = reflections
+        .getMethodsAnnotatedWith(NoAuthRequired.class)
+        .stream()
+        .map(method -> method.getDeclaringClass().getName() + "." + method.getName())
+        .map(String::toLowerCase)
+        .collect(Collectors.toList());
+
+    authInterceptor.setServicesToExclude(servicesToExcludeFromInterception);
+
+    return this;
+  }
+
   public ApplicationServerBuilder initLogger() {
     PropertyConfigurator.configure(configService.getLog4jPropertyFilePath());
     return this;
@@ -67,7 +96,10 @@ public class ApplicationServerBuilder {
 
   public Server build() throws IOException {
     final int port = configService.getApplicationConfig().getGrpcServerConfig().getPort();
-    final ServerBuilder<?> serverBuilder = ServerBuilder.forPort(port);
+    final ServerBuilder<?> serverBuilder = ServerBuilder
+        .forPort(port)
+        .executor(executorService)
+        .intercept(authInterceptor);
 
     services.forEach(service -> addServiceToBuilder(serverBuilder, service));
 

@@ -12,6 +12,7 @@ public class Application {
     applicationServerBuilder
         .initLogger()
         .bindAnnotatedServices()
+        .initInterceptor()
         .initCassandraClient()
         .build()
         .start()

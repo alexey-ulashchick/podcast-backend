@@ -15,10 +15,12 @@ import com.ulashchick.dashboard.auth.config.EnvironmentService.Environment;
 import com.ulashchick.dashboard.auth.persistance.CassandraKeyspace.UserByEmailTable;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 import protos.com.dashboard.ulashchick.auth.UserProfile;
@@ -37,6 +39,9 @@ public class CassandraClient {
 
   @Inject
   private Logger logger;
+
+  @Inject
+  private ExecutorService executorService;
 
   /**
    * Initialize Cassandra client. For any non-production environment, initialization runs a set of
@@ -107,7 +112,9 @@ public class CassandraClient {
         .executeAsync(simpleStatement)
         .toCompletableFuture();
 
-    return Single.fromFuture(completableFuture);
+    return Single
+        .fromFuture(completableFuture)
+        .subscribeOn(Schedulers.from(executorService));
   }
 
   /**
