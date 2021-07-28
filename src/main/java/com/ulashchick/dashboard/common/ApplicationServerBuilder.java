@@ -12,6 +12,7 @@ import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -93,7 +94,10 @@ public class ApplicationServerBuilder {
   }
 
   public ApplicationServerBuilder initLogger() {
-    PropertyConfigurator.configure(configService.getLog4jPropertyFilePath());
+    final String configPath = configService.getLog4jPropertyFilePath();
+    final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(configPath);
+
+    PropertyConfigurator.configure(resourceAsStream);
     return this;
   }
 
@@ -109,8 +113,7 @@ public class ApplicationServerBuilder {
     return serverBuilder.build();
   }
 
-  private void addServiceToBuilder(@Nonnull ServerBuilder<?> serverBuilder,
-      @Nonnull BindableService service) {
+  private void addServiceToBuilder(@Nonnull ServerBuilder<?> serverBuilder, @Nonnull BindableService service) {
     logger.info("Binding GrpcService: {}", service.getClass().getName());
     serverBuilder.addService(service);
   }

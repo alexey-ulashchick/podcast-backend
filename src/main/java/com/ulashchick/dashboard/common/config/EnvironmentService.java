@@ -47,14 +47,10 @@ public class EnvironmentService {
   }
 
   private Environment checkCurrentEnvironment() {
-    final String env = System.getenv("ENV");
-
-    currentEnvironment = Arrays.stream(Environment.values())
-        .filter(item -> item.label.equalsIgnoreCase(env))
-        .findFirst()
-        .orElse(Environment.DEV);
-
-    return currentEnvironment;
+    return Arrays.stream(Environment.values())
+            .filter(item -> item.label.equalsIgnoreCase( System.getenv("ENV")))
+            .findFirst()
+            .orElse(Environment.DEV);
   }
 
 }
