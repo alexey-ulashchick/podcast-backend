@@ -93,6 +93,7 @@ public class ConfigService {
     return reflections.getResources(str -> str.endsWith("cql"))
             .stream()
             .sorted()
+            .map(resource -> resource.startsWith(cqlInitPath) ? resource : cqlInitPath + "/" + resource)
             .map(fullResourcePath -> Optional.ofNullable(readResourceToString(fullResourcePath)))
             .filter(Optional::isPresent)
             .map(Optional::get)

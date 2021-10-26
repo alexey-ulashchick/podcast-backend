@@ -11,6 +11,7 @@ import com.ulashchick.dashboard.common.persistance.CassandraClient;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import io.grpc.inprocess.InProcessServerBuilder;
 import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -32,98 +35,124 @@ import org.slf4j.Logger;
 @Singleton
 public class ApplicationServerBuilder {
 
-  @Inject
-  private Logger logger;
+    private final Logger logger;
+    private final CassandraClient cassandraClient;
+    private final ConfigService configService;
+    private final AuthInterceptor authInterceptor;
+    private final ExecutorService executorService;
 
-  @Inject
-  private CassandraClient cassandraClient;
+    @Inject
+    public ApplicationServerBuilder(Logger logger,
+                                    CassandraClient cassandraClient,
+                                    ConfigService configService,
+                                    AuthInterceptor authInterceptor,
+                                    ExecutorService executorService) {
+        this.logger = logger;
+        this.cassandraClient = cassandraClient;
+        this.configService = configService;
+        this.authInterceptor = authInterceptor;
+        this.executorService = executorService;
 
-  @Inject
-  private ConfigService configService;
+        final String configPath = configService.getLog4jPropertyFilePath();
+        final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(configPath);
 
-  @Inject
-  private AuthInterceptor authInterceptor;
+        PropertyConfigurator.configure(resourceAsStream);
+    }
 
-  @Inject
-  private ExecutorService executorService;
+    public MyServerBuilder forServer() throws IOException {
+        final int port = configService.getApplicationConfig().getGrpcServerConfig().getPort();
+        return forServer(ServerBuilder.forPort(port));
+    }
 
-  private List<BindableService> services;
+    public MyServerBuilder forTest(@Nonnull String serverName) {
+        return forServer(InProcessServerBuilder.forName(serverName));
+    }
 
-  /**
-   * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to server
-   * configuration.
-   */
-  @Nonnull
-  public ApplicationServerBuilder bindAnnotatedServices(@Nonnull String basePackage) {
-    final Reflections reflections = new Reflections(basePackage);
-    final Injector injector = DependencyManager.getInjector();
+    private MyServerBuilder forServer(ServerBuilder<?> serverBuilder) {
+        return new MyServerBuilder(serverBuilder, logger, cassandraClient, authInterceptor, executorService);
+    }
 
-    services = reflections
-        .getTypesAnnotatedWith(GrpcService.class)
-        .stream()
-        .map(this::toBindableServiceOrNull)
-        .filter(Objects::nonNull)
-        .map(injector::getInstance)
-        .collect(Collectors.toList());
+    public class MyServerBuilder {
 
-    return this;
-  }
+        private final ServerBuilder<?> serverBuilder;
+        private final Logger logger;
+        private final CassandraClient cassandraClient;
+        private final AuthInterceptor authInterceptor;
+        private final ExecutorService executorService;
 
-  public ApplicationServerBuilder initCassandraClient() {
-    cassandraClient.init();
-    return this;
-  }
+        public MyServerBuilder(@Nonnull ServerBuilder<?> serverBuilder,
+                               @Nonnull Logger logger,
+                               @Nonnull CassandraClient cassandraClient,
+                               @Nonnull AuthInterceptor authInterceptor,
+                               @Nonnull ExecutorService executorService) {
+            this.serverBuilder = serverBuilder;
+            this.logger = logger;
+            this.cassandraClient = cassandraClient;
+            this.authInterceptor = authInterceptor;
+            this.executorService = executorService;
+        }
 
-  @Nonnull
-  public ApplicationServerBuilder initInterceptor(@Nonnull String basePackage) {
-    final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
-        .setUrls(ClasspathHelper.forPackage(basePackage))
-        .setScanners(new MethodAnnotationsScanner());
+        /**
+         * Scans loaded services for {@link GrpcService} annotation and add them as a hooks to server
+         * configuration.
+         */
+        @Nonnull
+        public MyServerBuilder addServices(@Nonnull String basePackage) {
+            final Injector injector = DependencyManager.getInjector();
 
-    final Reflections reflections = new Reflections(configurationBuilder);
-    final List<String> servicesToExcludeFromInterception = reflections
-        .getMethodsAnnotatedWith(NoAuthRequired.class)
-        .stream()
-        .map(method -> method.getDeclaringClass().getName() + "." + method.getName())
-        .map(String::toLowerCase)
-        .collect(Collectors.toList());
+            new Reflections(basePackage).getTypesAnnotatedWith(GrpcService.class)
+                    .stream()
+                    .map(this::toBindableServiceOrNull)
+                    .filter(Objects::nonNull)
+                    .map(injector::getInstance)
+                    .forEach(service -> {
+                        logger.info("Binding GrpcService: {}", service.getClass().getName());
+                        serverBuilder.addService(service);
+                    });
 
-    authInterceptor.setServicesToExclude(servicesToExcludeFromInterception);
+            return this;
+        }
 
-    return this;
-  }
+        @Nonnull
+        public MyServerBuilder addInterceptors(@Nonnull String basePackage) {
+            final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+                    .setUrls(ClasspathHelper.forPackage(basePackage))
+                    .setScanners(new MethodAnnotationsScanner());
 
-  public ApplicationServerBuilder initLogger() {
-    final String configPath = configService.getLog4jPropertyFilePath();
-    final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(configPath);
+            final Reflections reflections = new Reflections(configurationBuilder);
+            final List<String> servicesToExcludeFromInterception = reflections
+                    .getMethodsAnnotatedWith(NoAuthRequired.class)
+                    .stream()
+                    .map(method -> method.getDeclaringClass().getName() + "." + method.getName())
+                    .map(String::toLowerCase)
+                    .collect(Collectors.toList());
 
-    PropertyConfigurator.configure(resourceAsStream);
-    return this;
-  }
+            authInterceptor.setServicesToExclude(servicesToExcludeFromInterception);
 
-  public Server build() throws IOException {
-    final int port = configService.getApplicationConfig().getGrpcServerConfig().getPort();
-    final ServerBuilder<?> serverBuilder = ServerBuilder
-        .forPort(port)
-        .executor(executorService)
-        .intercept(authInterceptor);
+            return this;
+        }
 
-    services.forEach(service -> addServiceToBuilder(serverBuilder, service));
+        @Nonnull
+        public Server build() throws IOException {
+            cassandraClient.init();
+            serverBuilder
+                    .executor(executorService)
+                    .intercept(authInterceptor);
 
-    return serverBuilder.build();
-  }
+            return serverBuilder.build();
+        }
 
-  private void addServiceToBuilder(@Nonnull ServerBuilder<?> serverBuilder, @Nonnull BindableService service) {
-    logger.info("Binding GrpcService: {}", service.getClass().getName());
-    serverBuilder.addService(service);
-  }
+        @Nullable
+        @SuppressWarnings("unchecked")
+        private Class<BindableService> toBindableServiceOrNull(Class<?> klass) {
+            return BindableService.class.isAssignableFrom(klass)
+                    ? (Class<BindableService>) klass
+                    : null;
+        }
+    }
 
-  @Nullable
-  @SuppressWarnings("unchecked")
-  private Class<BindableService> toBindableServiceOrNull(Class<?> klass) {
-    return BindableService.class.isAssignableFrom(klass)
-        ? (Class<BindableService>) klass
-        : null;
-  }
+    public void initLogger() {
+    }
+
 
 }
