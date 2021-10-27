@@ -3,124 +3,118 @@ package com.ulashchick.dashboard.common.config;
 import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import com.google.common.collect.ImmutableList;
-import com.google.common.io.ByteSource;
+import com.google.common.base.Suppliers;
 import com.google.common.io.CharStreams;
-import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.ulashchick.dashboard.common.config.pojo.ApplicationConfig;
-
-import java.io.*;
-import java.net.InetSocketAddress;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.jar.JarFile;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
-import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
-import org.reflections.util.FilterBuilder;
 import org.slf4j.Logger;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Singleton
 public class ConfigService {
 
-  @Inject
-  EnvironmentService environmentService;
+    private static final String LOG_4J_PROP = "log4j.properties";
+    private static final String APP_CONFIG = "app-config.yaml";
+    private static final String CQL_INIT_DIR = "cql-init";
 
-  @Inject
-  Logger logger;
+    private final EnvironmentService environmentService;
+    private final Logger logger;
+    private final Supplier<ApplicationConfig> applicationConfigSupplier;
 
-  private static final String LOG_4J_PROP = "log4j.properties";
-  private static final String APP_CONFIG = "app-config.yaml";
-  private static final String CQL_INIT_DIR = "cql-init";
+    public ConfigService(@Nonnull EnvironmentService environmentService,
+                         @Nonnull Logger logger) {
+        this.environmentService = environmentService;
+        this.logger = logger;
+        this.applicationConfigSupplier = Suppliers.memoize(() -> {
+            final String appConfigPath = getFullPath(environmentService.getCurrentEnvironmentAsString(), APP_CONFIG);
+            final InputStream yamlResourceStream = getClass().getClassLoader().getResourceAsStream(appConfigPath);
+            final ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
 
-  private ApplicationConfig applicationConfig;
-
-  public ConfigService() {
-  }
-
-  public String getLog4jPropertyFilePath() {
-    final String env = environmentService.getCurrentEnvironmentAsString();
-    return String.format("%s/%s", env, LOG_4J_PROP);
-  }
-
-  public ApplicationConfig getApplicationConfig() throws IOException {
-    if (applicationConfig != null) {
-      return applicationConfig;
+            try {
+                return objectMapper.readValue(yamlResourceStream, ApplicationConfig.class);
+            } catch (IOException e) {
+                logger.error("Cannot read application config", e);
+                return null;
+            }
+        })::get;
     }
 
-    final String env = environmentService.getCurrentEnvironmentAsString();
-    final String appConfigPath = String.format("%s/%s", env, APP_CONFIG);
-    final InputStream yamlResourceStream = getClass().getClassLoader().getResourceAsStream(appConfigPath);
-    final ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-
-    applicationConfig = objectMapper.readValue(yamlResourceStream, ApplicationConfig.class);
-
-    return applicationConfig;
-  }
-
-  public List<InetSocketAddress> getCassandraEndpoints() throws IOException {
-    return getApplicationConfig()
-        .getCassandraConfig()
-        .stream()
-        .map(casConfig -> new InetSocketAddress(casConfig.getHost(), casConfig.getPort()))
-        .collect(Collectors.toList());
-  }
-
-  @Nonnull
-  public List<SimpleStatement> getCassandraInitStatements() {
-    final String env = environmentService.getCurrentEnvironmentAsString();
-    final String cqlInitPath = String.format("%s/%s", env, CQL_INIT_DIR);
-    final ConfigurationBuilder cb = new ConfigurationBuilder()
-            .addUrls(getClass().getClassLoader().getResource(cqlInitPath))
-            .setScanners(new ResourcesScanner());
-
-    final Reflections reflections = new Reflections(cb);
-
-    return reflections.getResources(str -> str.endsWith("cql"))
-            .stream()
-            .sorted()
-            .map(resource -> resource.startsWith(cqlInitPath) ? resource : cqlInitPath + "/" + resource)
-            .map(fullResourcePath -> Optional.ofNullable(readResourceToString(fullResourcePath)))
-            .filter(Optional::isPresent)
-            .map(Optional::get)
-            .filter(str -> !str.trim().isEmpty())
-            .map(SimpleStatement::newInstance)
-            .collect(Collectors.toList());
-  }
-
-  @Nullable
-  private String readResourceToString(@Nonnull String resource) {
-    logger.info("Loading: {}", resource);
-
-    final InputStream inputStream = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(resource));
-
-    try (Reader reader = new InputStreamReader(inputStream)) {
-      return CharStreams.toString(reader);
-    } catch (IOException e) {
-      logger.error("Fail to load resource from {}", resource, e);
-      return null;
+    public String getLog4jPropertyFilePath() {
+        return getFullPath(environmentService.getCurrentEnvironmentAsString(), LOG_4J_PROP);
     }
-  }
 
-  public String getGoogleClientId() {
-    return environmentService.readEnvVariable("GOOGLE_CLIENT_ID");
-  }
+    public ApplicationConfig getApplicationConfig() {
+        return Objects.requireNonNull(applicationConfigSupplier.get(), "No application config");
+    }
 
-  public String getJwtSecret() {
-    return environmentService.readEnvVariable("JWT_SECRET");
-  }
+    public List<InetSocketAddress> getCassandraEndpoints() {
+        return getApplicationConfig()
+                .getCassandraConfig()
+                .stream()
+                .map(casConfig -> new InetSocketAddress(casConfig.getHost(), casConfig.getPort()))
+                .collect(Collectors.toList());
+    }
+
+    @Nonnull
+    public List<SimpleStatement> getCassandraInitStatements() {
+        final String cqlInitPath = getFullPath(environmentService.getCurrentEnvironmentAsString(), CQL_INIT_DIR);
+        final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
+                .addUrls(getClass().getClassLoader().getResource(cqlInitPath))
+                .setScanners(new ResourcesScanner());
+
+        final Reflections reflections = new Reflections(configurationBuilder);
+
+        return reflections.getResources(str -> str.endsWith("cql"))
+                .stream()
+                .sorted()
+                .map(resource -> resource.startsWith(cqlInitPath) ? resource : getFullPath(cqlInitPath, resource))
+                .map(fullResourcePath -> Optional.ofNullable(readResourceToString(fullResourcePath)))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .filter(str -> !str.trim().isEmpty())
+                .map(SimpleStatement::newInstance)
+                .collect(Collectors.toList());
+    }
+
+    @Nullable
+    private String readResourceToString(@Nonnull String resource) {
+        logger.info("Loading: {}", resource);
+
+        final InputStream inputStream = Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(resource));
+
+        try (Reader reader = new InputStreamReader(inputStream)) {
+            return CharStreams.toString(reader);
+        } catch (IOException e) {
+            logger.error("Fail to load resource from {}", resource, e);
+            return null;
+        }
+    }
+
+    @Nonnull
+    private String getFullPath(@Nonnull String prefix, @Nonnull String fileName) {
+        return String.format("%s/%s", prefix, fileName);
+    }
+
+    public String getGoogleClientId() {
+        return environmentService.readEnvVariable("GOOGLE_CLIENT_ID");
+    }
+
+    public String getJwtSecret() {
+        return environmentService.readEnvVariable("JWT_SECRET");
+    }
 }

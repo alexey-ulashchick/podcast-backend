@@ -11,16 +11,6 @@ import com.ulashchick.dashboard.common.persistance.CassandraClient;
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import io.grpc.inprocess.InProcessServerBuilder;
 import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
@@ -28,6 +18,14 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.stream.Collectors;
 
 /**
  * Class responsible for preparing {@link io.grpc.Server}.
@@ -59,7 +57,7 @@ public class ApplicationServerBuilder {
         PropertyConfigurator.configure(resourceAsStream);
     }
 
-    public MyServerBuilder forServer() throws IOException {
+    public MyServerBuilder forServer() {
         final int port = configService.getApplicationConfig().getGrpcServerConfig().getPort();
         return forServer(ServerBuilder.forPort(port));
     }
@@ -72,7 +70,7 @@ public class ApplicationServerBuilder {
         return new MyServerBuilder(serverBuilder, logger, cassandraClient, authInterceptor, executorService);
     }
 
-    public class MyServerBuilder {
+    public static class MyServerBuilder {
 
         private final ServerBuilder<?> serverBuilder;
         private final Logger logger;
@@ -133,7 +131,7 @@ public class ApplicationServerBuilder {
         }
 
         @Nonnull
-        public Server build() throws IOException {
+        public Server build() {
             cassandraClient.init();
             serverBuilder
                     .executor(executorService)
@@ -150,9 +148,5 @@ public class ApplicationServerBuilder {
                     : null;
         }
     }
-
-    public void initLogger() {
-    }
-
 
 }
