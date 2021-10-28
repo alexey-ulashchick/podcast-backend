@@ -4,20 +4,25 @@ import com.google.inject.Inject;
 import com.ulashchick.dashboard.common.DependencyManager;
 import com.ulashchick.dashboard.common.ApplicationServerBuilder;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Logger;
 
 public class Application {
 
-    @Inject
-    ApplicationServerBuilder applicationServerBuilder;
+    private final ApplicationServerBuilder applicationServerBuilder;
+    private final Logger logger;
+    private final ExecutorService executorService;
 
     @Inject
-    Logger logger;
-
-    @Inject
-    ExecutorService executorService;
+    public Application(@Nonnull ApplicationServerBuilder applicationServerBuilder,
+                       @Nonnull Logger logger,
+                       @Nonnull ExecutorService executorService) {
+        this.applicationServerBuilder = applicationServerBuilder;
+        this.logger = logger;
+        this.executorService = executorService;
+    }
 
     private final String basePackage = getClass().getPackage().getName();
 
@@ -31,7 +36,9 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        final Application application = DependencyManager.init().getInstance(Application.class);
+        DependencyManager.init();
+
+        final Application application = DependencyManager.getInjector().getInstance(Application.class);
         try {
             application.run();
         } catch (InterruptedException| IOException e) {

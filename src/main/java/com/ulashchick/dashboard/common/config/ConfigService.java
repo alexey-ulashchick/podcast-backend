@@ -5,10 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.common.base.Suppliers;
 import com.google.common.io.CharStreams;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.ulashchick.dashboard.common.config.pojo.ApplicationConfig;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
 
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -36,6 +38,7 @@ public class ConfigService {
     private final Logger logger;
     private final Supplier<ApplicationConfig> applicationConfigSupplier;
 
+    @Inject
     public ConfigService(@Nonnull EnvironmentService environmentService,
                          @Nonnull Logger logger) {
         this.environmentService = environmentService;
@@ -75,11 +78,12 @@ public class ConfigService {
         final String cqlInitPath = getFullPath(environmentService.getCurrentEnvironmentAsString(), CQL_INIT_DIR);
         final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
                 .addUrls(getClass().getClassLoader().getResource(cqlInitPath))
-                .setScanners(new ResourcesScanner());
+                .setScanners(Scanners.Resources);
 
         final Reflections reflections = new Reflections(configurationBuilder);
+        final Pattern pattern = Pattern.compile(".*\\.cql");
 
-        return reflections.getResources(str -> str.endsWith("cql"))
+        return reflections.getResources(pattern)
                 .stream()
                 .sorted()
                 .map(resource -> resource.startsWith(cqlInitPath) ? resource : getFullPath(cqlInitPath, resource))

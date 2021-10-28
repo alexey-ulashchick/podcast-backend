@@ -30,8 +30,9 @@ public class EnvironmentService {
      * default environment will be set to {@code Environment.DEV}.
      */
     public Environment getCurrentEnvironment() {
+        final String env = readEnvVariable("ENV");
         return Arrays.stream(Environment.values())
-                .filter(item -> item.label.equalsIgnoreCase(readEnvVariable("ENV")))
+                .filter(item -> item.label.equalsIgnoreCase(env))
                 .findFirst()
                 .orElse(Environment.DEV);
     }
@@ -43,7 +44,7 @@ public class EnvironmentService {
     @Nullable
     public String readEnvVariable(@Nonnull String variable) {
         final String envValue = System.getenv(variable);
-        return envValue.isEmpty() ? null : envValue;
+        return envValue == null || envValue.isEmpty() ? null : envValue;
     }
 
 }
