@@ -1,6 +1,8 @@
-package com.ulashchick.podcast.auth;
+package com.ulashchick.podcast.grpc;
 
 import com.google.inject.Inject;
+import com.ulashchick.podcast.auth.GoogleAuthService;
+import com.ulashchick.podcast.auth.JwtService;
 import com.ulashchick.podcast.common.annotations.GrpcService;
 import com.ulashchick.podcast.common.annotations.NoAuthRequired;
 import com.ulashchick.podcast.common.persistance.CassandraClient;

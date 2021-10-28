@@ -1,4 +1,4 @@
-package com.ulashchick.podcast.auth;
+package com.ulashchick.podcast.grpc;
 
 import com.google.inject.Inject;
 import com.ulashchick.podcast.common.annotations.GrpcService;

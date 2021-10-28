@@ -1,4 +1,4 @@
-package com.ulashchick.podcast.echo;
+package com.ulashchick.podcast.grpc;
 
 import com.ulashchick.podcast.common.annotations.GrpcService;
 import io.reactivex.Single;
