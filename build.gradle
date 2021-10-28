@@ -16,8 +16,8 @@ plugins {
 group 'com.ulashchick.dashboard'
 version '1.0.0'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.31.2'
     implementation 'com.google.inject:guice:4.2.2'
     implementation 'com.salesforce.servicelibs:rxgrpc-stub:1.0.1'
-    implementation 'com.github.alexey-ulashchick:dashboard-protos:1.0.48'
+    implementation 'com.github.alexey-ulashchick:dashboard-protos:1.0.49'
     implementation 'io.grpc:grpc-protobuf:1.35.0'
     implementation 'io.grpc:grpc-netty:1.35.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
