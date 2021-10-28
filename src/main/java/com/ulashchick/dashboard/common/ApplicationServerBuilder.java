@@ -96,13 +96,11 @@ public class ApplicationServerBuilder {
          */
         @Nonnull
         public MyServerBuilder addServices(@Nonnull String basePackage) {
-            final Injector injector = DependencyManager.getInjector();
-
             new Reflections(basePackage).getTypesAnnotatedWith(GrpcService.class)
                     .stream()
                     .map(this::toBindableServiceOrNull)
                     .filter(Objects::nonNull)
-                    .map(injector::getInstance)
+                    .map(DependencyManager::getInstance)
                     .forEach(service -> {
                         logger.info("Binding GrpcService: {}", service.getClass().getName());
                         serverBuilder.addService(service);

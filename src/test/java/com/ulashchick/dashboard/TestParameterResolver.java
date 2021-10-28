@@ -12,7 +12,7 @@ public class TestParameterResolver implements ParameterResolver {
   public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
     final Class<?> type = parameterContext.getParameter().getType();
     try {
-      DependencyManager.getInjector().getInstance(type);
+      DependencyManager.getInstance(type);
       return true;
     } catch (ConfigurationException e) {
       e.printStackTrace();
@@ -24,6 +24,6 @@ public class TestParameterResolver implements ParameterResolver {
   @Override
   public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
     final Class<?> type = parameterContext.getParameter().getType();
-    return DependencyManager.getInjector().getInstance(type);
+    return DependencyManager.getInstance(type);
   }
 }

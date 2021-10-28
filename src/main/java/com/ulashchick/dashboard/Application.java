@@ -36,7 +36,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        final Application application = DependencyManager.getInjector().getInstance(Application.class);
+        final Application application = DependencyManager.getInstance(Application.class);
         try {
             application.run();
         } catch (InterruptedException| IOException e) {

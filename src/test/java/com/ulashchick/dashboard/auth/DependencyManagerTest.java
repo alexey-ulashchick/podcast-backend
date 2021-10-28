@@ -9,7 +9,7 @@ class DependencyManagerTest {
 
   @Test
   void testInitialization() {
-    assertThat(DependencyManager.getInjector().getAllBindings()).isNotEmpty();
+    assertThat(DependencyManager.getAllBindings()).isNotEmpty();
   }
 
 }
