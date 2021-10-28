@@ -1,25 +1,19 @@
 package com.ulashchick.dashboard.auth;
 
-import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
-
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import io.grpc.Context;
-import io.grpc.Contexts;
+import io.grpc.*;
 import io.grpc.ForwardingServerCall.SimpleForwardingServerCall;
-import io.grpc.Metadata;
-import io.grpc.MethodDescriptor;
-import io.grpc.ServerCall;
 import io.grpc.ServerCall.Listener;
-import io.grpc.ServerCallHandler;
-import io.grpc.ServerInterceptor;
-import io.grpc.Status;
+import org.slf4j.Logger;
+
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import javax.annotation.Nonnull;
-import org.slf4j.Logger;
+
+import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
 
 @Singleton
 public class AuthInterceptor implements ServerInterceptor {
@@ -33,11 +27,14 @@ public class AuthInterceptor implements ServerInterceptor {
 
   public static final String TOKEN_TYPE = "Bearer ";
 
-  @Inject
-  private Logger logger;
+  private final Logger logger;
+  private final JwtService jwtService;
 
   @Inject
-  private JwtService jwtService;
+  public AuthInterceptor(Logger logger, JwtService jwtService) {
+    this.logger = logger;
+    this.jwtService = jwtService;
+  }
 
   private List<String> servicesToExclude;
 
@@ -69,7 +66,7 @@ public class AuthInterceptor implements ServerInterceptor {
     } catch (Exception e) {
       logger.error("Cannot authenticate user", e);
       call.close(Status.UNAUTHENTICATED, headers);
-      return new Listener<R>() {
+      return new Listener<>() {
       };
     }
   }
@@ -77,7 +74,7 @@ public class AuthInterceptor implements ServerInterceptor {
   @Nonnull
   private <R, T> ServerCall<R, T> setRefreshToken(@Nonnull ServerCall<R, T> call,
                                                   @Nonnull UUID uuid) {
-    return new SimpleForwardingServerCall<R, T>(call) {
+    return new SimpleForwardingServerCall<>(call) {
       @Override
       public void sendHeaders(Metadata responseHeaders) {
         responseHeaders.put(REFRESH_TOKEN_HEADER, jwtService.createToken(uuid));

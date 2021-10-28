@@ -1,7 +1,6 @@
 package com.ulashchick.dashboard.common.config;
 
 import com.ulashchick.dashboard.TestParameterResolver;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -15,11 +14,6 @@ class EnvironmentServiceTest {
 
   public EnvironmentServiceTest(EnvironmentService environmentService) {
     this.environmentService = Mockito.spy(environmentService);
-  }
-
-  @BeforeEach
-  void beforeEach() {
-
   }
 
   @Test
