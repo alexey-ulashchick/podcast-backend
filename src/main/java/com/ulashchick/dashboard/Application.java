@@ -36,8 +36,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        DependencyManager.init();
-
         final Application application = DependencyManager.getInjector().getInstance(Application.class);
         try {
             application.run();

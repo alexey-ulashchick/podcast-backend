@@ -14,7 +14,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
 import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
@@ -115,7 +115,7 @@ public class ApplicationServerBuilder {
         public MyServerBuilder addInterceptors(@Nonnull String basePackage) {
             final ConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
                     .setUrls(ClasspathHelper.forPackage(basePackage))
-                    .setScanners(new MethodAnnotationsScanner());
+                    .setScanners(Scanners.MethodsAnnotated);
 
             final Reflections reflections = new Reflections(configurationBuilder);
             final List<String> servicesToExcludeFromInterception = reflections

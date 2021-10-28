@@ -2,9 +2,9 @@ package com.ulashchick.dashboard.common.config;
 
 import com.google.inject.Singleton;
 
-import java.util.Arrays;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 @Singleton
 public class EnvironmentService {
