@@ -2,6 +2,7 @@ package com.ulashchick.podcast.grpc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Suppliers;
+import com.google.common.primitives.Bytes;
 import com.google.inject.Inject;
 import com.ulashchick.podcast.common.annotations.GrpcService;
 import com.ulashchick.podcast.common.config.EnvironmentService;
@@ -25,7 +26,6 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Supplier;
@@ -109,14 +109,12 @@ public class PodcastService extends RxPodcastServiceGrpc.PodcastServiceImplBase 
       final MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
       messageDigest.update((apiKey + apiSecret + apiHeaderTime).getBytes(StandardCharsets.UTF_8));
 
-      final StringBuilder buffer = new StringBuilder();
+      return Bytes.asList(messageDigest.digest())
+          .stream()
+          .map(b -> String.format("%02x", b))
+          .collect(Collectors.joining());
 
-      for (byte b : messageDigest.digest()) {
-        buffer.append(String.format(Locale.getDefault(), "%02x", b));
-      }
-
-      return buffer.toString();
-    } catch (NoSuchAlgorithmException | UnsupportedOperationException e) {
+    } catch (NoSuchAlgorithmException e) {
       e.printStackTrace();
       throw new StatusRuntimeException(Status.INTERNAL);
     }

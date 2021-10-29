@@ -15,6 +15,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RecentFeeds {
 
-  List<Feed> feeds;
+  private final List<Feed> feeds;
 
 }
