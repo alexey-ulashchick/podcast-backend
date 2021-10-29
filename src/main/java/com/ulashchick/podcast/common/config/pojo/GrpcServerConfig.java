@@ -1,33 +1,16 @@
 package com.ulashchick.podcast.common.config.pojo;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.extern.jackson.Jacksonized;
 
-@JsonDeserialize(builder = GrpcServerConfig.Builder.class)
+@Getter
+@AllArgsConstructor
+@Jacksonized
+@Builder
 public class GrpcServerConfig {
 
   private final int port;
 
-  public GrpcServerConfig(int port) {
-    this.port = port;
-  }
-
-  public int getPort() {
-    return port;
-  }
-
-  @JsonPOJOBuilder
-  public static class Builder {
-
-    private int port;
-
-    public Builder withPort(int port) {
-      this.port = port;
-      return this;
-    }
-
-    public GrpcServerConfig build() {
-      return new GrpcServerConfig(port);
-    }
-  }
 }
