@@ -22,7 +22,9 @@ class PodcastServiceTest {
 
   @Test
   void testGetFeed() {
-    final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(RecentFeedsRequest.getDefaultInstance())).blockingGet();
+    final RecentFeedsRequest request = RecentFeedsRequest.getDefaultInstance();
+    final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(request)).blockingGet();
+
     assertThat(recentFeedsResponse.getFeedsCount()).isAtLeast(1);
   }
 }

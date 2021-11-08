@@ -13,7 +13,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
-group 'com.ulashchick.dashboard'
+group 'com.ulashchick.podcast'
 version '1.0.0'
 
 sourceCompatibility = 11
@@ -58,7 +58,7 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0'
 }
 
-mainClassName = 'com.ulashchick.dashboard.Application'
+mainClassName = 'com.ulashchick.podcast.Application'
 
 test {
     useJUnitPlatform()
