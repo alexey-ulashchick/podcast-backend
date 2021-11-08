@@ -3,7 +3,7 @@ package com.ulashchick.podcast.common.persistance;
 public class CassandraKeyspace {
 
   public static final String DATACENTER = "datacenter1";
-  public static final String KEYSPACE = "dashboard";
+  public static final String KEYSPACE = "podcast";
 
   public static class UserByEmailTable {
 
