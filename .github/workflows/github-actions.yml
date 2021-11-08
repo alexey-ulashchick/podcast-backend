@@ -22,3 +22,10 @@ jobs:
           PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
           PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
         run: ./gradlew test --no-daemon
+
+      - name: Publishing report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test Report
+          path: build/reports/tests
