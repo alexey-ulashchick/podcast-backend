@@ -21,3 +21,9 @@ jobs:
           PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
           PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
         run: ./gradlew build --no-daemon
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: test-results/**/*.xml
