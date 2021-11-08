@@ -1,0 +1,18 @@
+name: test
+on:
+  - pull_request
+jobs:
+  test-java:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v2
+
+      - name: Build Application
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          cache: 'gradle'
+
+      - run: ./gradlew build --no-daemon
