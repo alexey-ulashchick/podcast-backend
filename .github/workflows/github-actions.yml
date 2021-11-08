@@ -1,8 +1,9 @@
-name: test
+name: Pull Request Pipeline
 on:
   - pull_request
 jobs:
   test-java:
+    name: Building Application and Running Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -20,10 +21,4 @@ jobs:
         env:
           PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
           PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
-        run: ./gradlew build --no-daemon
-
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: build/test-results/**/*.xml
+        run: ./gradlew test --no-daemon
