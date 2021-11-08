@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      -name: Build Application
+      - name: Build Application
         env:
           PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
           PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
