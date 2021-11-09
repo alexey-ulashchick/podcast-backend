@@ -21,9 +21,12 @@ import org.slf4j.Logger;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -118,7 +121,7 @@ public class ApplicationServerBuilder {
             final List<String> servicesToExcludeFromInterception = reflections
                     .getMethodsAnnotatedWith(NoAuthRequired.class)
                     .stream()
-                    .map(method -> method.getDeclaringClass().getName() + "." + method.getName())
+                    .map(this::buildMethodDescriptor)
                     .map(String::toLowerCase)
                     .collect(Collectors.toList());
 
@@ -143,6 +146,23 @@ public class ApplicationServerBuilder {
             return BindableService.class.isAssignableFrom(klass)
                     ? (Class<BindableService>) klass
                     : null;
+        }
+
+        private String buildMethodDescriptor(@Nonnull Method method) {
+            final String fullName = method.getDeclaringClass().getSuperclass().getName();
+
+            final Pattern pattern = Pattern.compile("Rx(.*?)Grpc");
+            final Matcher matcher = pattern.matcher(fullName);
+
+            if (!matcher.find()) {
+                throw new IllegalStateException("Cannot extract name from: " + fullName);
+            }
+
+            final String packageName = method.getDeclaringClass().getSuperclass().getPackageName();
+            final String serviceName = matcher.group(1);
+            final String methodName = method.getName();
+
+            return packageName + "." + serviceName + "." + methodName;
         }
     }
 
