@@ -16,6 +16,8 @@ services:
       PODCAST_INDEX_API_KEY: $PODCAST_INDEX_API_KEY
     container_name: podcast-backend-test
     image: podcast-backend-test
+    entrypoint:
+      ["./gradlew", "test"]
 
   cassandra:
     container_name: cassandra

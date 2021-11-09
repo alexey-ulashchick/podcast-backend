@@ -1,6 +1,7 @@
 package com.ulashchick.podcast.grpc;
 
 import com.ulashchick.podcast.TestParameterResolver;
+import com.ulashchick.podcast.common.config.EnvironmentService;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,13 +16,18 @@ import static com.google.common.truth.Truth.assertThat;
 class PodcastServiceTest {
 
   private final PodcastService podcastService;
+  private final EnvironmentService environmentService;
 
-  public PodcastServiceTest(@Nonnull PodcastService podcastService) {
+  public PodcastServiceTest(@Nonnull PodcastService podcastService, @Nonnull EnvironmentService environmentService) {
     this.podcastService = podcastService;
+    this.environmentService = environmentService;
   }
 
   @Test
   void testGetFeed() {
+    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_API_KEY")).isNotNull();
+    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_API_SECRET")).isNotNull();
+
     final RecentFeedsRequest request = RecentFeedsRequest.getDefaultInstance();
     final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(request)).blockingGet();
 
