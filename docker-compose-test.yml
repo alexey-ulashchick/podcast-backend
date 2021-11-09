@@ -11,7 +11,9 @@ services:
       context: .
       dockerfile: Dockerfile-server-test
     environment:
-      - "ENV:TEST"
+      ENV: TEST
+      PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_API_SECRET
+      PODCAST_INDEX_API_KEY: $PODCAST_INDEX_API_KEY
     container_name: podcast-backend-test
     image: podcast-backend-test
 
