@@ -10,10 +10,10 @@ import com.ulashchick.podcast.grpc.pojo.RecentFeeds;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.reactivex.Single;
-import protos.com.ulashchick.application.podcast.Feed;
-import protos.com.ulashchick.application.podcast.RecentFeedsRequest;
-import protos.com.ulashchick.application.podcast.RecentFeedsResponse;
-import protos.com.ulashchick.application.podcast.RxPodcastServiceGrpc;
+import protos.com.ulashchick.podcast.podcast.Feed;
+import protos.com.ulashchick.podcast.podcast.RecentFeedsRequest;
+import protos.com.ulashchick.podcast.podcast.RecentFeedsResponse;
+import protos.com.ulashchick.podcast.podcast.RxPodcastServiceGrpc;
 
 import javax.annotation.Nonnull;
 import java.net.URI;

@@ -2,9 +2,9 @@ package com.ulashchick.podcast.grpc;
 
 import com.ulashchick.podcast.common.annotations.GrpcService;
 import io.reactivex.Single;
-import protos.com.ulashchick.dashboard.echo.EchoRequest;
-import protos.com.ulashchick.dashboard.echo.EchoResponse;
-import protos.com.ulashchick.dashboard.echo.RxEchoServiceGrpc;
+import protos.com.ulashchick.podcast.echo.EchoRequest;
+import protos.com.ulashchick.podcast.echo.EchoResponse;
+import protos.com.ulashchick.podcast.echo.RxEchoServiceGrpc;
 
 @GrpcService
 public class EchoService extends RxEchoServiceGrpc.EchoServiceImplBase {

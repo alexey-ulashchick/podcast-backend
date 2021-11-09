@@ -13,9 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import protos.com.dashboard.ulashchick.auth.UserProfile;
-import protos.com.ulashchick.dashboard.auth.SignInUserRequest;
-import protos.com.ulashchick.dashboard.auth.SignInUserResponse;
+import protos.com.ulashchick.podcast.auth.SignInUserRequest;
+import protos.com.ulashchick.podcast.auth.SignInUserResponse;
+import protos.com.ulashchick.podcast.auth.UserProfile;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -71,6 +71,6 @@ class AuthServiceTest {
 
     test.awaitTerminalEvent(1, TimeUnit.SECONDS);
     test.assertError(throwable -> throwable instanceof StatusRuntimeException);
-    test.assertError(throwable -> ((StatusRuntimeException)throwable).getStatus() == Status.INVALID_ARGUMENT);
+    test.assertError(throwable -> ((StatusRuntimeException) throwable).getStatus() == Status.INVALID_ARGUMENT);
   }
 }
