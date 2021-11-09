@@ -9,10 +9,12 @@ import com.ulashchick.podcast.common.persistance.CassandraClient;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.reactivex.Single;
+import protos.com.ulashchick.podcast.auth.RxAuthServiceGrpc;
+import protos.com.ulashchick.podcast.auth.SignInUserRequest;
+import protos.com.ulashchick.podcast.auth.SignInUserResponse;
+
 import javax.annotation.Nonnull;
-import protos.com.ulashchick.dashboard.auth.RxAuthServiceGrpc;
-import protos.com.ulashchick.dashboard.auth.SignInUserRequest;
-import protos.com.ulashchick.dashboard.auth.SignInUserResponse;
+
 
 @GrpcService
 public class AuthService extends RxAuthServiceGrpc.AuthServiceImplBase {

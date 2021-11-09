@@ -23,7 +23,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import javax.annotation.Nonnull;
 import org.slf4j.Logger;
-import protos.com.dashboard.ulashchick.auth.UserProfile;
+import protos.com.ulashchick.podcast.auth.UserProfile;
 
 @Singleton
 public class CassandraClient {

@@ -4,8 +4,8 @@ import com.ulashchick.podcast.TestParameterResolver;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import protos.com.ulashchick.dashboard.echo.EchoRequest;
-import protos.com.ulashchick.dashboard.echo.EchoResponse;
+import protos.com.ulashchick.podcast.echo.EchoRequest;
+import protos.com.ulashchick.podcast.echo.EchoResponse;
 
 import static com.google.common.truth.Truth.assertThat;
 

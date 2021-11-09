@@ -10,7 +10,7 @@ import com.google.common.base.Suppliers;
 import com.google.inject.Inject;
 import com.ulashchick.podcast.common.config.ConfigService;
 import com.ulashchick.podcast.common.exceptions.ApplicationException;
-import protos.com.dashboard.ulashchick.auth.UserProfile;
+import protos.com.ulashchick.podcast.auth.UserProfile;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;

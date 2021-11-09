@@ -4,8 +4,8 @@ import com.ulashchick.podcast.TestParameterResolver;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import protos.com.ulashchick.application.podcast.RecentFeedsRequest;
-import protos.com.ulashchick.application.podcast.RecentFeedsResponse;
+import protos.com.ulashchick.podcast.podcast.RecentFeedsRequest;
+import protos.com.ulashchick.podcast.podcast.RecentFeedsResponse;
 
 import javax.annotation.Nonnull;
 
