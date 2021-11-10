@@ -4,7 +4,7 @@ on:
 jobs:
 
   unit-test:
-    name: Building Application and Running Unit Tests
+    name: Running Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -28,12 +28,12 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: JUnit test results
+          name: Unit Test Results
           path: build/test-results/test/*.xml
           reporter: java-junit
 
   integration-test:
-    name: Building Application and Running Integration Tests
+    name: Running Integration Tests
     runs-on: ubuntu-latest
 
     steps:

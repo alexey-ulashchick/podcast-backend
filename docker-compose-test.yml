@@ -19,7 +19,7 @@ services:
     container_name: podcast-backend-test
     image: podcast-backend-test
     entrypoint:
-      ["./gradlew", "test"]
+      ["./gradlew", "integrationTest"]
 
   cassandra:
     container_name: cassandra
