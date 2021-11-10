@@ -11,7 +11,7 @@ services:
 
     build:
       context: .
-      dockerfile: Dockerfile-server-test
+      dockerfile: Dockerfile-test
     environment:
       ENV: TEST
       PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_API_SECRET
