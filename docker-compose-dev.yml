@@ -7,7 +7,7 @@ services:
   podcast-backend:
     build:
       context: .
-      dockerfile: Dockerfile-server
+      dockerfile: Dockerfile-local-server
     container_name: podcast-backend
     image: podcast-backend
     ports:
