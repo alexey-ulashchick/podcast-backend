@@ -26,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Supplier;
@@ -94,12 +95,14 @@ public class PodcastService extends RxPodcastServiceGrpc.PodcastServiceImplBase 
             .build());
   }
 
+  @Nonnull
   private String getApiKey() {
-    return environmentService.readEnvVariable(API_KEY);
+    return Objects.requireNonNull(environmentService.readEnvVariable(API_KEY), API_KEY + "is missing");
   }
 
+  @Nonnull
   private String getApiSecret() {
-    return environmentService.readEnvVariable(API_SECRET);
+    return Objects.requireNonNull(environmentService.readEnvVariable(API_SECRET), API_SECRET + "is missing");
   }
 
   private String getAuthorizationHeaderValue(@Nonnull String apiKey,

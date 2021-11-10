@@ -1,0 +1,4 @@
+FROM gradle:7.2.0-jdk11
+WORKDIR /home/gradle/src
+COPY --chown=gradle:gradle build/libs/dashboard-service-auth-1.0.0-all.jar .
+ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar","dashboard-service-auth-1.0.0-all.jar"]

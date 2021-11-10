@@ -27,4 +27,5 @@ class EchoServiceTest {
 
     assertThat(response.getMessage()).endsWith(TEST_MESSAGE);
   }
+
 }
