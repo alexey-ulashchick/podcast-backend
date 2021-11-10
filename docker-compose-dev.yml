@@ -1,3 +1,5 @@
+# docker-compose -f docker-compose-dev.yml up --build
+
 version: '3.5'
 
 services:
@@ -10,6 +12,7 @@ services:
     image: podcast-backend
     ports:
       - "50551:50551"
+      - "5005:5005"
     restart: always
 
   envoy:
