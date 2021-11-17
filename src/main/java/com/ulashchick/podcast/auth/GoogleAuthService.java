@@ -33,7 +33,7 @@ public class GoogleAuthService {
     @Nonnull
     public UserProfile verifyAndDecode(@Nonnull String googleTokenId) {
         try {
-            return Optional.of(googleTokenVerifierSupplier.get().verify(googleTokenId))
+            return Optional.ofNullable(googleTokenVerifierSupplier.get().verify(googleTokenId))
                     .map(GoogleIdToken::getPayload)
                     .filter(Payload::getEmailVerified)
                     .map(this::fromPayload)
