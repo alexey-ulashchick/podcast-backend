@@ -1,6 +1,6 @@
 # docker-compose -f docker-compose-dev.yml up --build
 
-version: '3.5'
+version: '2.1'
 
 services:
 
@@ -10,8 +10,8 @@ services:
       dockerfile: Dockerfile-local-server
     environment:
       ENV: DEV
-      PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_API_SECRET
-      PODCAST_INDEX_API_KEY: $PODCAST_INDEX_API_KEY
+      PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_SECRET
+      PODCAST_INDEX_API_KEY: $PODCAST_INDEX_KEY
       GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
       JWT_SECRET: $JWT_SECRET
     container_name: podcast-backend
@@ -33,3 +33,17 @@ services:
       - "9900:9900"
       - "9901:9901"
     restart: always
+
+  cassandra:
+    container_name: cassandra
+    image: cassandra:latest
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    ports:
+      - "9042:9042"
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "[ $$(nodetool statusgossip) = running ]" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5

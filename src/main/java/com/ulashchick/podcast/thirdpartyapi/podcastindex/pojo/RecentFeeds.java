@@ -1,4 +1,4 @@
-package com.ulashchick.podcast.grpc.pojo;
+package com.ulashchick.podcast.thirdpartyapi.podcastindex.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

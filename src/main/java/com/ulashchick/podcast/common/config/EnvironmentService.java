@@ -11,6 +11,10 @@ import java.util.Arrays;
 @Singleton
 public class EnvironmentService {
   private static final Logger logger = LoggerFactory.getLogger(EnvironmentService.class);
+  private static final String PODCAST_INDEX_KEY = "PODCAST_INDEX_KEY";
+  private static final String PODCAST_INDEX_SECRET = "PODCAST_INDEX_SECRET";
+
+
   private final Dotenv dotenv;
 
   public enum Environment {
@@ -60,6 +64,16 @@ public class EnvironmentService {
       }
 
       return value;
+  }
+
+  @Nonnull
+  public String getPodcastIndexKey() {
+    return readEnvVariable(PODCAST_INDEX_KEY);
+  }
+
+  @Nonnull
+  public String getPodcastIndexSecret() {
+    return readEnvVariable(PODCAST_INDEX_SECRET);
   }
 
 }

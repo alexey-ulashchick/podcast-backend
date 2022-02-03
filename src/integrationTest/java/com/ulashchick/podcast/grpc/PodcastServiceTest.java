@@ -28,9 +28,9 @@ class PodcastServiceTest {
     assertThat(environmentService.readEnvVariable("PODCAST_INDEX_KEY")).isNotEmpty();
     assertThat(environmentService.readEnvVariable("PODCAST_INDEX_SECRET")).isNotEmpty();
 
-    final RecentFeedsRequest request = RecentFeedsRequest.getDefaultInstance();
+    final RecentFeedsRequest request = RecentFeedsRequest.newBuilder().setMax(10).build();
     final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(request)).blockingGet();
 
-    assertThat(recentFeedsResponse.getFeedsCount()).isAtLeast(1);
+    assertThat(recentFeedsResponse.getFeedsCount()).isEqualTo(10);
   }
 }
