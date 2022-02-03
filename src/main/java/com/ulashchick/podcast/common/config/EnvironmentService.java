@@ -1,6 +1,9 @@
 package com.ulashchick.podcast.common.config;
 
 import com.google.inject.Singleton;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -8,6 +11,8 @@ import java.util.Arrays;
 
 @Singleton
 public class EnvironmentService {
+    private static final Logger logger = LoggerFactory.getLogger(ConfigService.class);
+    private final Dotenv dotenv;
 
     public enum Environment {
         DEV("DEV"),
@@ -25,10 +30,15 @@ public class EnvironmentService {
         }
     }
 
+    public EnvironmentService() {
+        dotenv = Dotenv.configure().load();
+    }
+
     /**
      * Checks current system environment through system ENV environment variable. When not set,
      * default environment will be set to {@code Environment.DEV}.
      */
+    @Nonnull
     public Environment getCurrentEnvironment() {
         final String env = readEnvVariable("ENV");
         return Arrays.stream(Environment.values())
@@ -37,14 +47,14 @@ public class EnvironmentService {
                 .orElse(Environment.DEV);
     }
 
+    @Nonnull
     public String getCurrentEnvironmentAsString() {
         return getCurrentEnvironment().getLabel().toLowerCase();
     }
 
-    @Nullable
+    @Nonnull
     public String readEnvVariable(@Nonnull String variable) {
-        final String envValue = System.getenv(variable);
-        return envValue == null || envValue.isEmpty() ? null : envValue;
+        return dotenv.get(variable);
     }
 
 }

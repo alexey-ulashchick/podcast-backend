@@ -35,8 +35,8 @@ import java.util.stream.Collectors;
 @GrpcService
 public class PodcastService extends RxPodcastServiceGrpc.PodcastServiceImplBase {
 
-  private static final String API_KEY = "PODCAST_INDEX_API_KEY";
-  private static final String API_SECRET = "PODCAST_INDEX_API_SECRET";
+  private static final String API_KEY = "PODCAST_INDEX_KEY";
+  private static final String API_SECRET = "PODCAST_INDEX_SECRET";
   private static final String URL = "https://api.podcastindex.org/api/1.0/recent/feeds";
   private static final long TIMEOUT = 15;
 

@@ -27,10 +27,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.22'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    // https://mvnrepository.com/artifact/com.datastax.oss/java-driver-core
+    implementation 'io.github.cdimascio:dotenv-java:2.2.0'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+
     implementation 'com.datastax.oss:java-driver-core:4.13.0'
     implementation 'com.auth0:java-jwt:3.18.2'
     implementation 'com.datastax.oss:java-driver-query-builder:4.13.0'

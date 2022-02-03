@@ -25,8 +25,8 @@ class PodcastServiceTest {
 
   @Test
   void testGetFeed() {
-    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_API_KEY")).isNotNull();
-    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_API_SECRET")).isNotNull();
+    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_KEY")).isNotEmpty();
+    assertThat(environmentService.readEnvVariable("PODCAST_INDEX_SECRET")).isNotEmpty();
 
     final RecentFeedsRequest request = RecentFeedsRequest.getDefaultInstance();
     final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(request)).blockingGet();
