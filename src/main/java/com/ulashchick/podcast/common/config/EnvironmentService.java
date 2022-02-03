@@ -39,7 +39,7 @@ public class EnvironmentService {
 
   /**
    * Checks current system environment through system ENV environment variable. When not set,
-   * default environment will be set to {@code Environment.DEV}.
+   * default environment will be set to {@code E                                         nvironment.DEV}.
    */
   @Nonnull
   public Environment getCurrentEnvironment() {

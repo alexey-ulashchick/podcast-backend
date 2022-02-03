@@ -5,8 +5,7 @@ import com.ulashchick.podcast.common.config.EnvironmentService;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import protos.com.ulashchick.podcast.podcast.RecentFeedsRequest;
-import protos.com.ulashchick.podcast.podcast.RecentFeedsResponse;
+import protos.com.ulashchick.podcast.podcast.*;
 
 import javax.annotation.Nonnull;
 
@@ -18,7 +17,8 @@ class PodcastServiceTest {
   private final PodcastService podcastService;
   private final EnvironmentService environmentService;
 
-  public PodcastServiceTest(@Nonnull PodcastService podcastService, @Nonnull EnvironmentService environmentService) {
+  public PodcastServiceTest(@Nonnull PodcastService podcastService,
+                            @Nonnull EnvironmentService environmentService) {
     this.podcastService = podcastService;
     this.environmentService = environmentService;
   }
@@ -32,5 +32,18 @@ class PodcastServiceTest {
     final RecentFeedsResponse recentFeedsResponse = podcastService.recentFeeds(Single.just(request)).blockingGet();
 
     assertThat(recentFeedsResponse.getFeedsCount()).isEqualTo(10);
+  }
+
+  @Test
+  void testSearch() {
+    final SearchRequest request = SearchRequest.newBuilder().setQuery("РАДИО-Т").build();
+    final SearchResponse searchResponse = podcastService.search(Single.just(request)).blockingGet();
+
+    assertThat(searchResponse.getFeedsCount()).isAtLeast(1);
+
+    final Feed feed = searchResponse.getFeeds(0);
+
+    assertThat(feed.getLanguage()).isEqualTo("ru");
+    assertThat(feed.getTitle()).isEqualTo("Радио-Т");
   }
 }

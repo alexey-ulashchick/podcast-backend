@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
 
 public class PodcastIndexClient {
   private static final String URL_PREFIX = "https://api.podcastindex.org/api/1.0/";
-  private static final String RECENT_FEED_URL_SUFFIX = "recent/feeds";
 
   private static final long TIMEOUT_S = 15;
   private final Supplier<HttpClient> clientSupplier;
@@ -51,16 +50,25 @@ public class PodcastIndexClient {
 
   @Nonnull
   public Single<List<Feed>> getRecentFeeds(int limit) {
-    final ObjectMapper objectMapper = new ObjectMapper();
-
-
     final HttpRequest httpRequest = buildRequestHeader()
         .GET()
-        .uri(URI.create(String.format("%s/%s?max=%d", URL_PREFIX, RECENT_FEED_URL_SUFFIX, limit)))
+        .uri(URI.create(String.format("%s/recent/feeds?max=%d", URL_PREFIX, limit)))
         .build();
 
     return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
-        .map(response -> objectMapper.readValue(response.body(), RecentFeeds.class))
+        .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
+        .map(RecentFeeds::getFeeds);
+  }
+
+  @Nonnull
+  public Single<List<Feed>> searchFeeds(@Nonnull String searchToken) {
+    final HttpRequest httpRequest = buildRequestHeader()
+        .GET()
+        .uri(URI.create(String.format("%s/search/byterm?q=%s", URL_PREFIX, searchToken)))
+        .build();
+
+    return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
+        .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
         .map(RecentFeeds::getFeeds);
   }
 
