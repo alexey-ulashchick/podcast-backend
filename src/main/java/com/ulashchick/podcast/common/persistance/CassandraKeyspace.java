@@ -18,6 +18,15 @@ public class CassandraKeyspace {
     }
   }
 
+  public static class SubscriptionsByUser {
+    public static final String TABLE_NAME = "subscriptions_by_user";
+    public static final String USER_ID = "userId";
+    public static final String FEED_ID = "feedId";
+
+    private SubscriptionsByUser() {
+    }
+  }
+
   private CassandraKeyspace() {
   }
 

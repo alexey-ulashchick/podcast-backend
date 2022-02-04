@@ -40,7 +40,7 @@ public class CassandraSession {
 
   private void init(@Nullable String keyspace) {
     if (session != null) {
-      throw new IllegalStateException("Session already has been created");
+      logger.info("Re-initializing session.");
     }
 
     session = buildSession(keyspace);
