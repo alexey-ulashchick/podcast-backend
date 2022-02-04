@@ -1,9 +1,7 @@
 package com.ulashchick.podcast.common;
 
-import com.google.inject.Binding;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Key;
+import com.google.inject.*;
+import com.google.inject.util.Modules;
 import com.ulashchick.podcast.BaseModule;
 
 import javax.annotation.Nonnull;
@@ -25,8 +23,18 @@ public class DependencyManager {
     return Holder.injector.getAllBindings();
   }
 
+  public static synchronized <T> void overrideForTest(Class<T> clazz, T instance) {
+    AbstractModule abstractModule = new AbstractModule() {
+      @Override
+      protected void configure() {
+        bind(clazz).toInstance(instance);
+      }
+    };
+    Holder.injector = Guice.createInjector(Modules.override(new BaseModule()).with(abstractModule));
+  }
+
   private static class Holder {
-    private static final Injector injector = Guice.createInjector(
+    private static Injector injector = Guice.createInjector(
         new BaseModule()
     );
   }
