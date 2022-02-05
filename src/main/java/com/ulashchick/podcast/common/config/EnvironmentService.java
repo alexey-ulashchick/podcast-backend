@@ -34,7 +34,7 @@ public class EnvironmentService {
   }
 
   public EnvironmentService() {
-    dotenv = Dotenv.configure().load();
+    dotenv = Dotenv.configure().ignoreIfMalformed().ignoreIfMissing().load();
   }
 
   /**

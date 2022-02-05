@@ -14,8 +14,8 @@ services:
       dockerfile: Dockerfile-test
     environment:
       ENV: TEST
-      PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_API_SECRET
-      PODCAST_INDEX_API_KEY: $PODCAST_INDEX_API_KEY
+      PODCAST_INDEX_SECRET: $PODCAST_INDEX_SECRET
+      PODCAST_INDEX_KEY: $PODCAST_INDEX_KEY
     container_name: podcast-backend-test
     image: podcast-backend-test
     entrypoint:

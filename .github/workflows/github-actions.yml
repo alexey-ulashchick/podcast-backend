@@ -20,8 +20,8 @@ jobs:
 
       - name: Build Application
         env:
-          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
+          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
         run: ./gradlew test --no-daemon
 
       - name: Test Report
@@ -42,8 +42,8 @@ jobs:
 
       - name: Build Application
         env:
-          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
+          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
           ENV: TEST
         run: docker-compose -f docker-compose-test.yml up --build --abort-on-container-exit --exit-code-from podcast-backend-test
 
