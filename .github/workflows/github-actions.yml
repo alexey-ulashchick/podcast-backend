@@ -29,17 +29,17 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Unit Test Results
+          name: Unit Test Results [ALL Tests]
           path: build/test-results/test/*.xml
           reporter: java-junit
 
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          check_name: Unit Test Results V2
-          comment_mode: create new
-          files: build/test-results/**/*.xml
+#      - name: Publish Unit Test Results
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          check_name: Unit Test Results [Summary & Failed]
+#          comment_mode: create new
+#          files: build/test-results/**/*.xml
 
   integration-test:
     name: Running Integration Tests
@@ -60,14 +60,14 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Integration test results
+          name: Integration test results [ALL Tests]
           path: build/test-results/integrationTest/*.xml
           reporter: java-junit
 
-      - name: Publish Integration Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          check_name: Integration Test Results V2
-          comment_mode: create new
-          files: build/test-results/**/*.xml
+#      - name: Publish Integration Test Results
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          check_name: Integration Test Results [Summary & Failed]
+#          comment_mode: create new
+#          files: build/test-results/**/*.xml
