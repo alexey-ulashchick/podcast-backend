@@ -53,5 +53,5 @@ jobs:
         if: always()
         with:
           name: Integration test results
-          path: build/test-results/test/*.xml
+          path: build/test-results/integrationTest/*.xml
           reporter: java-junit
