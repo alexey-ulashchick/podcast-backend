@@ -1,8 +1,8 @@
 name: Pull Request Pipeline
 on:
   - pull_request
+  - workflow_dispatch
 jobs:
-
   unit-test:
     name: Running Unit Tests
     runs-on: ubuntu-latest
