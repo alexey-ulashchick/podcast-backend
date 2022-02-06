@@ -23,7 +23,7 @@ import java.util.UUID;
 
 @ExtendWith(MockitoExtension.class)
 @Testcontainers
-public class AbstractIntegrationTest {
+public abstract class AbstractIntegrationTest {
 
   @Container
   @SuppressWarnings({"rawtypes"})
