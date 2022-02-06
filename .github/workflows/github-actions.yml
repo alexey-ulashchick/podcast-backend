@@ -1,8 +1,8 @@
-name: Pull Request Pipeline
+name: Tests
 on:
   - pull_request
-  - workflow_dispatch
 jobs:
+
   unit-test:
     name: Running Unit Tests
     runs-on: ubuntu-latest
@@ -20,17 +20,27 @@ jobs:
 
       - name: Build Application
         env:
-          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
+          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ENV: TEST
         run: ./gradlew test --no-daemon
 
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Unit Test Results
+          name: Unit Test Results [ALL Tests]
           path: build/test-results/test/*.xml
           reporter: java-junit
+
+#      - name: Publish Unit Test Results
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          check_name: Unit Test Results [Summary & Failed]
+#          comment_mode: create new
+#          files: build/test-results/**/*.xml
 
   integration-test:
     name: Running Integration Tests
@@ -42,15 +52,24 @@ jobs:
 
       - name: Build Application
         env:
-          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
+          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: TEST
-        run: docker-compose -f docker-compose-test.yml up --build --abort-on-container-exit --exit-code-from podcast-backend-test
+        run: ./gradlew integrationTest --no-daemon
 
-#      - name: Test Report
-#        uses: dorny/test-reporter@v1
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Integration test results [ALL Tests]
+          path: build/test-results/integrationTest/*.xml
+          reporter: java-junit
+
+#      - name: Publish Integration Test Results
+#        uses: EnricoMi/publish-unit-test-result-action@v1
 #        if: always()
 #        with:
-#          name: JUnit Integration test results
-#          path: build/test-results/test/*.xml
-#          reporter: java-junit
+#          check_name: Integration Test Results [Summary & Failed]
+#          comment_mode: create new
+#          files: build/test-results/**/*.xml

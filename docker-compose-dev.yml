@@ -10,10 +10,6 @@ services:
       dockerfile: Dockerfile-local-server
     environment:
       ENV: DEV
-      PODCAST_INDEX_API_SECRET: $PODCAST_INDEX_SECRET
-      PODCAST_INDEX_API_KEY: $PODCAST_INDEX_KEY
-      GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
-      JWT_SECRET: $JWT_SECRET
     container_name: podcast-backend
     image: podcast-backend
     ports:
