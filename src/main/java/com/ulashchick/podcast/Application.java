@@ -3,6 +3,7 @@ package com.ulashchick.podcast;
 import com.google.inject.Inject;
 import com.ulashchick.podcast.common.ApplicationServerBuilder;
 import com.ulashchick.podcast.common.DependencyManager;
+import org.apache.logging.log4j.ThreadContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        ThreadContext.put("testId", "normal");
+
         final Application application = DependencyManager.getInstance(Application.class);
         try {
             application.run();

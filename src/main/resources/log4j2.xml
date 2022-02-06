@@ -10,28 +10,26 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-<!--        <Routing name="myAppender">-->
-<!--            <Routes pattern="$${ctx:workId}">-->
-<!--                <Route>-->
-<!--                    <File fileName="logs/${ctx:workId}/${date:yyyy-MM-dd}/${ctx:employeeId}/emp.log"-->
-<!--                          name="myAppender-${ctx:workId}">-->
-<!--                        <MarkerFilter marker="TELEMETRIC" onMatch="ACCEPT" onMismatch="DENY"/>-->
-<!--                        <PatternLayout>-->
-<!--                            <Pattern>[%date{ISO8601}][%-5level][%logger{1.}][%marker][$${ctx:employeeId}] %X %m%n-->
-<!--                            </Pattern>-->
-<!--                        </PatternLayout>-->
-<!--                    </File>-->
-<!--                </Route>-->
-<!--            </Routes>-->
-<!--        </Routing>-->
-<!--        <Async name="Async">-->
-<!--            <AppenderRef ref="myAppender" level="info"/>-->
-<!--        </Async>-->
+        <Routing name="myAppender">
+            <Routes pattern="${ctx:testId}">
+                <Route>
+                    <File fileName="build/logs/${ctx:testId}.log" name="myAppender-${ctx:testId}">
+                        <PatternLayout pattern="${LOG_PATTERN}"/>
+                    </File>
+                </Route>
+            </Routes>
+        </Routing>
+
+        <Async name="async" ignoreExceptions="false">
+            <AppenderRef ref="myAppender" level="info"/>
+        </Async>
+
     </Appenders>
 
     <Loggers>
         <Root level="info">
             <appender-ref ref="console"/>
+            <appender-ref ref="async" />
         </Root>
     </Loggers>
 
