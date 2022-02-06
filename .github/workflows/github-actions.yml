@@ -2,7 +2,6 @@ name: Pull Request Pipeline
 on:
   - pull_request
 jobs:
-
   unit-test:
     name: Running Unit Tests
     runs-on: ubuntu-latest
