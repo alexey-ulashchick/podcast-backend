@@ -4,7 +4,7 @@ on:
 jobs:
 
   unit-test:
-    name: Running Unit Tests
+    name: Unit Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
 #          files: build/test-results/**/*.xml
 
   integration-test:
-    name: Running Integration Tests
+    name: Integration Tests
     runs-on: ubuntu-latest
 
     steps:
