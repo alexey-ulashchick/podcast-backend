@@ -20,8 +20,8 @@ jobs:
 
       - name: Build Application
         env:
-          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
+          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
         run: ./gradlew test --no-daemon
 
       - name: Test Report
@@ -32,32 +32,25 @@ jobs:
           path: build/test-results/test/*.xml
           reporter: java-junit
 
-#  integration-test:
-#    name: Running Integration Tests
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout latest code
-#        uses: actions/checkout@v2
-#
-#      - name: Fetch Java & Gradle
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'temurin'
-#          java-version: '11'
-#          cache: 'gradle'
-#
-#      - name: Build Application
-#        env:
-#          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
-#          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
-#          ENV: TEST
-#        run: ./gradlew integrationTest --no-daemon
-#
+  integration-test:
+    name: Running Integration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v2
+
+      - name: Build Application
+        env:
+          PODCAST_INDEX_API_SECRET: ${{ secrets.PODCAST_INDEX_API_SECRET }}
+          PODCAST_INDEX_API_KEY: ${{ secrets.PODCAST_INDEX_API_KEY }}
+          ENV: TEST
+        run: docker-compose -f docker-compose-test.yml up --build --abort-on-container-exit --exit-code-from podcast-backend-test
+
 #      - name: Test Report
 #        uses: dorny/test-reporter@v1
 #        if: always()
 #        with:
-#          name: Integration test results
+#          name: JUnit Integration test results
 #          path: build/test-results/test/*.xml
 #          reporter: java-junit
