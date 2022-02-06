@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.Objects;
 
 @Singleton
 public class EnvironmentService {
@@ -57,7 +58,7 @@ public class EnvironmentService {
 
   @Nonnull
   public String readEnvVariable(@Nonnull String variable) {
-      final String value = dotenv.get(variable);
+      final String value = Objects.requireNonNullElse(dotenv.get(variable), "");
 
       if (value.isEmpty()) {
           logger.warn("Environment variable {} has not been set.", variable);
