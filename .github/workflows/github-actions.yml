@@ -33,6 +33,12 @@ jobs:
           path: build/test-results/test/*.xml
           reporter: java-junit
 
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: build/test-results/**/*.xml
+
   integration-test:
     name: Running Integration Tests
     runs-on: ubuntu-latest
@@ -55,3 +61,9 @@ jobs:
           name: Integration test results
           path: build/test-results/integrationTest/*.xml
           reporter: java-junit
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: build/test-results/**/*.xml
