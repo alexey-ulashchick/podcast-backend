@@ -12,7 +12,7 @@ import protos.com.ulashchick.podcast.echo.EchoServiceGrpc;
 import static com.google.common.truth.Truth.assertThat;
 
 @ExtendWith(TestParameterResolver.class)
-class EchoServiceTest extends AbstractIntegrationTest {
+class EchoServiceIntegrationTest extends AbstractIntegrationTest {
 
   @Test
   void authorizationIsNotRequired() {

@@ -94,25 +94,25 @@ test {
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
 
-sourceSets {
-    integrationTest {
-        compileClasspath += sourceSets.main.output + sourceSets.test.output
-        runtimeClasspath += sourceSets.main.output + sourceSets.test.output
-    }
-}
+//sourceSets {
+//    integrationTest {
+//        compileClasspath += sourceSets.main.output + sourceSets.test.output
+//        runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+//    }
+//}
+//
+//configurations {
+//    integrationTestImplementation.extendsFrom testImplementation
+//    integrationTestRuntime.extendsFrom testRuntime
+//}
+//
+//task integrationTest(type: Test) {
+//    description = 'Runs integration tests.'
+//    group = 'verification'
+//    useJUnitPlatform()
+//    maxParallelForks = (int) (Runtime.runtime.availableProcessors() /2 + 1)
+//    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+//    classpath = sourceSets.integrationTest.runtimeClasspath
+//}
 
-configurations {
-    integrationTestImplementation.extendsFrom testImplementation
-    integrationTestRuntime.extendsFrom testRuntime
-}
-
-task integrationTest(type: Test) {
-    description = 'Runs integration tests.'
-    group = 'verification'
-    useJUnitPlatform()
-    maxParallelForks = (int) (Runtime.runtime.availableProcessors() /2 + 1)
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
-}
-
-check.dependsOn integrationTest
+//check.dependsOn integrationTest

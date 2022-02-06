@@ -3,7 +3,7 @@ on:
   - pull_request
 jobs:
 
-  unit-test:
+  tests:
     name: Unit Tests
     runs-on: ubuntu-latest
 
@@ -18,7 +18,7 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      - name: Build Application
+      - name: Build Application & Running tests
         env:
           PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
           PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
@@ -26,56 +26,24 @@ jobs:
           ENV: TEST
         run: ./gradlew test --no-daemon
 
-      - name: Test Report
+      - name: Publising JUnit Test Report
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Unit Test Results [ALL Tests]
+          name: [JUnit] Test Results
           path: build/test-results/test/*.xml
           reporter: java-junit
+
+      - name: Deploing Gradle Report
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/reports/tests/integrationTest
 
 #      - name: Publish Unit Test Results
 #        uses: EnricoMi/publish-unit-test-result-action@v1
 #        if: always()
 #        with:
 #          check_name: Unit Test Results [Summary & Failed]
-#          comment_mode: create new
-#          files: build/test-results/**/*.xml
-
-  integration-test:
-    name: Integration Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v2
-
-      - name: Build Application
-        env:
-          PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
-          PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ENV: TEST
-        run: ./gradlew integrationTest --no-daemon
-
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Integration test results [ALL Tests]
-          path: build/test-results/integrationTest/*.xml
-          reporter: java-junit
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/reports/tests/integrationTest
-
-#      - name: Publish Integration Test Results
-#        uses: EnricoMi/publish-unit-test-result-action@v1
-#        if: always()
-#        with:
-#          check_name: Integration Test Results [Summary & Failed]
 #          comment_mode: create new
 #          files: build/test-results/**/*.xml
