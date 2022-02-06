@@ -22,6 +22,7 @@ jobs:
         env:
           PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
           PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: TEST
         run: ./gradlew test --no-daemon
 
@@ -53,6 +54,7 @@ jobs:
         env:
           PODCAST_INDEX_SECRET: ${{ secrets.PODCAST_INDEX_SECRET }}
           PODCAST_INDEX_KEY: ${{ secrets.PODCAST_INDEX_KEY }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           ENV: TEST
         run: ./gradlew integrationTest --no-daemon
 
