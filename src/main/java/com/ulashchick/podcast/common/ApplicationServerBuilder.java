@@ -12,7 +12,6 @@ import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.inprocess.InProcessServerBuilder;
-import org.apache.log4j.PropertyConfigurator;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
@@ -22,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
@@ -56,11 +54,6 @@ public class ApplicationServerBuilder {
     this.authInterceptor = authInterceptor;
     this.executorService = executorService;
     this.environmentService = environmentService;
-
-    final String configPath = configService.getLog4jPropertyFilePath();
-    final InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(configPath);
-
-    PropertyConfigurator.configure(resourceAsStream);
   }
 
   public MyServerBuilder forServer() {

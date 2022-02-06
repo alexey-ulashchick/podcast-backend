@@ -32,7 +32,6 @@ import java.util.stream.Collectors;
 public class ConfigService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigService.class);
 
-    private static final String LOG_4J_PROP = "log4j.properties";
     private static final String APP_CONFIG = "app-config.yaml";
     private static final String CQL_INIT_DIR = "cql-init";
 
@@ -54,10 +53,6 @@ public class ConfigService {
                 return null;
             }
         });
-    }
-
-    public String getLog4jPropertyFilePath() {
-        return LOG_4J_PROP;
     }
 
     public ApplicationConfig getApplicationConfig() {
