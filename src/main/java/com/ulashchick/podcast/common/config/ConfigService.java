@@ -12,6 +12,7 @@ import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,25 +25,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.logging.LogManager;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Singleton
 public class ConfigService {
+    private static final Logger logger = LoggerFactory.getLogger(ConfigService.class);
 
     private static final String LOG_4J_PROP = "log4j.properties";
     private static final String APP_CONFIG = "app-config.yaml";
     private static final String CQL_INIT_DIR = "cql-init";
 
     private final EnvironmentService environmentService;
-    private final Logger logger;
     private final Supplier<ApplicationConfig> applicationConfigSupplier;
 
     @Inject
     public ConfigService(@Nonnull EnvironmentService environmentService,
                          @Nonnull Logger logger) {
         this.environmentService = environmentService;
-        this.logger = logger;
         this.applicationConfigSupplier = Suppliers.memoize(() -> {
             final String appConfigPath = getFullPath(environmentService.getCurrentEnvironmentAsString(), APP_CONFIG);
             final InputStream yamlResourceStream = getClass().getClassLoader().getResourceAsStream(appConfigPath);
@@ -95,6 +96,14 @@ public class ConfigService {
                 .collect(Collectors.toList());
     }
 
+    public String getGoogleClientId() {
+        return environmentService.readEnvVariable("GOOGLE_CLIENT_ID");
+    }
+
+    public String getJwtSecret() {
+        return environmentService.readEnvVariable("JWT_SECRET");
+    }
+
     @Nullable
     private String readResourceToString(@Nonnull String resource) {
         logger.info("Loading: {}", resource);
@@ -114,11 +123,5 @@ public class ConfigService {
         return String.format("%s/%s", prefix, fileName);
     }
 
-    public String getGoogleClientId() {
-        return environmentService.readEnvVariable("GOOGLE_CLIENT_ID");
-    }
 
-    public String getJwtSecret() {
-        return environmentService.readEnvVariable("JWT_SECRET");
-    }
 }

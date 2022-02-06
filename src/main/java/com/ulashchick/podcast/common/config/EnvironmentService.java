@@ -1,50 +1,79 @@
 package com.ulashchick.podcast.common.config;
 
 import com.google.inject.Singleton;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Arrays;
 
 @Singleton
 public class EnvironmentService {
+  private static final Logger logger = LoggerFactory.getLogger(EnvironmentService.class);
+  private static final String PODCAST_INDEX_KEY = "PODCAST_INDEX_KEY";
+  private static final String PODCAST_INDEX_SECRET = "PODCAST_INDEX_SECRET";
 
-    public enum Environment {
-        DEV("DEV"),
-        TEST("TEST"),
-        PROD("PROD");
 
-        private final String label;
+  private final Dotenv dotenv;
 
-        Environment(String label) {
-            this.label = label;
-        }
+  public enum Environment {
+    DEV("DEV"),
+    TEST("TEST"),
+    PROD("PROD");
 
-        public String getLabel() {
-            return label;
-        }
+    private final String label;
+
+    Environment(String label) {
+      this.label = label;
     }
 
-    /**
-     * Checks current system environment through system ENV environment variable. When not set,
-     * default environment will be set to {@code Environment.DEV}.
-     */
-    public Environment getCurrentEnvironment() {
-        final String env = readEnvVariable("ENV");
-        return Arrays.stream(Environment.values())
-                .filter(item -> item.label.equalsIgnoreCase(env))
-                .findFirst()
-                .orElse(Environment.DEV);
+    public String getLabel() {
+      return label;
     }
+  }
 
-    public String getCurrentEnvironmentAsString() {
-        return getCurrentEnvironment().getLabel().toLowerCase();
-    }
+  public EnvironmentService() {
+    dotenv = Dotenv.configure().ignoreIfMalformed().ignoreIfMissing().load();
+  }
 
-    @Nullable
-    public String readEnvVariable(@Nonnull String variable) {
-        final String envValue = System.getenv(variable);
-        return envValue == null || envValue.isEmpty() ? null : envValue;
-    }
+  /**
+   * Checks current system environment through system ENV environment variable. When not set,
+   * default environment will be set to {@code E                                         nvironment.DEV}.
+   */
+  @Nonnull
+  public Environment getCurrentEnvironment() {
+    final String env = readEnvVariable("ENV");
+    return Arrays.stream(Environment.values())
+        .filter(item -> item.label.equalsIgnoreCase(env))
+        .findFirst()
+        .orElse(Environment.DEV);
+  }
+
+  @Nonnull
+  public String getCurrentEnvironmentAsString() {
+    return getCurrentEnvironment().getLabel().toLowerCase();
+  }
+
+  @Nonnull
+  public String readEnvVariable(@Nonnull String variable) {
+      final String value = dotenv.get(variable);
+
+      if (value.isEmpty()) {
+          logger.warn("Environment variable {} has not been set.", variable);
+      }
+
+      return value;
+  }
+
+  @Nonnull
+  public String getPodcastIndexKey() {
+    return readEnvVariable(PODCAST_INDEX_KEY);
+  }
+
+  @Nonnull
+  public String getPodcastIndexSecret() {
+    return readEnvVariable(PODCAST_INDEX_SECRET);
+  }
 
 }

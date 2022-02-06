@@ -21,47 +21,47 @@ import java.util.function.Supplier;
 
 public class GoogleAuthService {
 
-    private final ConfigService configService;
-    private final Supplier<GoogleIdTokenVerifier> googleTokenVerifierSupplier;
+  private final ConfigService configService;
+  private final Supplier<GoogleIdTokenVerifier> googleTokenVerifierSupplier;
 
-    @Inject
-    public GoogleAuthService(@Nonnull ConfigService configService) {
-        this.configService = configService;
-        this.googleTokenVerifierSupplier = Suppliers.memoize(this::getGoogleTokenVerifier)::get;
+  @Inject
+  public GoogleAuthService(@Nonnull ConfigService configService) {
+    this.configService = configService;
+    this.googleTokenVerifierSupplier = Suppliers.memoize(this::getGoogleTokenVerifier)::get;
+  }
+
+  @Nonnull
+  public UserProfile verifyAndDecode(@Nonnull String googleTokenId) {
+    try {
+      return Optional.ofNullable(googleTokenVerifierSupplier.get().verify(googleTokenId))
+          .map(GoogleIdToken::getPayload)
+          .filter(Payload::getEmailVerified)
+          .map(this::fromPayload)
+          .orElseThrow(() -> new GeneralSecurityException("Invalid tokenId / unverified email"));
+    } catch (GeneralSecurityException | IOException e) {
+      throw new ApplicationException("Cannot encode tokenId", e.getCause());
     }
+  }
 
-    @Nonnull
-    public UserProfile verifyAndDecode(@Nonnull String googleTokenId) {
-        try {
-            return Optional.ofNullable(googleTokenVerifierSupplier.get().verify(googleTokenId))
-                    .map(GoogleIdToken::getPayload)
-                    .filter(Payload::getEmailVerified)
-                    .map(this::fromPayload)
-                    .orElseThrow(() -> new GeneralSecurityException("Invalid tokenId / unverified email"));
-        } catch (GeneralSecurityException | IOException e) {
-            throw new ApplicationException("Cannot encode tokenId", e.getCause());
-        }
-    }
+  @Nonnull
+  private UserProfile fromPayload(@Nonnull Payload payload) {
+    return UserProfile.newBuilder()
+        .setEmail(payload.getEmail())
+        .setFirstName((String) payload.get("given_name"))
+        .setLastName((String) payload.get("family_name"))
+        .setPictureUrl((String) payload.get("picture"))
+        .build();
+  }
 
-    @Nonnull
-    private UserProfile fromPayload(@Nonnull Payload payload) {
-        return UserProfile.newBuilder()
-                .setEmail(payload.getEmail())
-                .setFirstName((String) payload.get("given_name"))
-                .setLastName((String) payload.get("family_name"))
-                .setPictureUrl((String) payload.get("picture"))
-                .build();
-    }
+  @Nonnull
+  private GoogleIdTokenVerifier getGoogleTokenVerifier() {
+    final ApacheHttpTransport transport = new ApacheHttpTransport();
+    final GsonFactory gsonFactory = GsonFactory.getDefaultInstance();
+    final String googleClientId = configService.getGoogleClientId();
 
-    @Nonnull
-    private GoogleIdTokenVerifier getGoogleTokenVerifier() {
-        final ApacheHttpTransport transport = new ApacheHttpTransport();
-        final GsonFactory gsonFactory = GsonFactory.getDefaultInstance();
-        final String googleClientId = configService.getGoogleClientId();
-
-        return new Builder(transport, gsonFactory)
-                .setAudience(Collections.singletonList(googleClientId))
-                .build();
-    }
+    return new Builder(transport, gsonFactory)
+        .setAudience(Collections.singletonList(googleClientId))
+        .build();
+  }
 
 }

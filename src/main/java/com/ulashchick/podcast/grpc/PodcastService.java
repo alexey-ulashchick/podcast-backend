@@ -1,125 +1,86 @@
 package com.ulashchick.podcast.grpc;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Suppliers;
-import com.google.common.primitives.Bytes;
 import com.google.inject.Inject;
+import com.ulashchick.podcast.auth.AuthInterceptor;
 import com.ulashchick.podcast.common.annotations.GrpcService;
-import com.ulashchick.podcast.common.config.EnvironmentService;
-import com.ulashchick.podcast.grpc.pojo.RecentFeeds;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
+import com.ulashchick.podcast.common.persistance.CassandraClient;
+import com.ulashchick.podcast.thirdpartyapi.podcastindex.PodcastIndexClient;
 import io.reactivex.Single;
-import protos.com.ulashchick.podcast.podcast.Feed;
-import protos.com.ulashchick.podcast.podcast.RecentFeedsRequest;
-import protos.com.ulashchick.podcast.podcast.RecentFeedsResponse;
-import protos.com.ulashchick.podcast.podcast.RxPodcastServiceGrpc;
+import protos.com.ulashchick.podcast.podcast.*;
 
 import javax.annotation.Nonnull;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.time.Duration;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Objects;
-import java.util.TimeZone;
-import java.util.concurrent.ExecutorService;
-import java.util.function.Supplier;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @GrpcService
 public class PodcastService extends RxPodcastServiceGrpc.PodcastServiceImplBase {
 
-  private static final String API_KEY = "PODCAST_INDEX_API_KEY";
-  private static final String API_SECRET = "PODCAST_INDEX_API_SECRET";
-  private static final String URL = "https://api.podcastindex.org/api/1.0/recent/feeds";
-  private static final long TIMEOUT = 15;
-
-  private final Supplier<HttpClient> clientSupplier;
-  private final EnvironmentService environmentService;
+  private final PodcastIndexClient podcastIndexClient;
+  private final CassandraClient cassandraClient;
 
   @Inject
-  PodcastService(@Nonnull ExecutorService executorService,
-                 @Nonnull EnvironmentService environmentService) {
-    this.environmentService = environmentService;
-    this.clientSupplier = Suppliers.memoize(() -> HttpClient.newBuilder()
-        .version(HttpClient.Version.HTTP_2)
-        .followRedirects(HttpClient.Redirect.NORMAL)
-        .connectTimeout(Duration.ofSeconds(20))
-        .executor(executorService)
-        .build()
-    )::get;
+  PodcastService(@Nonnull PodcastIndexClient podcastIndexClient,
+                 @Nonnull CassandraClient cassandraClient) {
+    this.podcastIndexClient = podcastIndexClient;
+    this.cassandraClient = cassandraClient;
   }
 
   @Override
   public Single<RecentFeedsResponse> recentFeeds(Single<RecentFeedsRequest> recentFeedsRequestSingle) {
-    Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-    calendar.clear();
-    calendar.setTime(new Date());
+    return recentFeedsRequestSingle
+        .map(RecentFeedsRequest::getMax)
+        .flatMap(podcastIndexClient::getRecentFeeds)
+        .map(this::toProtoFeeds)
+        .map(recentFeeds -> RecentFeedsResponse.newBuilder().addAllFeeds(recentFeeds).build());
+  }
 
-    final String apiHeaderTime = String.valueOf(calendar.getTimeInMillis() / 1000L);
-    final String apiKey = getApiKey();
-    final String apiSecret = getApiSecret();
-    final ObjectMapper objectMapper = new ObjectMapper();
-    final HttpRequest request = HttpRequest.newBuilder()
-        .timeout(Duration.ofSeconds(TIMEOUT))
-        .header("Accept", "application/json")
-        .header("Content-Type", "application/json; utf-8")
-        .header("X-Auth-Date", apiHeaderTime)
-        .header("X-Auth-Key", apiKey)
-        .header("Authorization", getAuthorizationHeaderValue(apiKey, apiSecret, apiHeaderTime))
-        .header("User-Agent", "https://github.com/alexey-ulashchick/podcast-backend")
-        .GET()
-        .uri(URI.create(URL))
-        .build();
+  @Override
+  public Single<SearchResponse> search(Single<SearchRequest> request) {
+    return request
+        .map(SearchRequest::getQuery)
+        .flatMap(podcastIndexClient::searchFeeds)
+        .map(this::toProtoFeeds)
+        .map(feeds -> SearchResponse.newBuilder().addAllFeeds(feeds).build());
+  }
 
+  @Override
+  public Single<SubscribeMeToResponse> subscribeMeTo(Single<SubscribeMeToRequest> request) {
+    return super.subscribeMeTo(request);
+  }
 
-    return Single.fromFuture(clientSupplier.get().sendAsync(request, HttpResponse.BodyHandlers.ofString()))
-        .map(response -> objectMapper.readValue(response.body(), RecentFeeds.class))
-        .map(recentFeeds -> RecentFeedsResponse.newBuilder()
-            .addAllFeeds(recentFeeds.getFeeds()
-                .stream()
-                .map(feed -> Feed.newBuilder()
-                    .setId(feed.getId())
-                    .setTitle(feed.getTitle())
-                    .setDescription(feed.getDescription())
-                    .setImage(feed.getImage())
-                    .setLanguage(feed.getLanguage())
-                    .build())
-                .collect(Collectors.toList()))
+  @Override
+  public Single<UnsubsribeMeFromResponse> unsubsribeMeFrom(Single<UnsubsribeMeFromRequest> request) {
+    return super.unsubsribeMeFrom(request);
+  }
+
+  @Override
+  public Single<ListMySubscriptionsResponse> listMySubscriptions(Single<ListMySubscriptionsRequest> request) {
+    final UUID uuid = AuthInterceptor.UUID_KEY.get();
+
+    return request
+        .flatMap(unused -> cassandraClient.getSubscriptionsList(uuid))
+        .map(listSubscriptionIds -> listSubscriptionIds.stream()
+            .map(id -> Feed.newBuilder()
+                .setId(id)
+                .build())
+            .collect(Collectors.toList()))
+        .map(feedsList -> ListMySubscriptionsResponse.newBuilder()
+            .addAllFeeds(feedsList)
             .build());
   }
 
-  @Nonnull
-  private String getApiKey() {
-    return Objects.requireNonNull(environmentService.readEnvVariable(API_KEY), API_KEY + "is missing");
+  private List<Feed> toProtoFeeds(@Nonnull List<com.ulashchick.podcast.thirdpartyapi.podcastindex.pojo.Feed> feeds) {
+    return feeds.stream()
+        .map(feed -> Feed.newBuilder()
+            .setId(feed.getId())
+            .setTitle(feed.getTitle())
+            .setDescription(feed.getDescription())
+            .setImage(feed.getImage())
+            .setLanguage(feed.getLanguage())
+            .build())
+        .collect(Collectors.toList());
   }
 
-  @Nonnull
-  private String getApiSecret() {
-    return Objects.requireNonNull(environmentService.readEnvVariable(API_SECRET), API_SECRET + "is missing");
-  }
 
-  private String getAuthorizationHeaderValue(@Nonnull String apiKey,
-                                             @Nonnull String apiSecret,
-                                             @Nonnull String apiHeaderTime) {
-    try {
-      final MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-      messageDigest.update((apiKey + apiSecret + apiHeaderTime).getBytes(StandardCharsets.UTF_8));
-
-      return Bytes.asList(messageDigest.digest())
-          .stream()
-          .map(b -> String.format("%02x", b))
-          .collect(Collectors.joining());
-
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-      throw new StatusRuntimeException(Status.INTERNAL);
-    }
-  }
 }

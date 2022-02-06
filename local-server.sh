@@ -4,4 +4,7 @@
 ./gradlew shadowJar
 
 # Using compose to spin up  Envoy & Server
-docker-compose -f docker-compose-dev.yml up --build
+docker-compose --env-file src/main/resources/.env -f docker-compose-dev.yml up --build -d
+
+# To rebuild and restart server use
+# ./gradlew shadowJar && docker-compose --env-file src/main/resources/.env -f docker-compose-dev.yml restart podcast-backend
