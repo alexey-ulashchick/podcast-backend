@@ -37,6 +37,8 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
+          check_name: Unit Test Results V2
+          comment_mode: create new
           files: build/test-results/**/*.xml
 
   integration-test:
@@ -62,8 +64,10 @@ jobs:
           path: build/test-results/integrationTest/*.xml
           reporter: java-junit
 
-      - name: Publish Unit Test Results
+      - name: Publish Integration Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
+          check_name: Integration Test Results V2
+          comment_mode: create new
           files: build/test-results/**/*.xml
