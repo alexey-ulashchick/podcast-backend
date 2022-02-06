@@ -18,6 +18,7 @@ import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,7 +37,8 @@ import java.util.stream.Collectors;
 @Singleton
 public class ApplicationServerBuilder {
 
-  private final Logger logger;
+  private static final Logger logger = LoggerFactory.getLogger(ApplicationServerBuilder.class);
+
   private final CassandraClient cassandraClient;
   private final ConfigService configService;
   private final AuthInterceptor authInterceptor;
@@ -44,13 +46,11 @@ public class ApplicationServerBuilder {
   private final EnvironmentService environmentService;
 
   @Inject
-  public ApplicationServerBuilder(Logger logger,
-                                  CassandraClient cassandraClient,
-                                  ConfigService configService,
-                                  AuthInterceptor authInterceptor,
-                                  ExecutorService executorService,
-                                  EnvironmentService environmentService) {
-    this.logger = logger;
+  public ApplicationServerBuilder(@Nonnull CassandraClient cassandraClient,
+                                  @Nonnull ConfigService configService,
+                                  @Nonnull AuthInterceptor authInterceptor,
+                                  @Nonnull ExecutorService executorService,
+                                  @Nonnull EnvironmentService environmentService) {
     this.cassandraClient = cassandraClient;
     this.configService = configService;
     this.authInterceptor = authInterceptor;

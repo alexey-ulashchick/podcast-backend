@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.ulashchick.podcast.common.config.ConfigService;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -14,14 +15,17 @@ import java.util.Optional;
 @Singleton
 public class CassandraSession {
 
-  @Inject
-  private ConfigService configService;
+  private static final Logger logger = LoggerFactory.getLogger(CassandraSession.class);
 
-  @Inject
-  private Logger logger;
+  private final ConfigService configService;
 
   @Nullable
   private CqlSession session;
+
+  @Inject
+  public CassandraSession(@Nonnull ConfigService configService) {
+    this.configService = configService;
+  }
 
   @Nonnull
   public CqlSession getSession() {

@@ -21,6 +21,7 @@ import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protos.com.ulashchick.podcast.auth.UserProfile;
 
 import javax.annotation.Nonnull;
@@ -35,20 +36,23 @@ import java.util.concurrent.ExecutorService;
 @Singleton
 public class CassandraClient {
 
-  @Inject
-  private CassandraSession cassandraSession;
+  private static final Logger logger = LoggerFactory.getLogger(CassandraClient.class);
+
+  private final CassandraSession cassandraSession;
+  private final ConfigService configService;
+  private final EnvironmentService environmentService;
+  private final ExecutorService executorService;
 
   @Inject
-  private ConfigService configService;
-
-  @Inject
-  private EnvironmentService environmentService;
-
-  @Inject
-  private Logger logger;
-
-  @Inject
-  private ExecutorService executorService;
+  public CassandraClient(@Nonnull CassandraSession cassandraSession,
+                         @Nonnull ConfigService configService,
+                         @Nonnull EnvironmentService environmentService,
+                         @Nonnull ExecutorService executorService) {
+    this.cassandraSession = cassandraSession;
+    this.configService = configService;
+    this.environmentService = environmentService;
+    this.executorService = executorService;
+  }
 
   /**
    * Initialize Cassandra client. For any non-production environment, initialization runs a set of
@@ -56,10 +60,16 @@ public class CassandraClient {
    */
   public void init() {
     if (environmentService.getCurrentEnvironment().equals(Environment.PROD)) {
+      logger.info("Initializing cassandra session without schema re-creation");
       cassandraSession.initWithKeyspace(CassandraKeyspace.KEYSPACE);
     } else {
+      logger.info("Initializing cassandra session without keyspace");
       cassandraSession.initWithoutKeyspace();
+
+      logger.info("Installing schema");
       initCassandraKeyspaceAndTables();
+
+      logger.info("Schema installed. Re-initializing cassandra session");
       cassandraSession.initWithKeyspace(CassandraKeyspace.KEYSPACE);
     }
   }

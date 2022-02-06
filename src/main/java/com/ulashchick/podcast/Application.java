@@ -1,26 +1,25 @@
 package com.ulashchick.podcast;
 
 import com.google.inject.Inject;
-import com.ulashchick.podcast.common.DependencyManager;
 import com.ulashchick.podcast.common.ApplicationServerBuilder;
+import com.ulashchick.podcast.common.DependencyManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
-import java.util.logging.Logger;
 
 public class Application {
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     private final ApplicationServerBuilder applicationServerBuilder;
-    private final Logger logger;
     private final ExecutorService executorService;
 
     @Inject
     public Application(@Nonnull ApplicationServerBuilder applicationServerBuilder,
-                       @Nonnull Logger logger,
                        @Nonnull ExecutorService executorService) {
         this.applicationServerBuilder = applicationServerBuilder;
-        this.logger = logger;
         this.executorService = executorService;
     }
 
@@ -41,7 +40,7 @@ public class Application {
             application.run();
         } catch (InterruptedException| IOException e) {
             Thread.currentThread().interrupt();
-            application.logger.info("Process has been interrupted.");
+            logger.info("Process has been interrupted.");
             application.executorService.shutdown();
         }
     }
