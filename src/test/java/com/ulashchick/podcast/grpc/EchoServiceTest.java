@@ -1,6 +1,6 @@
 package com.ulashchick.podcast.grpc;
 
-import com.ulashchick.podcast.TestParameterResolver;
+import com.ulashchick.podcast.testing.TestParameterResolver;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

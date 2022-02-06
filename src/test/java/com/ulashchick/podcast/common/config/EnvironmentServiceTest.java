@@ -1,6 +1,6 @@
 package com.ulashchick.podcast.common.config;
 
-import com.ulashchick.podcast.TestParameterResolver;
+import com.ulashchick.podcast.testing.TestParameterResolver;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
