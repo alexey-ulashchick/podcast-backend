@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">34.858s</div>
+<div class="counter">46.373s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">checkUserUpsertionDoesNotChangeUUID()</td>
-<td class="success">15.019s</td>
+<td class="success">21.289s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">firstUserSignIn()</td>
-<td class="success">9.606s</td>
+<td class="success">12.434s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testSubscription()</td>
-<td class="success">10.233s</td>
+<td class="success">12.650s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,36 +97,38 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>00:59:57.425 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.api.core.uuid.Uuids - PID obtained through native call to getpid(): 1711
-00:59:57.430 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: checkUserUpsertionDoesNotChangeUUID() ---&gt;&gt;&gt;
-00:59:57.434 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
-00:59:57.469 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 0b49e3468082962a3bbb2954004e0ead960eb13f27c87c8da52beb00daa1a537
-00:59:58.187 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=46749113-442d-48ff-ba93-2584cadd0161}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-00:59:58.322 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=223b6dd0-372d-4fde-a763-895342dc4927}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:00.025 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=223b6dd0-372d-4fde-a763-895342dc4927}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:00.091 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=46749113-442d-48ff-ba93-2584cadd0161}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:04.216 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=46749113-442d-48ff-ba93-2584cadd0161}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:04.227 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=223b6dd0-372d-4fde-a763-895342dc4927}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:07.733 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT10.300273S
-01:00:07.753 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
-01:00:07.802 [s2-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:08.346 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
-01:00:08.346 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
-01:00:08.347 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
-01:00:08.347 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
-01:00:08.348 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
-01:00:08.348 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
-01:00:08.348 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
-01:00:08.348 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+<pre>01:33:42.322 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.api.core.uuid.Uuids - PID obtained through native call to getpid(): 1725
+01:33:42.325 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: checkUserUpsertionDoesNotChangeUUID() ---&gt;&gt;&gt;
+01:33:42.328 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+01:33:42.386 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: fbc9aa60af96212d4ffb8ed103429f29e048fc74e628984cd9e4f1435529875e
+01:33:43.101 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=28f2c334-44f5-4843-ab4c-22121a7bd17a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:43.184 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=b8d5a068-9bdd-4918-9ee8-661383d136d7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:44.948 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=b8d5a068-9bdd-4918-9ee8-661383d136d7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:45.149 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=28f2c334-44f5-4843-ab4c-22121a7bd17a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:48.872 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=28f2c334-44f5-4843-ab4c-22121a7bd17a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:49.391 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=b8d5a068-9bdd-4918-9ee8-661383d136d7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:57.283 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=28f2c334-44f5-4843-ab4c-22121a7bd17a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:57.867 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT15.540215S
+01:33:57.878 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=b8d5a068-9bdd-4918-9ee8-661383d136d7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:57.905 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+01:33:58.003 [s2-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:33:58.607 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
+01:33:58.608 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+01:33:58.609 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+01:33:58.612 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+01:33:58.612 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+01:33:58.613 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+01:33:58.614 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+01:33:58.615 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create keyspace if not exists podcast
     with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
      and durable_writes = true;
 
-01:00:09.485 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:59.793 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 use podcast;
 
-01:00:09.490 [s2-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s2] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
-01:00:09.495 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:59.797 [s2-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s2] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+01:33:59.801 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists users_by_email
 (
     email      varchar primary key,
@@ -136,59 +138,58 @@ create table if not exists users_by_email
     imageUrl   varchar
 );
 
-01:00:10.617 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:00.964 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists subscriptions_by_user
 (
     userId timeuuid,
     feedId bigint,
     primary key ((userId), feedId)
 );
-01:00:11.723 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
-01:00:11.723 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
-01:00:11.758 [s3-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:11.848 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
-01:00:11.897 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',4d5ceee0-87b1-11ec-adc8-b770b423d7c3) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.003 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='LAST_NAME', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.052 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.114 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.124 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',4d8621c0-87b1-11ec-adc8-b770b423d7c3) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.138 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='TEST', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.145 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.150 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.155 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:12.448 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: checkUserUpsertionDoesNotChangeUUID() ---&gt;&gt;&gt;
-01:00:12.450 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testSubscription() ---&gt;&gt;&gt;
-01:00:12.455 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
-01:00:12.486 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 3f423afbd60362fb3a28719a566286b0dd920d1dfbdddb0014fc54c5b5272595
-01:00:12.666 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=46749113-442d-48ff-ba93-2584cadd0161}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:13.193 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=47b15c96-6e5f-4ef3-a076-edfecfb50f4d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:13.215 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=5224340f-7662-46d3-86e0-4698930122d2}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:13.455 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=223b6dd0-372d-4fde-a763-895342dc4927}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:15.075 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=47b15c96-6e5f-4ef3-a076-edfecfb50f4d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:15.237 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=5224340f-7662-46d3-86e0-4698930122d2}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:18.499 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT6.044537S
-01:00:18.513 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
-01:00:18.536 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 5 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
-01:00:18.556 [s4-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:18.599 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=47b15c96-6e5f-4ef3-a076-edfecfb50f4d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:18.823 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49159]
-01:00:18.823 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
-01:00:18.824 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
-01:00:18.824 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
-01:00:18.825 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
-01:00:18.825 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
-01:00:18.825 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
-01:00:18.825 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:02.164 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+01:34:02.164 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+01:34:02.280 [s3-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:02.533 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
+01:34:02.698 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',07c10290-87b6-11ec-aff7-93899c31f797) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.009 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='LAST_NAME', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.077 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.286 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.295 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',08323af0-87b6-11ec-aff7-93899c31f797) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.316 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='TEST', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.325 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.333 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.338 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:03.613 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: checkUserUpsertionDoesNotChangeUUID() ---&gt;&gt;&gt;
+01:34:03.615 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testSubscription() ---&gt;&gt;&gt;
+01:34:03.620 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+01:34:03.652 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: fa37aaaf67b787fdbd4d1a22fe8a734747f79911083f64668197117db530c853
+01:34:04.479 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d4e056f2-d372-485c-8fa7-84fe694451b7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:04.489 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=8ab50338-0ad6-4cc3-9b71-907abfd15577}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:06.582 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d4e056f2-d372-485c-8fa7-84fe694451b7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:06.652 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=8ab50338-0ad6-4cc3-9b71-907abfd15577}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:10.296 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=8ab50338-0ad6-4cc3-9b71-907abfd15577}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:11.026 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d4e056f2-d372-485c-8fa7-84fe694451b7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:11.389 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT7.770128S
+01:34:11.412 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+01:34:11.427 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 5 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
+01:34:11.431 [s4-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:12.028 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49159]
+01:34:12.028 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+01:34:12.029 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
+01:34:12.030 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+01:34:12.031 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+01:34:12.038 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+01:34:12.039 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+01:34:12.039 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create keyspace if not exists podcast
     with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
      and durable_writes = true;
 
-01:00:19.400 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=5224340f-7662-46d3-86e0-4698930122d2}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:19.951 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:12.601 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=b8d5a068-9bdd-4918-9ee8-661383d136d7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:13.186 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 use podcast;
 
-01:00:19.954 [s4-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s4] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
-01:00:19.959 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:13.190 [s4-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s4] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+01:34:13.193 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists users_by_email
 (
     email      varchar primary key,
@@ -198,56 +199,56 @@ create table if not exists users_by_email
     imageUrl   varchar
 );
 
-01:00:21.079 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:14.087 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=28f2c334-44f5-4843-ab4c-22121a7bd17a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:14.405 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists subscriptions_by_user
 (
     userId timeuuid,
     feedId bigint,
     primary key ((userId), feedId)
 );
-01:00:22.180 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
-01:00:22.181 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
-01:00:22.196 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 6 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
-01:00:22.216 [s5-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:22.318 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49159]
-01:00:22.318 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO subscriptions_by_user (userid,feedid) VALUES (44c2eff0-87b1-11ec-adc8-b770b423d7c3,1123) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:22.373 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=44c2eff0-87b1-11ec-adc8-b770b423d7c3 with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:22.427 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing DELETE FROM subscriptions_by_user WHERE userid=44c2eff0-87b1-11ec-adc8-b770b423d7c3 AND feedid=1123 with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:22.447 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=44c2eff0-87b1-11ec-adc8-b770b423d7c3 with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:22.684 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testSubscription() ---&gt;&gt;&gt;
-01:00:22.688 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: firstUserSignIn() ---&gt;&gt;&gt;
-01:00:22.692 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
-01:00:22.723 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 518be02e0863e9f70a43a418e9f3e6135b85338fdf16b30ec8fb8e1948f4643e
-01:00:23.506 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=278e3329-afb1-468b-a517-2335dae405f8}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:23.647 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=da1cef68-fbab-4dee-910e-8effce225b2a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:25.248 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=278e3329-afb1-468b-a517-2335dae405f8}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:25.629 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=da1cef68-fbab-4dee-910e-8effce225b2a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:26.269 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=46749113-442d-48ff-ba93-2584cadd0161}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:27.481 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=47b15c96-6e5f-4ef3-a076-edfecfb50f4d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:27.802 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49157]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=5224340f-7662-46d3-86e0-4698930122d2}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:28.066 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT5.375252S
-01:00:28.071 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
-01:00:28.080 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 7 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
-01:00:28.095 [s6-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:28.421 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49160]
-01:00:28.421 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
-01:00:28.422 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
-01:00:28.426 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
-01:00:28.426 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
-01:00:28.427 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
-01:00:28.435 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
-01:00:28.436 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:15.619 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+01:34:15.619 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+01:34:15.636 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 6 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
+01:34:15.639 [s5-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:15.809 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49159]
+01:34:15.811 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO subscriptions_by_user (userid,feedid) VALUES (fbb18bf0-87b5-11ec-aff7-93899c31f797,1123) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:15.907 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=fbb18bf0-87b5-11ec-aff7-93899c31f797 with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:15.952 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing DELETE FROM subscriptions_by_user WHERE userid=fbb18bf0-87b5-11ec-aff7-93899c31f797 AND feedid=1123 with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:15.979 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=fbb18bf0-87b5-11ec-aff7-93899c31f797 with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:16.266 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testSubscription() ---&gt;&gt;&gt;
+01:34:16.271 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: firstUserSignIn() ---&gt;&gt;&gt;
+01:34:16.313 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+01:34:16.374 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 81a1a95542212cbcfda9f5fc15c1d93df5437be120373b3bd893aa7004e6f7f5
+01:34:17.186 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=e4543fc3-33dc-46c9-9e9b-5db47eb90158}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:17.207 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=423dfe4f-5618-418c-a482-1763aac8085c}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:18.218 [s2-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s2|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s2|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=8ab50338-0ad6-4cc3-9b71-907abfd15577}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:19.028 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=e4543fc3-33dc-46c9-9e9b-5db47eb90158}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:19.389 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=423dfe4f-5618-418c-a482-1763aac8085c}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:19.668 [s3-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s3|localhost/127.0.0.1:49158]  Error while opening new channel (ConnectionInitException: [s3|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d4e056f2-d372-485c-8fa7-84fe694451b7}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:23.233 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=e4543fc3-33dc-46c9-9e9b-5db47eb90158}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:23.992 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=423dfe4f-5618-418c-a482-1763aac8085c}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:34:24.087 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT7.773593S
+01:34:24.133 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+01:34:24.201 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 7 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
+01:34:24.212 [s6-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:24.659 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49160]
+01:34:24.659 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+01:34:24.660 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+01:34:24.660 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+01:34:24.661 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+01:34:24.668 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+01:34:24.669 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+01:34:24.670 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create keyspace if not exists podcast
     with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
      and durable_writes = true;
 
-01:00:28.977 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=223b6dd0-372d-4fde-a763-895342dc4927}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:29.170 [s5-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s5|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s5|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=278e3329-afb1-468b-a517-2335dae405f8}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:29.514 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:25.818 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 use podcast;
 
-01:00:29.519 [s6-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s6] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
-01:00:29.521 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:25.827 [s6-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s6] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+01:34:25.831 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists users_by_email
 (
     email      varchar primary key,
@@ -257,25 +258,24 @@ create table if not exists users_by_email
     imageUrl   varchar
 );
 
-01:00:30.231 [s4-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s4|localhost/127.0.0.1:49159]  Error while opening new channel (ConnectionInitException: [s4|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=da1cef68-fbab-4dee-910e-8effce225b2a}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:30.652 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:26.985 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists subscriptions_by_user
 (
     userId timeuuid,
     feedId bigint,
     primary key ((userId), feedId)
 );
-01:00:31.776 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
-01:00:31.777 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
-01:00:31.786 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 8 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
-01:00:31.790 [s7-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:31.947 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49160]
-01:00:31.947 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',5956e1b0-87b1-11ec-adc8-b770b423d7c3) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:32.004 [pool-11-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='LAST_NAME', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:32.019 [pool-11-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:32.028 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
-01:00:32.294 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: firstUserSignIn() ---&gt;&gt;&gt;
-01:00:32.296 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: CassandraClientTest ---&gt;&gt;&gt;
+01:34:28.220 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+01:34:28.221 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+01:34:28.261 [ForkJoinPool-1-worker-3] WARN  com.datastax.oss.driver.internal.core.session.DefaultSession - You have too many session instances: 8 active, expected less than 4 (see 'advanced.session-leak.threshold' in the configuration)
+01:34:28.272 [s7-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:28.400 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49160]
+01:34:28.401 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',1728f300-87b6-11ec-aff7-93899c31f797) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:28.458 [pool-11-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='LAST_NAME', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:28.481 [pool-11-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:28.496 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:34:28.745 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: firstUserSignIn() ---&gt;&gt;&gt;
+01:34:28.751 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: CassandraClientTest ---&gt;&gt;&gt;
 </pre>
 </span>
 </div>
@@ -287,7 +287,7 @@ create table if not exists subscriptions_by_user
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:00:32 AM</p>
+<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:34:29 AM</p>
 </div>
 </div>
 </body>

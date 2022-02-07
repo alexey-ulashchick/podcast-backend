@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">51.955s</div>
+<div class="counter">1m8.11s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">testGettingListOfSubscriptionsWhenAuthorized()</td>
-<td class="success">36.761s</td>
+<td class="success">47.558s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testPodcastServiceDoesNotWorkWithoutAuth()</td>
-<td class="success">15.194s</td>
+<td class="success">20.548s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,81 +92,81 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>00:59:21.063 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.api.core.uuid.Uuids - PID obtained through native call to getpid(): 1708
-00:59:21.488 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testGettingListOfSubscriptionsWhenAuthorized() ---&gt;&gt;&gt;
-00:59:21.564 [ForkJoinPool-1-worker-3] WARN  org.testcontainers.utility.TestcontainersConfiguration - Attempted to read Testcontainers configuration file at file:/home/runner/.testcontainers.properties but the file was not found. Exception message: FileNotFoundException: /home/runner/.testcontainers.properties (No such file or directory)
-00:59:22.676 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
-00:59:22.700 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Docker host IP address is localhost
-00:59:22.746 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Connected to docker: 
+<pre>01:32:53.707 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.api.core.uuid.Uuids - PID obtained through native call to getpid(): 1721
+01:32:54.340 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testGettingListOfSubscriptionsWhenAuthorized() ---&gt;&gt;&gt;
+01:32:54.438 [ForkJoinPool-1-worker-3] WARN  org.testcontainers.utility.TestcontainersConfiguration - Attempted to read Testcontainers configuration file at file:/home/runner/.testcontainers.properties but the file was not found. Exception message: FileNotFoundException: /home/runner/.testcontainers.properties (No such file or directory)
+01:32:56.024 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+01:32:56.037 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Docker host IP address is localhost
+01:32:56.134 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Connected to docker: 
   Server Version: 20.10.11+azure-3
   API Version: 1.41
   Operating System: Ubuntu 20.04.3 LTS
   Total Memory: 6947 MB
-00:59:22.753 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
-00:59:23.615 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Starting to pull image
-00:59:23.653 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
-00:59:24.058 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  2 pending,  1 downloaded,  0 extracted, (327 KB/? MB)
-00:59:24.081 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  1 pending,  2 downloaded,  0 extracted, (327 KB/? MB)
-00:59:24.093 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  0 extracted, (327 KB/5 MB)
-00:59:24.367 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  1 extracted, (2 MB/5 MB)
-00:59:25.271 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  2 extracted, (2 MB/5 MB)
-00:59:25.515 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  3 extracted, (5 MB/5 MB)
-00:59:25.520 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pull complete. 3 layers, pulled in 1s (downloaded 5 MB at 5 MB/s)
-00:59:26.508 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
-00:59:26.508 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Checking the system...
-00:59:26.510 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
-00:59:26.700 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker environment should have more than 2GB free disk space
-00:59:26.771 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Pulling docker image: cassandra:latest. Please be patient; this may take some time but only needs to be done once.
-00:59:27.521 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Starting to pull image
-00:59:27.523 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
-00:59:28.446 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  8 pending,  1 downloaded,  0 extracted, (62 MB/? MB)
-00:59:28.474 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  7 pending,  2 downloaded,  0 extracted, (67 MB/? MB)
-00:59:28.627 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  6 pending,  3 downloaded,  0 extracted, (75 MB/? MB)
-00:59:28.720 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  5 pending,  4 downloaded,  0 extracted, (75 MB/? MB)
-00:59:28.772 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  4 pending,  5 downloaded,  0 extracted, (75 MB/? MB)
-00:59:28.919 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  3 pending,  6 downloaded,  0 extracted, (75 MB/? MB)
-00:59:28.975 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  2 pending,  7 downloaded,  0 extracted, (76 MB/? MB)
-00:59:29.165 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  0 extracted, (82 MB/? MB)
-00:59:29.453 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  0 extracted, (120 MB/142 MB)
-00:59:30.028 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  1 extracted, (127 MB/142 MB)
-00:59:32.361 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  2 extracted, (130 MB/142 MB)
-00:59:33.918 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  3 extracted, (137 MB/142 MB)
-00:59:33.982 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  4 extracted, (137 MB/142 MB)
-00:59:34.046 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  5 extracted, (137 MB/142 MB)
-00:59:34.202 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  6 extracted, (139 MB/142 MB)
-00:59:34.302 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  7 extracted, (139 MB/142 MB)
-00:59:35.112 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  8 extracted, (142 MB/142 MB)
-00:59:35.168 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  9 extracted, (142 MB/142 MB)
-00:59:35.178 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pull complete. 9 layers, pulled in 7s (downloaded 142 MB at 20 MB/s)
-00:59:35.214 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
-00:59:35.262 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: dafad98eb7abfffcba43c35f0ffa4efbbe797a990784617cb721594882e55602
-00:59:46.144 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT19.42976S
-00:59:47.003 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 218 ms to scan 2 urls, producing 7 keys and 13 values
-00:59:47.120 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
-00:59:47.277 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
-00:59:47.358 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
-00:59:47.487 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 108 ms to scan 2 urls, producing 6 keys and 56 values
-00:59:47.506 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
-00:59:47.510 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
-00:59:48.775 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.internal.core.DefaultMavenCoordinates - DataStax Java driver for Apache Cassandra(R) (com.datastax.oss:java-driver-core) version 4.13.0
-00:59:49.333 [s0-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-00:59:51.656 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
-00:59:51.656 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
-00:59:51.658 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
-00:59:51.664 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
-00:59:51.694 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
-00:59:51.712 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
-00:59:51.713 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
-00:59:51.714 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:32:56.159 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+01:32:56.870 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Starting to pull image
+01:32:56.992 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
+01:32:57.013 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  2 pending,  1 downloaded,  0 extracted, (327 KB/? MB)
+01:32:57.023 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  1 pending,  2 downloaded,  0 extracted, (2 MB/? MB)
+01:32:57.031 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  0 extracted, (5 MB/5 MB)
+01:32:57.324 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  1 extracted, (5 MB/5 MB)
+01:32:57.665 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  2 extracted, (5 MB/5 MB)
+01:32:57.956 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pulling image layers:  0 pending,  3 downloaded,  3 extracted, (5 MB/5 MB)
+01:32:57.966 [docker-java-stream--975636617] INFO  org.testcontainers.DockerClientFactory - Pull complete. 3 layers, pulled in 1s (downloaded 5 MB at 5 MB/s)
+01:32:59.480 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+01:32:59.480 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Checking the system...
+01:32:59.483 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+01:32:59.614 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker environment should have more than 2GB free disk space
+01:32:59.694 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Pulling docker image: cassandra:latest. Please be patient; this may take some time but only needs to be done once.
+01:32:59.914 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Starting to pull image
+01:32:59.918 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
+01:33:00.621 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  8 pending,  1 downloaded,  0 extracted, (62 MB/? MB)
+01:33:00.716 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  7 pending,  2 downloaded,  0 extracted, (68 MB/? MB)
+01:33:00.788 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  6 pending,  3 downloaded,  0 extracted, (70 MB/? MB)
+01:33:00.824 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  5 pending,  4 downloaded,  0 extracted, (70 MB/? MB)
+01:33:00.991 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  4 pending,  5 downloaded,  0 extracted, (84 MB/? MB)
+01:33:01.012 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  3 pending,  6 downloaded,  0 extracted, (84 MB/? MB)
+01:33:01.032 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  2 pending,  7 downloaded,  0 extracted, (84 MB/? MB)
+01:33:01.072 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  0 extracted, (84 MB/? MB)
+01:33:02.112 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  0 extracted, (128 MB/142 MB)
+01:33:03.955 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  1 extracted, (131 MB/142 MB)
+01:33:07.000 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  2 extracted, (133 MB/142 MB)
+01:33:08.729 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  3 extracted, (136 MB/142 MB)
+01:33:08.811 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  4 extracted, (136 MB/142 MB)
+01:33:08.912 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  5 extracted, (136 MB/142 MB)
+01:33:09.129 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  6 extracted, (138 MB/142 MB)
+01:33:09.287 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  7 extracted, (139 MB/142 MB)
+01:33:10.168 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  8 extracted, (142 MB/142 MB)
+01:33:10.252 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  9 downloaded,  9 extracted, (142 MB/142 MB)
+01:33:10.267 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pull complete. 9 layers, pulled in 10s (downloaded 142 MB at 14 MB/s)
+01:33:10.341 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+01:33:10.478 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: c5c93b4792a0e7332d032e5a723ec85611102979654bccfb80a474c8afa2338c
+01:33:26.370 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT26.733939S
+01:33:27.841 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 442 ms to scan 2 urls, producing 7 keys and 13 values
+01:33:27.881 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+01:33:28.050 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+01:33:28.168 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+01:33:28.264 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 74 ms to scan 2 urls, producing 6 keys and 56 values
+01:33:28.290 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+01:33:28.290 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+01:33:30.063 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.internal.core.DefaultMavenCoordinates - DataStax Java driver for Apache Cassandra(R) (com.datastax.oss:java-driver-core) version 4.13.0
+01:33:31.388 [s0-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:33:34.325 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+01:33:34.326 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+01:33:34.327 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
+01:33:34.335 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+01:33:34.351 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+01:33:34.352 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+01:33:34.353 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+01:33:34.358 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create keyspace if not exists podcast
     with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
      and durable_writes = true;
 
-00:59:53.069 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:35.798 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 use podcast;
 
-00:59:53.076 [s0-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s0] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
-00:59:53.091 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:35.824 [s0-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s0] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+01:33:35.865 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists users_by_email
 (
     email      varchar primary key,
@@ -176,55 +176,57 @@ create table if not exists users_by_email
     imageUrl   varchar
 );
 
-00:59:54.231 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:37.457 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists subscriptions_by_user
 (
     userId timeuuid,
     feedId bigint,
     primary key ((userId), feedId)
 );
-00:59:55.346 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
-00:59:55.346 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
-00:59:55.391 [s1-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-00:59:55.526 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
-00:59:55.617 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO subscriptions_by_user (userid,feedid) VALUES (2eb41e00-87b1-11ec-8535-c1213d204ecb,123456) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
-00:59:57.683 [pool-3-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=2eb41e00-87b1-11ec-8535-c1213d204ecb with CL LOCAL_QUORUM/LOCAL_SERIAL
-00:59:58.248 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testGettingListOfSubscriptionsWhenAuthorized() ---&gt;&gt;&gt;
-00:59:58.258 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testPodcastServiceDoesNotWorkWithoutAuth() ---&gt;&gt;&gt;
-00:59:58.270 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
-00:59:58.315 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 2febd52e186cfa01d48fab962f265d52c41edd7f6c7744d3be60830758385b9d
-00:59:59.039 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d666c2f0-4b41-4b57-a26d-1cd0d009047f}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-00:59:59.060 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=808f8dcd-bbeb-4a68-9cc4-fcb8aafab04d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:00.931 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d666c2f0-4b41-4b57-a26d-1cd0d009047f}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:01.204 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=808f8dcd-bbeb-4a68-9cc4-fcb8aafab04d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:04.375 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d666c2f0-4b41-4b57-a26d-1cd0d009047f}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:05.487 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=808f8dcd-bbeb-4a68-9cc4-fcb8aafab04d}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:08.714 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT10.444556S
-01:00:08.747 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 14 ms to scan 2 urls, producing 7 keys and 13 values
-01:00:08.750 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
-01:00:08.756 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
-01:00:08.757 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
-01:00:08.786 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 25 ms to scan 2 urls, producing 6 keys and 56 values
-01:00:08.787 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
-01:00:08.787 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
-01:00:08.839 [s2-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:09.160 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
-01:00:09.160 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
-01:00:09.162 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
-01:00:09.162 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
-01:00:09.162 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
-01:00:09.162 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
-01:00:09.163 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
-01:00:09.167 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:38.916 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+01:33:38.916 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+01:33:38.992 [s1-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:33:39.248 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+01:33:39.372 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO subscriptions_by_user (userid,feedid) VALUES (de5c6430-87b5-11ec-9bbe-33420d02d01e,123456) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:33:41.411 [pool-3-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=de5c6430-87b5-11ec-9bbe-33420d02d01e with CL LOCAL_QUORUM/LOCAL_SERIAL
+01:33:41.898 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testGettingListOfSubscriptionsWhenAuthorized() ---&gt;&gt;&gt;
+01:33:41.901 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testPodcastServiceDoesNotWorkWithoutAuth() ---&gt;&gt;&gt;
+01:33:41.911 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+01:33:41.950 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 6690573efe8d1b0a1080b1c2498c24a0e53f23cbc69dc86f1f640f58407c7843
+01:33:42.728 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=7270d064-de1a-4583-8042-0cc4d8442cd3}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:42.769 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=79c0482e-fbb2-4393-a13c-421f0a572865}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:44.632 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=7270d064-de1a-4583-8042-0cc4d8442cd3}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:44.994 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=79c0482e-fbb2-4393-a13c-421f0a572865}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:49.156 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=7270d064-de1a-4583-8042-0cc4d8442cd3}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:49.557 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=79c0482e-fbb2-4393-a13c-421f0a572865}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:56.947 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT15.040646S
+01:33:56.981 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 9 ms to scan 2 urls, producing 7 keys and 13 values
+01:33:56.990 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+01:33:56.996 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+01:33:57.029 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+01:33:57.055 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 25 ms to scan 2 urls, producing 6 keys and 56 values
+01:33:57.055 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+01:33:57.056 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+01:33:57.104 [s2-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:33:57.623 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=79c0482e-fbb2-4393-a13c-421f0a572865}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:57.648 [s0-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s0|localhost/127.0.0.1:49156]  Error while opening new channel (ConnectionInitException: [s0|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=7270d064-de1a-4583-8042-0cc4d8442cd3}): failed to send request (io.netty.channel.StacklessClosedChannelException))
+01:33:58.152 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
+01:33:58.153 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+01:33:58.154 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+01:33:58.155 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+01:33:58.156 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+01:33:58.156 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+01:33:58.156 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+01:33:58.156 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create keyspace if not exists podcast
     with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
      and durable_writes = true;
 
-01:00:10.290 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:59.366 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 use podcast;
 
-01:00:10.295 [s2-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s2] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
-01:00:10.301 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:33:59.371 [s2-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s2] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+01:33:59.375 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists users_by_email
 (
     email      varchar primary key,
@@ -234,19 +236,18 @@ create table if not exists users_by_email
     imageUrl   varchar
 );
 
-01:00:11.416 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+01:34:00.587 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
 create table if not exists subscriptions_by_user
 (
     userId timeuuid,
     feedId bigint,
     primary key ((userId), feedId)
 );
-01:00:12.299 [s1-admin-0] WARN  com.datastax.oss.driver.internal.core.pool.ChannelPool - [s1|localhost/127.0.0.1:49155]  Error while opening new channel (ConnectionInitException: [s1|connecting...] Protocol initialization request, step 1 (STARTUP {CQL_VERSION=3.0.0, DRIVER_NAME=DataStax Java driver for Apache Cassandra(R), DRIVER_VERSION=4.13.0, CLIENT_ID=d666c2f0-4b41-4b57-a26d-1cd0d009047f}): failed to send request (io.netty.channel.StacklessClosedChannelException))
-01:00:12.645 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
-01:00:12.645 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
-01:00:12.736 [s3-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
-01:00:12.920 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
-01:00:13.108 [pool-6-thread-1] ERROR com.ulashchick.podcast.auth.AuthInterceptor - Cannot authenticate user
+01:34:01.722 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+01:34:01.723 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+01:34:01.755 [s3-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+01:34:01.884 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
+01:34:01.991 [pool-6-thread-1] ERROR com.ulashchick.podcast.auth.AuthInterceptor - Cannot authenticate user
 com.auth0.jwt.exceptions.JWTVerificationException: Authorization token is missing
 	at com.ulashchick.podcast.auth.AuthInterceptor.lambda$getAuthorizationHeader$0(AuthInterceptor.java:91) ~[main/:?]
 	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
@@ -262,8 +263,8 @@ com.auth0.jwt.exceptions.JWTVerificationException: Authorization token is missin
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at java.lang.Thread.run(Thread.java:829) [?:?]
-01:00:13.456 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testPodcastServiceDoesNotWorkWithoutAuth() ---&gt;&gt;&gt;
-01:00:13.464 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: AuthorizationTest ---&gt;&gt;&gt;
+01:34:02.448 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testPodcastServiceDoesNotWorkWithoutAuth() ---&gt;&gt;&gt;
+01:34:02.450 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: AuthorizationTest ---&gt;&gt;&gt;
 </pre>
 </span>
 </div>
@@ -275,7 +276,7 @@ com.auth0.jwt.exceptions.JWTVerificationException: Authorization token is missin
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:00:32 AM</p>
+<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:34:29 AM</p>
 </div>
 </div>
 </body>
