@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - EchoServiceIntegrationTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>EchoServiceIntegrationTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.ulashchick.podcast.grpc.html">com.ulashchick.podcast.grpc</a> &gt; EchoServiceIntegrationTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">33.078s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">authorizationIsNotRequired()</td>
+<td class="success">33.078s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>00:59:24.314 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: authorizationIsNotRequired() ---&gt;&gt;&gt;
+00:59:25.363 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+00:59:27.479 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+00:59:27.481 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Docker host IP address is localhost
+00:59:27.540 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 20.10.11+azure-3
+  API Version: 1.41
+  Operating System: Ubuntu 20.04.3 LTS
+  Total Memory: 6947 MB
+00:59:27.559 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+00:59:28.739 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+00:59:28.740 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Checking the system...
+00:59:28.741 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+00:59:28.868 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker environment should have more than 2GB free disk space
+00:59:28.960 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Pulling docker image: cassandra:latest. Please be patient; this may take some time but only needs to be done once.
+00:59:29.556 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Starting to pull image
+00:59:29.594 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
+00:59:29.602 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  8 pending,  1 downloaded,  0 extracted, (0 bytes/? MB)
+00:59:29.604 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  7 pending,  2 downloaded,  0 extracted, (0 bytes/? MB)
+00:59:29.605 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  6 pending,  3 downloaded,  0 extracted, (16 MB/? MB)
+00:59:29.610 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  5 pending,  4 downloaded,  0 extracted, (16 MB/? MB)
+00:59:29.611 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  4 pending,  5 downloaded,  0 extracted, (16 MB/? MB)
+00:59:29.612 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  3 pending,  6 downloaded,  0 extracted, (16 MB/? MB)
+00:59:29.613 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  2 pending,  7 downloaded,  0 extracted, (16 MB/? MB)
+00:59:29.613 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  0 extracted, (16 MB/? MB)
+00:59:30.029 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  1 extracted, (27 MB/? MB)
+00:59:32.361 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  2 extracted, (50 MB/? MB)
+00:59:33.918 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  3 extracted, (92 MB/? MB)
+00:59:33.975 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  4 extracted, (92 MB/? MB)
+00:59:34.044 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  5 extracted, (92 MB/? MB)
+00:59:34.201 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  6 extracted, (94 MB/? MB)
+00:59:34.302 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  7 extracted, (95 MB/? MB)
+00:59:35.110 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  8 extracted, (142 MB/? MB)
+00:59:35.166 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pulling image layers:  1 pending,  8 downloaded,  9 extracted, (142 MB/? MB)
+00:59:35.176 [docker-java-stream-1006440974] INFO  &#x1f433; [cassandra:latest] - Pull complete. 9 layers, pulled in 5s (downloaded 142 MB at 28 MB/s)
+00:59:35.201 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Creating container for image: cassandra:latest
+00:59:35.292 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest is starting: 1b989bdd1ef90d6b1418b5b2f5a86f6ba04fff6cbff5badbb74bbaf2e330940e
+00:59:44.999 [ForkJoinPool-1-worker-3] INFO  &#x1f433; [cassandra:latest] - Container cassandra:latest started in PT16.104534S
+00:59:45.872 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 308 ms to scan 2 urls, producing 7 keys and 13 values
+00:59:45.990 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+00:59:46.022 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+00:59:46.074 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+00:59:46.165 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 83 ms to scan 2 urls, producing 6 keys and 56 values
+00:59:46.190 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+00:59:46.196 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+00:59:47.597 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.internal.core.DefaultMavenCoordinates - DataStax Java driver for Apache Cassandra(R) (com.datastax.oss:java-driver-core) version 4.13.0
+00:59:49.653 [s0-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+00:59:52.106 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+00:59:52.106 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+00:59:52.110 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+00:59:52.113 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+00:59:52.126 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+00:59:52.128 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+00:59:52.128 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+00:59:52.130 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+00:59:53.356 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+00:59:53.364 [s0-io-3] WARN  com.datastax.oss.driver.internal.core.session.PoolManager - [s0] Detected a keyspace change at runtime (&lt;none&gt; =&gt; podcast). This is an anti-pattern that should be avoided in production (see 'advanced.request.warn-if-set-keyspace' in the configuration).
+00:59:53.379 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+00:59:54.561 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+00:59:55.737 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+00:59:55.738 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+00:59:55.863 [s1-admin-0] INFO  com.datastax.oss.driver.internal.core.time.Clock - Using native clock for microsecond precision
+00:59:56.133 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+00:59:57.390 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: authorizationIsNotRequired() ---&gt;&gt;&gt;
+00:59:57.395 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: EchoServiceIntegrationTest ---&gt;&gt;&gt;
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:00:32 AM</p>
+</div>
+</div>
+</body>
+</html>
