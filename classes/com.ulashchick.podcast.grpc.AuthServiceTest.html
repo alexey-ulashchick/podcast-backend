@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">4.120s</div>
+<div class="counter">3.509s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,6 +66,9 @@
 <li>
 <a href="#tab1">Standard output</a>
 </li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -79,12 +82,12 @@
 </thead>
 <tr>
 <td class="success">failWhenTokenIsMissing()</td>
-<td class="success">0.008s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">successSignIn()</td>
-<td class="success">4.112s</td>
+<td class="success">3.491s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,12 +95,109 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>01:32:48.870 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: successSignIn() ---&gt;&gt;&gt;
-01:32:52.491 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.grpc.AuthServiceTest - Sign in request has been prepared
-01:32:52.866 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: successSignIn() ---&gt;&gt;&gt;
-01:32:53.028 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: failWhenTokenIsMissing() ---&gt;&gt;&gt;
-01:32:53.036 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: failWhenTokenIsMissing() ---&gt;&gt;&gt;
-01:32:53.040 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: AuthServiceTest ---&gt;&gt;&gt;
+<pre>01:10:28.802 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+01:10:31.728 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.grpc.AuthServiceTest - Sign in request has been prepared
+01:10:32.151 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
+01:10:32.379 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+01:10:32.391 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Feb 08, 2022 1:10:32 AM org.junit.platform.launcher.core.CompositeTestExecutionListener lambda$notifyEach$19
+WARNING: TestExecutionListener [com.ulashchick.podcast.testing.TestListener] threw exception for method: executionFinished(TestIdentifier [uniqueId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.AuthServiceTest]/[method:successSignIn()], parentId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.AuthServiceTest], displayName = 'successSignIn()', legacyReportingName = 'successSignIn()', source = MethodSource [className = 'com.ulashchick.podcast.grpc.AuthServiceTest', methodName = 'successSignIn', methodParameterTypes = ''], tags = [], type = TEST], TestExecutionResult [status = SUCCESSFUL, throwable = null])
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:221)
+	at java.base/java.lang.String.join(String.java:2440)
+	at com.ulashchick.podcast.testing.TestListener.executionFinished(TestListener.java:38)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$executionFinished$10(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$notifyEach$19(CompositeTestExecutionListener.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.notifyEach(CompositeTestExecutionListener.java:93)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.executionFinished(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.ExecutionListenerAdapter.executionFinished(ExecutionListenerAdapter.java:56)
+	at org.junit.platform.launcher.core.DelegatingEngineExecutionListener.executionFinished(DelegatingEngineExecutionListener.java:46)
+	at org.junit.platform.launcher.core.OutcomeDelayingEngineExecutionListener.executionFinished(OutcomeDelayingEngineExecutionListener.java:63)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.reportCompletion(NodeTestTask.java:195)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.executeNonConcurrentTasks(ForkJoinPoolHierarchicalTestExecutorService.java:155)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.invokeAll(ForkJoinPoolHierarchicalTestExecutorService.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.executeNonConcurrentTasks(ForkJoinPoolHierarchicalTestExecutorService.java:155)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.invokeAll(ForkJoinPoolHierarchicalTestExecutorService.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at java.base/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:189)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+
+Feb 08, 2022 1:10:32 AM org.junit.platform.launcher.core.CompositeTestExecutionListener lambda$notifyEach$19
+WARNING: TestExecutionListener [com.ulashchick.podcast.testing.TestListener] threw exception for method: executionFinished(TestIdentifier [uniqueId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.AuthServiceTest]/[method:failWhenTokenIsMissing()], parentId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.AuthServiceTest], displayName = 'failWhenTokenIsMissing()', legacyReportingName = 'failWhenTokenIsMissing()', source = MethodSource [className = 'com.ulashchick.podcast.grpc.AuthServiceTest', methodName = 'failWhenTokenIsMissing', methodParameterTypes = ''], tags = [], type = TEST], TestExecutionResult [status = SUCCESSFUL, throwable = null])
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:221)
+	at java.base/java.lang.String.join(String.java:2440)
+	at com.ulashchick.podcast.testing.TestListener.executionFinished(TestListener.java:38)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$executionFinished$10(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$notifyEach$19(CompositeTestExecutionListener.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.notifyEach(CompositeTestExecutionListener.java:93)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.executionFinished(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.ExecutionListenerAdapter.executionFinished(ExecutionListenerAdapter.java:56)
+	at org.junit.platform.launcher.core.DelegatingEngineExecutionListener.executionFinished(DelegatingEngineExecutionListener.java:46)
+	at org.junit.platform.launcher.core.OutcomeDelayingEngineExecutionListener.executionFinished(OutcomeDelayingEngineExecutionListener.java:63)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.reportCompletion(NodeTestTask.java:195)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.executeNonConcurrentTasks(ForkJoinPoolHierarchicalTestExecutorService.java:155)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.invokeAll(ForkJoinPoolHierarchicalTestExecutorService.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.executeNonConcurrentTasks(ForkJoinPoolHierarchicalTestExecutorService.java:155)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.invokeAll(ForkJoinPoolHierarchicalTestExecutorService.java:135)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at java.base/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:189)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+
 </pre>
 </span>
 </div>
@@ -109,7 +209,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:34:29 AM</p>
+<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 8, 2022, 1:11:51 AM</p>
 </div>
 </div>
 </body>

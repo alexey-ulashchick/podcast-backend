@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">3.417s</div>
+<div class="counter">2.870s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,6 +66,9 @@
 <li>
 <a href="#tab1">Standard output</a>
 </li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -79,12 +82,12 @@
 </thead>
 <tr>
 <td class="success">testGetFeed()</td>
-<td class="success">1.706s</td>
+<td class="success">1.440s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testSearch()</td>
-<td class="success">1.711s</td>
+<td class="success">1.430s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,11 +95,79 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>01:32:48.808 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testStandardHttpClient() ---&gt;&gt;&gt;
-01:32:50.880 [ForkJoinPool-1-worker-5] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Starting: testGetFeed() ---&gt;&gt;&gt;
-01:32:52.416 [ForkJoinPool-1-worker-5] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testGetFeed() ---&gt;&gt;&gt;
-01:32:52.426 [ForkJoinPool-1-worker-1] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: testSearch() ---&gt;&gt;&gt;
-01:32:52.604 [ForkJoinPool-1-worker-1] INFO  com.ulashchick.podcast.testing.TestListener - &lt;&lt;&lt;--- Finishing: PodcastServiceTest ---&gt;&gt;&gt;
+<pre>01:10:28.855 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+01:10:30.612 [ForkJoinPool-1-worker-1] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+01:10:31.861 [ForkJoinPool-1-worker-1] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
+01:10:31.862 [ForkJoinPool-1-worker-5] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Feb 08, 2022 1:10:31 AM org.junit.platform.launcher.core.CompositeTestExecutionListener lambda$notifyEach$19
+WARNING: TestExecutionListener [com.ulashchick.podcast.testing.TestListener] threw exception for method: executionFinished(TestIdentifier [uniqueId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.PodcastServiceTest]/[method:testSearch()], parentId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.PodcastServiceTest], displayName = 'testSearch()', legacyReportingName = 'testSearch()', source = MethodSource [className = 'com.ulashchick.podcast.grpc.PodcastServiceTest', methodName = 'testSearch', methodParameterTypes = ''], tags = [], type = TEST], TestExecutionResult [status = SUCCESSFUL, throwable = null])
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:221)
+	at java.base/java.lang.String.join(String.java:2440)
+	at com.ulashchick.podcast.testing.TestListener.executionFinished(TestListener.java:38)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$executionFinished$10(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$notifyEach$19(CompositeTestExecutionListener.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.notifyEach(CompositeTestExecutionListener.java:93)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.executionFinished(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.ExecutionListenerAdapter.executionFinished(ExecutionListenerAdapter.java:56)
+	at org.junit.platform.launcher.core.DelegatingEngineExecutionListener.executionFinished(DelegatingEngineExecutionListener.java:46)
+	at org.junit.platform.launcher.core.OutcomeDelayingEngineExecutionListener.executionFinished(OutcomeDelayingEngineExecutionListener.java:63)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.reportCompletion(NodeTestTask.java:195)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at java.base/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:189)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinTask.doJoin(ForkJoinTask.java:396)
+	at java.base/java.util.concurrent.ForkJoinTask.join(ForkJoinTask.java:721)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.joinConcurrentTasksInReverseOrderToEnableWorkStealing(ForkJoinPoolHierarchicalTestExecutorService.java:162)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService.invokeAll(ForkJoinPoolHierarchicalTestExecutorService.java:136)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at java.base/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:189)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+
+Feb 08, 2022 1:10:31 AM org.junit.platform.launcher.core.CompositeTestExecutionListener lambda$notifyEach$19
+WARNING: TestExecutionListener [com.ulashchick.podcast.testing.TestListener] threw exception for method: executionFinished(TestIdentifier [uniqueId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.PodcastServiceTest]/[method:testGetFeed()], parentId = [engine:junit-jupiter]/[class:com.ulashchick.podcast.grpc.PodcastServiceTest], displayName = 'testGetFeed()', legacyReportingName = 'testGetFeed()', source = MethodSource [className = 'com.ulashchick.podcast.grpc.PodcastServiceTest', methodName = 'testGetFeed', methodParameterTypes = ''], tags = [], type = TEST], TestExecutionResult [status = SUCCESSFUL, throwable = null])
+java.lang.NullPointerException
+	at java.base/java.util.Objects.requireNonNull(Objects.java:221)
+	at java.base/java.lang.String.join(String.java:2440)
+	at com.ulashchick.podcast.testing.TestListener.executionFinished(TestListener.java:38)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$executionFinished$10(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.lambda$notifyEach$19(CompositeTestExecutionListener.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.notifyEach(CompositeTestExecutionListener.java:93)
+	at org.junit.platform.launcher.core.CompositeTestExecutionListener.executionFinished(CompositeTestExecutionListener.java:69)
+	at org.junit.platform.launcher.core.ExecutionListenerAdapter.executionFinished(ExecutionListenerAdapter.java:56)
+	at org.junit.platform.launcher.core.DelegatingEngineExecutionListener.executionFinished(DelegatingEngineExecutionListener.java:46)
+	at org.junit.platform.launcher.core.OutcomeDelayingEngineExecutionListener.executionFinished(OutcomeDelayingEngineExecutionListener.java:63)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.reportCompletion(NodeTestTask.java:195)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.ForkJoinPoolHierarchicalTestExecutorService$ExclusiveTask.compute(ForkJoinPoolHierarchicalTestExecutorService.java:185)
+	at java.base/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:189)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+
 </pre>
 </span>
 </div>
@@ -108,7 +179,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 7, 2022, 1:34:29 AM</p>
+<a href="http://www.gradle.org">Gradle 7.2</a> at Feb 8, 2022, 1:11:51 AM</p>
 </div>
 </div>
 </body>
