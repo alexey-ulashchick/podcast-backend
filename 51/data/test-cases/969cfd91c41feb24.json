@@ -1,0 +1,57 @@
+{
+  "uid" : "969cfd91c41feb24",
+  "name" : "testSearch()",
+  "historyId" : "ae602a8f3596fd8931d957a85cde93c5",
+  "time" : {
+    "start" : 1644284073141,
+    "stop" : 1644284074371,
+    "duration" : 1230
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 2,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "d125a41e2775cb3f",
+        "reportUrl" : "https://alexey-ulashchick.github.io/podcast-backend/50//#testresult/d125a41e2775cb3f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644283456510,
+          "stop" : 1644283457960,
+          "duration" : 1450
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "969cfd91c41feb24.json",
+  "parameterValues" : [ ]
+}
