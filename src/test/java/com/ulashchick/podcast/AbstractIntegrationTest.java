@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testcontainers.containers.CassandraContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -24,6 +26,7 @@ import java.util.UUID;
 @ExtendWith(MockitoExtension.class)
 @Testcontainers
 public abstract class AbstractIntegrationTest {
+  public static final Logger logger = LoggerFactory.getLogger(AbstractIntegrationTest.class);
 
   @Container
   @SuppressWarnings({"rawtypes"})
@@ -38,10 +41,15 @@ public abstract class AbstractIntegrationTest {
 
   @BeforeEach
   void beforeEach() throws IOException {
-    Mockito.when(configService.getCassandraEndpoints())
-        .thenReturn(List.of(new InetSocketAddress(cassandra.getHost(), cassandra.getFirstMappedPort())));
+    final String host = cassandra.getHost();
+    final Integer port = cassandra.getFirstMappedPort();
+
+    logger.info("Cassandra container has been started on {}:{}. Replacing config.", host, port);
+    Mockito.when(configService.getCassandraEndpoints()).thenReturn(List.of(new InetSocketAddress(host,port)));
 
     DependencyManager.overrideForTest(ConfigService.class, configService);
+
+    logger.info("Config has been replaced. Starting application server");
 
     final String basePackage = getClass().getPackage().getName();
     final ApplicationServerBuilder applicationServerBuilder = DependencyManager
@@ -52,6 +60,8 @@ public abstract class AbstractIntegrationTest {
         .addInterceptors(basePackage)
         .build()
         .start();
+
+    logger.info("Application server for test has been started on {}", serverName);
 
     grpcCleanup.register(server);
   }
