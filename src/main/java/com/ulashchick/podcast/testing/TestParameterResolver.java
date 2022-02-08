@@ -1,4 +1,4 @@
-package com.ulashchick.podcast;
+package com.ulashchick.podcast.testing;
 
 import com.google.inject.ConfigurationException;
 import com.ulashchick.podcast.common.DependencyManager;

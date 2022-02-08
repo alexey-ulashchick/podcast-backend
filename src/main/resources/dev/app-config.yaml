@@ -1,5 +1,5 @@
 grpcServerConfig:
   port: 50551
 cassandraConfig:
-  - host: localhost
+  - host: cassandra
     port: 9042

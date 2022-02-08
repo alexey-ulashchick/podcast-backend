@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
-import java.util.logging.LogManager;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,6 @@ import java.util.stream.Collectors;
 public class ConfigService {
     private static final Logger logger = LoggerFactory.getLogger(ConfigService.class);
 
-    private static final String LOG_4J_PROP = "log4j.properties";
     private static final String APP_CONFIG = "app-config.yaml";
     private static final String CQL_INIT_DIR = "cql-init";
 
@@ -41,8 +39,7 @@ public class ConfigService {
     private final Supplier<ApplicationConfig> applicationConfigSupplier;
 
     @Inject
-    public ConfigService(@Nonnull EnvironmentService environmentService,
-                         @Nonnull Logger logger) {
+    public ConfigService(@Nonnull EnvironmentService environmentService) {
         this.environmentService = environmentService;
         this.applicationConfigSupplier = Suppliers.memoize(() -> {
             final String appConfigPath = getFullPath(environmentService.getCurrentEnvironmentAsString(), APP_CONFIG);
@@ -55,11 +52,7 @@ public class ConfigService {
                 logger.error("Cannot read application config", e);
                 return null;
             }
-        })::get;
-    }
-
-    public String getLog4jPropertyFilePath() {
-        return getFullPath(environmentService.getCurrentEnvironmentAsString(), LOG_4J_PROP);
+        });
     }
 
     public ApplicationConfig getApplicationConfig() {

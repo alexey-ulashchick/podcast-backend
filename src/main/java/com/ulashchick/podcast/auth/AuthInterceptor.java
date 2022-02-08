@@ -7,6 +7,7 @@ import io.grpc.*;
 import io.grpc.ForwardingServerCall.SimpleForwardingServerCall;
 import io.grpc.ServerCall.Listener;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -18,6 +19,8 @@ import static io.grpc.Metadata.ASCII_STRING_MARSHALLER;
 @Singleton
 public class AuthInterceptor implements ServerInterceptor {
 
+  private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
+
   public static final Context.Key<UUID> UUID_KEY = Context.key("uuid");
   public static final Metadata.Key<String> AUTHORIZATION_METADATA_KEY = Metadata.Key
       .of("Authorization", ASCII_STRING_MARSHALLER);
@@ -27,12 +30,10 @@ public class AuthInterceptor implements ServerInterceptor {
 
   public static final String TOKEN_TYPE = "Bearer ";
 
-  private final Logger logger;
   private final JwtService jwtService;
 
   @Inject
-  public AuthInterceptor(Logger logger, JwtService jwtService) {
-    this.logger = logger;
+  public AuthInterceptor(@Nonnull JwtService jwtService) {
     this.jwtService = jwtService;
   }
 

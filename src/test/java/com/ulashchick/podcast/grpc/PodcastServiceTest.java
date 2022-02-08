@@ -1,10 +1,12 @@
 package com.ulashchick.podcast.grpc;
 
-import com.ulashchick.podcast.TestParameterResolver;
+import com.ulashchick.podcast.testing.TestParameterResolver;
 import com.ulashchick.podcast.common.config.EnvironmentService;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import protos.com.ulashchick.podcast.podcast.*;
 
 import javax.annotation.Nonnull;
@@ -12,6 +14,7 @@ import javax.annotation.Nonnull;
 import static com.google.common.truth.Truth.assertThat;
 
 @ExtendWith(TestParameterResolver.class)
+@Execution(ExecutionMode.CONCURRENT)
 class PodcastServiceTest {
 
   private final PodcastService podcastService;

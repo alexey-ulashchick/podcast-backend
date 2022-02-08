@@ -23,7 +23,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 @Testcontainers
-public class CassandraClientTest {
+class CassandraClientTest {
 
   private static final UUID USER_ID = Uuids.timeBased();
   private static final long SUBSCRIPTION_ID = 1_123L;

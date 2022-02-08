@@ -1,7 +1,7 @@
 package com.ulashchick.podcast.grpc;
 
 import com.ulashchick.podcast.AbstractIntegrationTest;
-import com.ulashchick.podcast.TestParameterResolver;
+import com.ulashchick.podcast.testing.TestParameterResolver;
 import io.grpc.inprocess.InProcessChannelBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +12,7 @@ import protos.com.ulashchick.podcast.echo.EchoServiceGrpc;
 import static com.google.common.truth.Truth.assertThat;
 
 @ExtendWith(TestParameterResolver.class)
-class EchoServiceTest extends AbstractIntegrationTest {
+class EchoServiceIntegrationTest extends AbstractIntegrationTest {
 
   @Test
   void authorizationIsNotRequired() {

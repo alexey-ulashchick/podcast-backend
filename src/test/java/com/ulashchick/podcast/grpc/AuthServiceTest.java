@@ -13,6 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import protos.com.ulashchick.podcast.auth.SignInUserRequest;
 import protos.com.ulashchick.podcast.auth.SignInUserResponse;
 import protos.com.ulashchick.podcast.auth.UserProfile;
@@ -22,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 @ExtendWith(MockitoExtension.class)
 class AuthServiceTest {
+
+  private static final Logger logger = LoggerFactory.getLogger(AuthServiceTest.class);
 
   private final static String TOKEN = "ABC";
   private final static String JWT_TOKEN = "JWT_TOKEN";
@@ -47,6 +51,8 @@ class AuthServiceTest {
     final SignInUserRequest signInRequest = SignInUserRequest.newBuilder().setIdToken(TOKEN).build();
     final UserProfile userProfile = UserProfile.getDefaultInstance();
     final UUID uuid = UUID.randomUUID();
+
+    logger.info("Sign in request has been prepared");
 
     Mockito.when(googleAuthService.verifyAndDecode(Mockito.anyString())).thenReturn(userProfile);
     Mockito.when(cassandraClient.upsertUser(Mockito.any())).thenReturn(Single.just(uuid));
