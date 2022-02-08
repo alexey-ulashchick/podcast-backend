@@ -1,0 +1,261 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "children" : [ {
+    "name" : "com.ulashchick.podcast",
+    "children" : [ {
+      "name" : "HttpPerformanceTest",
+      "children" : [ {
+        "name" : "testStandardHttpClient()",
+        "uid" : "6b842ba3efe6b80c",
+        "parentUid" : "4d1ee7b4d865bde8f47c9d9340433c54",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644286611748,
+          "stop" : 1644286618366,
+          "duration" : 6618
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "4d1ee7b4d865bde8f47c9d9340433c54"
+    }, {
+      "name" : "grpc",
+      "children" : [ {
+        "name" : "AuthServiceTest",
+        "children" : [ {
+          "name" : "successSignIn()",
+          "uid" : "831318040695c941",
+          "parentUid" : "a5bc504c9424a806a5427ce28becdcd1",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286612013,
+            "stop" : 1644286615630,
+            "duration" : 3617
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "failWhenTokenIsMissing()",
+          "uid" : "380bcb7dfecddebb",
+          "parentUid" : "a5bc504c9424a806a5427ce28becdcd1",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286615740,
+            "stop" : 1644286615745,
+            "duration" : 5
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "a5bc504c9424a806a5427ce28becdcd1"
+      }, {
+        "name" : "PodcastServiceTest",
+        "children" : [ {
+          "name" : "testGetFeed()",
+          "uid" : "1a95e803907eaef1",
+          "parentUid" : "d88dfff17a12429e0ece90fcd92cc116",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286613562,
+            "stop" : 1644286615148,
+            "duration" : 1586
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "testSearch()",
+          "uid" : "980943d343a8816b",
+          "parentUid" : "d88dfff17a12429e0ece90fcd92cc116",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286613572,
+            "stop" : 1644286615151,
+            "duration" : 1579
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "d88dfff17a12429e0ece90fcd92cc116"
+      }, {
+        "name" : "AuthorizationTest",
+        "children" : [ {
+          "name" : "testGettingListOfSubscriptionsWhenAuthorized()",
+          "uid" : "7fd98a3e32b47372",
+          "parentUid" : "f2149c7944096c4a197b7e132f7d4f0a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286616997,
+            "stop" : 1644286661076,
+            "duration" : 44079
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "testPodcastServiceDoesNotWorkWithoutAuth()",
+          "uid" : "1b2a8bd37b05cfca",
+          "parentUid" : "f2149c7944096c4a197b7e132f7d4f0a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286661086,
+            "stop" : 1644286681033,
+            "duration" : 19947
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "f2149c7944096c4a197b7e132f7d4f0a"
+      }, {
+        "name" : "EchoServiceIntegrationTest",
+        "children" : [ {
+          "name" : "authorizationIsNotRequired()",
+          "uid" : "2d5ba25329057b2",
+          "parentUid" : "31627ac54d943eb396cead0dd9a5d512",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286618687,
+            "stop" : 1644286662953,
+            "duration" : 44266
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "31627ac54d943eb396cead0dd9a5d512"
+      }, {
+        "name" : "EchoServiceTest",
+        "children" : [ {
+          "name" : "testEcho()",
+          "uid" : "cb6a2c6a09e43a6e",
+          "parentUid" : "e2ba3b9cf8714f3b327f2a2fc70b343a",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286662958,
+            "stop" : 1644286662962,
+            "duration" : 4
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "e2ba3b9cf8714f3b327f2a2fc70b343a"
+      } ],
+      "uid" : "f353066f4b13ed74cfe50e1abdf5d21d"
+    }, {
+      "name" : "common",
+      "children" : [ {
+        "name" : "persistance.CassandraClientTest",
+        "children" : [ {
+          "name" : "checkUserUpsertionDoesNotChangeUUID()",
+          "uid" : "24455ee5824abe7a",
+          "parentUid" : "b04950ec7e6307375f3c5568d8401b0f",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286662976,
+            "stop" : 1644286683017,
+            "duration" : 20041
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "testSubscription()",
+          "uid" : "473cf1ff4427f64e",
+          "parentUid" : "b04950ec7e6307375f3c5568d8401b0f",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286683024,
+            "stop" : 1644286695676,
+            "duration" : 12652
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "firstUserSignIn()",
+          "uid" : "35b987b479ae8b06",
+          "parentUid" : "b04950ec7e6307375f3c5568d8401b0f",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286695679,
+            "stop" : 1644286707965,
+            "duration" : 12286
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "persistance.CassandraClientTest"
+      }, {
+        "name" : "config.EnvironmentServiceTest",
+        "children" : [ {
+          "name" : "getCurrentEnvironmentWhenValueSet()",
+          "uid" : "96db6e107ecbbf2",
+          "parentUid" : "49b917985636e21f737c88dcc59e9713",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286681185,
+            "stop" : 1644286681205,
+            "duration" : 20
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "getCurrentEnvironmentWhenValueNotSet()",
+          "uid" : "ed9793b3307fffea",
+          "parentUid" : "49b917985636e21f737c88dcc59e9713",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286681228,
+            "stop" : 1644286681248,
+            "duration" : 20
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "testEnvValues()",
+          "uid" : "a346feed1411c199",
+          "parentUid" : "49b917985636e21f737c88dcc59e9713",
+          "status" : "passed",
+          "time" : {
+            "start" : 1644286681261,
+            "stop" : 1644286681268,
+            "duration" : 7
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "config.EnvironmentServiceTest"
+      } ],
+      "uid" : "583e1ba9e7f35e82e9050f0b6408daaf"
+    }, {
+      "name" : "auth.DependencyManagerTest",
+      "children" : [ {
+        "name" : "testInitialization()",
+        "uid" : "ad5df09fcf2c714d",
+        "parentUid" : "e7752c81f9a0bbcbc329a9de34f4bbeb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644286681051,
+          "stop" : 1644286681073,
+          "duration" : 22
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "auth.DependencyManagerTest"
+    } ],
+    "uid" : "com.ulashchick.podcast"
+  } ],
+  "name" : "packages"
+}

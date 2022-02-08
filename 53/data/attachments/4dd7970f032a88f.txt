@@ -1,0 +1,50 @@
+02:17:42.968 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+02:17:42.980 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Creating container for image: cassandra:latest
+02:17:43.033 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest is starting: fba1638d1f7f35c4aef6d336f523d9c43f48ddb1e7134795f9450cbfbac6168c
+02:17:57.652 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest started in PT14.672865S
+02:17:57.689 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+02:17:58.539 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
+02:17:58.539 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+02:17:58.541 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+02:17:58.541 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+02:17:58.542 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+02:17:58.542 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+02:17:58.542 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+02:17:58.546 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+02:17:59.702 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+02:17:59.714 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+02:18:00.953 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+02:18:02.181 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+02:18:02.181 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+02:18:02.391 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49158]
+02:18:02.465 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',57a323e0-8885-11ec-acc0-efd4155f7d6c) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.588 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='LAST_NAME', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.627 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.755 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.764 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO users_by_email (email,id) VALUES ('test@test.com',57dafcc0-8885-11ec-acc0-efd4155f7d6c) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.788 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing UPDATE users_by_email SET firstname='FIRST_NAME', lastname='TEST', imageurl='https://test.com' WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.797 [pool-8-thread-1] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.803 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT email,firstname,lastname,imageurl FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:02.808 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT id FROM users_by_email WHERE email='test@test.com' with CL LOCAL_QUORUM/LOCAL_SERIAL
+02:18:03.016 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

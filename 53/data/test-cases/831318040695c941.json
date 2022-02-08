@@ -1,0 +1,91 @@
+{
+  "uid" : "831318040695c941",
+  "name" : "successSignIn()",
+  "historyId" : "e0dc302516245395241d446e691c6c7c",
+  "time" : {
+    "start" : 1644286612013,
+    "stop" : 1644286615630,
+    "duration" : 3617
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "bacdc9b76af98d6b",
+      "name" : "log",
+      "source" : "bacdc9b76af98d6b.txt",
+      "type" : "text/plain",
+      "size" : 346
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.grpc.AuthServiceTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.grpc.AuthServiceTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 4,
+        "unknown" : 0,
+        "total" : 4
+      },
+      "items" : [ {
+        "uid" : "b49aecb3455758b4",
+        "reportUrl" : "https://alexey-ulashchick.github.io/podcast-backend/52//#testresult/b49aecb3455758b4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644284280521,
+          "stop" : 1644284283527,
+          "duration" : 3006
+        }
+      }, {
+        "uid" : "48f22799b528926a",
+        "reportUrl" : "https://alexey-ulashchick.github.io/podcast-backend/51//#testresult/48f22799b528926a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644284071362,
+          "stop" : 1644284074444,
+          "duration" : 3082
+        }
+      }, {
+        "uid" : "102096f1d343918c",
+        "reportUrl" : "https://alexey-ulashchick.github.io/podcast-backend/50//#testresult/102096f1d343918c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1644283455148,
+          "stop" : 1644283458399,
+          "duration" : 3251
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "831318040695c941.json",
+  "parameterValues" : [ ]
+}

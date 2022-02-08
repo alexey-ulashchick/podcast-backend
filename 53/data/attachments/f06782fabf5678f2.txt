@@ -1,0 +1,62 @@
+02:16:58.685 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+02:17:00.073 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+02:17:01.844 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+02:17:01.847 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Docker host IP address is localhost
+02:17:01.977 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 20.10.11+azure-3
+  API Version: 1.41
+  Operating System: Ubuntu 20.04.3 LTS
+  Total Memory: 6947 MB
+02:17:01.994 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+02:17:04.361 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+02:17:04.363 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Checking the system...
+02:17:04.364 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+02:17:04.489 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker environment should have more than 2GB free disk space
+02:17:04.556 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Pulling docker image: cassandra:latest. Please be patient; this may take some time but only needs to be done once.
+02:17:13.178 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Creating container for image: cassandra:latest
+02:17:13.281 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest is starting: 37d653191ebaca0e9a61bb5c4c6effb7955c0b1e2fd939e1d19d57453ff2087a
+02:17:27.724 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest started in PT23.219112S
+02:17:28.625 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 189 ms to scan 2 urls, producing 7 keys and 13 values
+02:17:28.752 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+02:17:28.892 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+02:17:28.974 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+02:17:29.095 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 80 ms to scan 2 urls, producing 7 keys and 60 values
+02:17:29.109 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+02:17:29.109 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+02:17:30.740 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.internal.core.DefaultMavenCoordinates - DataStax Java driver for Apache Cassandra(R) (com.datastax.oss:java-driver-core) version 4.13.0
+02:17:36.742 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+02:17:36.743 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+02:17:36.746 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+02:17:36.766 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+02:17:36.806 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+02:17:36.812 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+02:17:36.814 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+02:17:36.822 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+02:17:38.339 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+02:17:38.363 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+02:17:39.652 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+02:17:41.008 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+02:17:41.009 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+02:17:41.565 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49156]
+02:17:42.948 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

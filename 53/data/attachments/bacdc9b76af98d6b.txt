@@ -1,0 +1,3 @@
+02:16:51.924 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+02:16:55.245 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.grpc.AuthServiceTest - Sign in request has been prepared
+02:16:55.625 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
