@@ -46,12 +46,22 @@ public class PodcastService extends RxPodcastServiceGrpc.PodcastServiceImplBase 
 
   @Override
   public Single<SubscribeMeToResponse> subscribeMeTo(Single<SubscribeMeToRequest> request) {
-    return super.subscribeMeTo(request);
+    final UUID uuid = AuthInterceptor.UUID_KEY.get();
+
+    return request
+        .map(SubscribeMeToRequest::getFeedId)
+        .flatMapCompletable(feedId -> cassandraClient.addSubscription(uuid, feedId))
+        .toSingleDefault(SubscribeMeToResponse.newBuilder().setSuccess(true).build());
   }
 
   @Override
   public Single<UnsubsribeMeFromResponse> unsubsribeMeFrom(Single<UnsubsribeMeFromRequest> request) {
-    return super.unsubsribeMeFrom(request);
+    final UUID uuid = AuthInterceptor.UUID_KEY.get();
+
+    return request
+        .map(UnsubsribeMeFromRequest::getFeedId)
+        .flatMapCompletable(feedId -> cassandraClient.removeSubscription(uuid, feedId))
+        .toSingleDefault(UnsubsribeMeFromResponse.newBuilder().setSuccess(true).build());
   }
 
   @Override

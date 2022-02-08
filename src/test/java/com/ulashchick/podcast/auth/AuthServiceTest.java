@@ -1,8 +1,7 @@
-package com.ulashchick.podcast.grpc;
+package com.ulashchick.podcast.auth;
 
-import com.ulashchick.podcast.auth.GoogleAuthService;
-import com.ulashchick.podcast.auth.JwtService;
 import com.ulashchick.podcast.common.persistance.CassandraClient;
+import com.ulashchick.podcast.grpc.AuthService;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.reactivex.Single;

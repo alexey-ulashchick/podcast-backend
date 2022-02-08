@@ -1,6 +1,5 @@
-package com.ulashchick.podcast.auth;
+package com.ulashchick.podcast.common;
 
-import com.ulashchick.podcast.common.DependencyManager;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
