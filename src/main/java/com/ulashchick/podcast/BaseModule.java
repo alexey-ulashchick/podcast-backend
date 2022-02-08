@@ -9,6 +9,11 @@ public class BaseModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(ExecutorService.class).toInstance(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
+    final ExecutorService executorService = Executors.newFixedThreadPool(
+        Runtime.getRuntime().availableProcessors(),
+        new ContextCopyingThreadFactory()
+    );
+
+    bind(ExecutorService.class).toInstance(executorService);
   }
 }
