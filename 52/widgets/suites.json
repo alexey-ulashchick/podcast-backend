@@ -1,0 +1,103 @@
+{
+  "total" : 9,
+  "items" : [ {
+    "uid" : "1593e71ca0fc10026b9462ff052724e5",
+    "name" : "com.ulashchick.podcast.common.persistance.CassandraClientTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    }
+  }, {
+    "uid" : "4598487ca851ccdf0768f0b0a05f3fdb",
+    "name" : "com.ulashchick.podcast.common.config.EnvironmentServiceTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 3
+    }
+  }, {
+    "uid" : "bd88c105aafd8dde28103dd5d65d2db7",
+    "name" : "com.ulashchick.podcast.grpc.AuthServiceTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
+    "uid" : "f58794b0fddbd5d7095a62632dcdd49b",
+    "name" : "com.ulashchick.podcast.grpc.PodcastServiceTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
+    "uid" : "e3f04e6c93158aecf55e2cc1c3cf8a16",
+    "name" : "com.ulashchick.podcast.grpc.AuthorizationTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 2,
+      "unknown" : 0,
+      "total" : 2
+    }
+  }, {
+    "uid" : "b725c4f05bade60406b4654d6e117a15",
+    "name" : "com.ulashchick.podcast.HttpPerformanceTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    }
+  }, {
+    "uid" : "8e4efb6c0ffc98bfa23ade7cddaf4a88",
+    "name" : "com.ulashchick.podcast.grpc.EchoServiceIntegrationTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    }
+  }, {
+    "uid" : "b6ad06be4e40016772f2d765736eb2e7",
+    "name" : "com.ulashchick.podcast.grpc.EchoServiceTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    }
+  }, {
+    "uid" : "7c5a858cab606fac1dae93262076bf9c",
+    "name" : "com.ulashchick.podcast.auth.DependencyManagerTest",
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    }
+  } ]
+}

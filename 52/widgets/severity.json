@@ -1,0 +1,161 @@
+[ {
+  "uid" : "714bed6bcb4cd79e",
+  "name" : "testGettingListOfSubscriptionsWhenAuthorized()",
+  "time" : {
+    "start" : 1644284284638,
+    "stop" : 1644284319921,
+    "duration" : 35283
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "441736ac9b7796c4",
+  "name" : "getCurrentEnvironmentWhenValueNotSet()",
+  "time" : {
+    "start" : 1644284336131,
+    "stop" : 1644284336149,
+    "duration" : 18
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b49aecb3455758b4",
+  "name" : "successSignIn()",
+  "time" : {
+    "start" : 1644284280521,
+    "stop" : 1644284283527,
+    "duration" : 3006
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "da972d137a41de33",
+  "name" : "failWhenTokenIsMissing()",
+  "time" : {
+    "start" : 1644284283667,
+    "stop" : 1644284283689,
+    "duration" : 22
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "7f6ef0b04f0bb316",
+  "name" : "testGetFeed()",
+  "time" : {
+    "start" : 1644284282042,
+    "stop" : 1644284283329,
+    "duration" : 1287
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "55b79625dd283826",
+  "name" : "testSearch()",
+  "time" : {
+    "start" : 1644284282043,
+    "stop" : 1644284283326,
+    "duration" : 1283
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d47e6b9a9653a27a",
+  "name" : "checkUserUpsertionDoesNotChangeUUID()",
+  "time" : {
+    "start" : 1644284320058,
+    "stop" : 1644284335780,
+    "duration" : 15722
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a84926534d3aabba",
+  "name" : "firstUserSignIn()",
+  "time" : {
+    "start" : 1644284345936,
+    "stop" : 1644284355779,
+    "duration" : 9843
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cb6c9a4207e9c988",
+  "name" : "authorizationIsNotRequired()",
+  "time" : {
+    "start" : 1644284286779,
+    "stop" : 1644284319964,
+    "duration" : 33185
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cf2e0425dc415f70",
+  "name" : "testPodcastServiceDoesNotWorkWithoutAuth()",
+  "time" : {
+    "start" : 1644284319931,
+    "stop" : 1644284335910,
+    "duration" : 15979
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "344b189470327c4d",
+  "name" : "getCurrentEnvironmentWhenValueSet()",
+  "time" : {
+    "start" : 1644284336064,
+    "stop" : 1644284336119,
+    "duration" : 55
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b0b722ee92f13cba",
+  "name" : "testEnvValues()",
+  "time" : {
+    "start" : 1644284336151,
+    "stop" : 1644284336152,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "328534412ffe1a7e",
+  "name" : "testInitialization()",
+  "time" : {
+    "start" : 1644284335913,
+    "stop" : 1644284335946,
+    "duration" : 33
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "255b3f91bb106519",
+  "name" : "testEcho()",
+  "time" : {
+    "start" : 1644284320027,
+    "stop" : 1644284320047,
+    "duration" : 20
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "57212e3b9d6101d",
+  "name" : "testStandardHttpClient()",
+  "time" : {
+    "start" : 1644284280512,
+    "stop" : 1644284286583,
+    "duration" : 6071
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a64124d8b6c5eec0",
+  "name" : "testSubscription()",
+  "time" : {
+    "start" : 1644284335788,
+    "stop" : 1644284345925,
+    "duration" : 10137
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

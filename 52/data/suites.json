@@ -1,0 +1,249 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "com.ulashchick.podcast.HttpPerformanceTest",
+    "children" : [ {
+      "name" : "testStandardHttpClient()",
+      "uid" : "57212e3b9d6101d",
+      "parentUid" : "b725c4f05bade60406b4654d6e117a15",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284280512,
+        "stop" : 1644284286583,
+        "duration" : 6071
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "b725c4f05bade60406b4654d6e117a15"
+  }, {
+    "name" : "com.ulashchick.podcast.grpc.AuthServiceTest",
+    "children" : [ {
+      "name" : "successSignIn()",
+      "uid" : "b49aecb3455758b4",
+      "parentUid" : "bd88c105aafd8dde28103dd5d65d2db7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284280521,
+        "stop" : 1644284283527,
+        "duration" : 3006
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "failWhenTokenIsMissing()",
+      "uid" : "da972d137a41de33",
+      "parentUid" : "bd88c105aafd8dde28103dd5d65d2db7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284283667,
+        "stop" : 1644284283689,
+        "duration" : 22
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "bd88c105aafd8dde28103dd5d65d2db7"
+  }, {
+    "name" : "com.ulashchick.podcast.grpc.PodcastServiceTest",
+    "children" : [ {
+      "name" : "testGetFeed()",
+      "uid" : "7f6ef0b04f0bb316",
+      "parentUid" : "f58794b0fddbd5d7095a62632dcdd49b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284282042,
+        "stop" : 1644284283329,
+        "duration" : 1287
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "testSearch()",
+      "uid" : "55b79625dd283826",
+      "parentUid" : "f58794b0fddbd5d7095a62632dcdd49b",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284282043,
+        "stop" : 1644284283326,
+        "duration" : 1283
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "f58794b0fddbd5d7095a62632dcdd49b"
+  }, {
+    "name" : "com.ulashchick.podcast.grpc.AuthorizationTest",
+    "children" : [ {
+      "name" : "testGettingListOfSubscriptionsWhenAuthorized()",
+      "uid" : "714bed6bcb4cd79e",
+      "parentUid" : "e3f04e6c93158aecf55e2cc1c3cf8a16",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284284638,
+        "stop" : 1644284319921,
+        "duration" : 35283
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "testPodcastServiceDoesNotWorkWithoutAuth()",
+      "uid" : "cf2e0425dc415f70",
+      "parentUid" : "e3f04e6c93158aecf55e2cc1c3cf8a16",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284319931,
+        "stop" : 1644284335910,
+        "duration" : 15979
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "e3f04e6c93158aecf55e2cc1c3cf8a16"
+  }, {
+    "name" : "com.ulashchick.podcast.grpc.EchoServiceIntegrationTest",
+    "children" : [ {
+      "name" : "authorizationIsNotRequired()",
+      "uid" : "cb6c9a4207e9c988",
+      "parentUid" : "8e4efb6c0ffc98bfa23ade7cddaf4a88",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284286779,
+        "stop" : 1644284319964,
+        "duration" : 33185
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "8e4efb6c0ffc98bfa23ade7cddaf4a88"
+  }, {
+    "name" : "com.ulashchick.podcast.grpc.EchoServiceTest",
+    "children" : [ {
+      "name" : "testEcho()",
+      "uid" : "255b3f91bb106519",
+      "parentUid" : "b6ad06be4e40016772f2d765736eb2e7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284320027,
+        "stop" : 1644284320047,
+        "duration" : 20
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "b6ad06be4e40016772f2d765736eb2e7"
+  }, {
+    "name" : "com.ulashchick.podcast.common.persistance.CassandraClientTest",
+    "children" : [ {
+      "name" : "checkUserUpsertionDoesNotChangeUUID()",
+      "uid" : "d47e6b9a9653a27a",
+      "parentUid" : "1593e71ca0fc10026b9462ff052724e5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284320058,
+        "stop" : 1644284335780,
+        "duration" : 15722
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "testSubscription()",
+      "uid" : "a64124d8b6c5eec0",
+      "parentUid" : "1593e71ca0fc10026b9462ff052724e5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284335788,
+        "stop" : 1644284345925,
+        "duration" : 10137
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "firstUserSignIn()",
+      "uid" : "a84926534d3aabba",
+      "parentUid" : "1593e71ca0fc10026b9462ff052724e5",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284345936,
+        "stop" : 1644284355779,
+        "duration" : 9843
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "1593e71ca0fc10026b9462ff052724e5"
+  }, {
+    "name" : "com.ulashchick.podcast.auth.DependencyManagerTest",
+    "children" : [ {
+      "name" : "testInitialization()",
+      "uid" : "328534412ffe1a7e",
+      "parentUid" : "7c5a858cab606fac1dae93262076bf9c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284335913,
+        "stop" : 1644284335946,
+        "duration" : 33
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "7c5a858cab606fac1dae93262076bf9c"
+  }, {
+    "name" : "com.ulashchick.podcast.common.config.EnvironmentServiceTest",
+    "children" : [ {
+      "name" : "getCurrentEnvironmentWhenValueSet()",
+      "uid" : "344b189470327c4d",
+      "parentUid" : "4598487ca851ccdf0768f0b0a05f3fdb",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284336064,
+        "stop" : 1644284336119,
+        "duration" : 55
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "getCurrentEnvironmentWhenValueNotSet()",
+      "uid" : "441736ac9b7796c4",
+      "parentUid" : "4598487ca851ccdf0768f0b0a05f3fdb",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284336131,
+        "stop" : 1644284336149,
+        "duration" : 18
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "testEnvValues()",
+      "uid" : "b0b722ee92f13cba",
+      "parentUid" : "4598487ca851ccdf0768f0b0a05f3fdb",
+      "status" : "passed",
+      "time" : {
+        "start" : 1644284336151,
+        "stop" : 1644284336152,
+        "duration" : 1
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "4598487ca851ccdf0768f0b0a05f3fdb"
+  } ],
+  "name" : "suites"
+}

@@ -1,0 +1,10 @@
+[ {
+  "name" : "GitHub Actions",
+  "type" : "github",
+  "url" : "https://alexey-ulashchick.github.io/podcast-backend",
+  "buildOrder" : 52,
+  "buildName" : "GitHub Actions Run #1809842121",
+  "buildUrl" : "https://github.com/alexey-ulashchick/podcast-backend/actions/runs/1809842121",
+  "reportName" : "Allure Report with history",
+  "reportUrl" : "https://alexey-ulashchick.github.io/podcast-backend/52/"
+} ]
