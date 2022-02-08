@@ -1,0 +1,37 @@
+{
+  "uid" : "d125a41e2775cb3f",
+  "name" : "testSearch()",
+  "historyId" : "ae602a8f3596fd8931d957a85cde93c5",
+  "time" : {
+    "start" : 1644283456510,
+    "stop" : 1644283457960,
+    "duration" : 1450
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d125a41e2775cb3f.json",
+  "parameterValues" : [ ]
+}

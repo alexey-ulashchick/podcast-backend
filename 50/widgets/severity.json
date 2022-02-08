@@ -1,0 +1,161 @@
+[ {
+  "uid" : "9d3f7018e957348b",
+  "name" : "getCurrentEnvironmentWhenValueNotSet()",
+  "time" : {
+    "start" : 1644283511245,
+    "stop" : 1644283511248,
+    "duration" : 3
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "674239b730d57328",
+  "name" : "testEnvValues()",
+  "time" : {
+    "start" : 1644283511249,
+    "stop" : 1644283511251,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c84a9948e363db70",
+  "name" : "getCurrentEnvironmentWhenValueSet()",
+  "time" : {
+    "start" : 1644283511234,
+    "stop" : 1644283511241,
+    "duration" : 7
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c4395fcba47408ae",
+  "name" : "testInitialization()",
+  "time" : {
+    "start" : 1644283511191,
+    "stop" : 1644283511211,
+    "duration" : 20
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a67b871501073f8a",
+  "name" : "authorizationIsNotRequired()",
+  "time" : {
+    "start" : 1644283461494,
+    "stop" : 1644283496166,
+    "duration" : 34672
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "53a0d12b3f0d721b",
+  "name" : "checkUserUpsertionDoesNotChangeUUID()",
+  "time" : {
+    "start" : 1644283496255,
+    "stop" : 1644283512054,
+    "duration" : 15799
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a6853c472be7b931",
+  "name" : "testStandardHttpClient()",
+  "time" : {
+    "start" : 1644283455106,
+    "stop" : 1644283461272,
+    "duration" : 6166
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e58128fd8933be92",
+  "name" : "testEcho()",
+  "time" : {
+    "start" : 1644283496198,
+    "stop" : 1644283496220,
+    "duration" : 22
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "88b220d4cdcb6f48",
+  "name" : "testSubscription()",
+  "time" : {
+    "start" : 1644283512058,
+    "stop" : 1644283522474,
+    "duration" : 10416
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "102096f1d343918c",
+  "name" : "successSignIn()",
+  "time" : {
+    "start" : 1644283455148,
+    "stop" : 1644283458399,
+    "duration" : 3251
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "54cc609741258f92",
+  "name" : "testGetFeed()",
+  "time" : {
+    "start" : 1644283456511,
+    "stop" : 1644283457960,
+    "duration" : 1449
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8dfe2ee1b70e523b",
+  "name" : "failWhenTokenIsMissing()",
+  "time" : {
+    "start" : 1644283458500,
+    "stop" : 1644283458527,
+    "duration" : 27
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dc1aeaee28dff7f3",
+  "name" : "testGettingListOfSubscriptionsWhenAuthorized()",
+  "time" : {
+    "start" : 1644283459605,
+    "stop" : 1644283494400,
+    "duration" : 34795
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "fe63be7dc9bcbb77",
+  "name" : "firstUserSignIn()",
+  "time" : {
+    "start" : 1644283522483,
+    "stop" : 1644283532664,
+    "duration" : 10181
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e7e18dfb861ea06",
+  "name" : "testPodcastServiceDoesNotWorkWithoutAuth()",
+  "time" : {
+    "start" : 1644283494408,
+    "stop" : 1644283511179,
+    "duration" : 16771
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d125a41e2775cb3f",
+  "name" : "testSearch()",
+  "time" : {
+    "start" : 1644283456510,
+    "stop" : 1644283457960,
+    "duration" : 1450
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

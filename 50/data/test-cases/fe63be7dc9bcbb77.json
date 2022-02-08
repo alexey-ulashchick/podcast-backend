@@ -1,0 +1,37 @@
+{
+  "uid" : "fe63be7dc9bcbb77",
+  "name" : "firstUserSignIn()",
+  "historyId" : "26fc9355c37d9dc4bf472df981f03f6",
+  "time" : {
+    "start" : 1644283522483,
+    "stop" : 1644283532664,
+    "duration" : 10181
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.common.persistance.CassandraClientTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.common.persistance.CassandraClientTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "fe63be7dc9bcbb77.json",
+  "parameterValues" : [ ]
+}

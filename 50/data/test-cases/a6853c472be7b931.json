@@ -1,0 +1,37 @@
+{
+  "uid" : "a6853c472be7b931",
+  "name" : "testStandardHttpClient()",
+  "historyId" : "38b340554d021b7446ae86720cd1fdaf",
+  "time" : {
+    "start" : 1644283455106,
+    "stop" : 1644283461272,
+    "duration" : 6166
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.HttpPerformanceTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.HttpPerformanceTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "a6853c472be7b931.json",
+  "parameterValues" : [ ]
+}
