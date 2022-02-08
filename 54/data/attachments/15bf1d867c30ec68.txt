@@ -1,0 +1,54 @@
+03:53:31.781 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+03:53:31.791 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Creating container for image: cassandra:latest
+03:53:31.826 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest is starting: fe212a2593bd4b146239c40a4fccdfe4420915d87ce257c824d8a1e34abb741b
+03:53:38.588 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest started in PT6.80481S
+03:53:38.589 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.AbstractIntegrationTest - Cassandra container has been started on localhost:49155. Replacing config.
+03:53:38.612 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.DependencyManager - com.ulashchick.podcast.common.config.ConfigService class implementation has been overridden. New DI injector has been created
+03:53:38.613 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.AbstractIntegrationTest - Config has been replaced. Starting application server
+03:53:38.624 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 7 ms to scan 2 urls, producing 7 keys and 12 values
+03:53:38.630 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+03:53:38.631 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+03:53:38.633 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+03:53:38.648 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 13 ms to scan 2 urls, producing 7 keys and 61 values
+03:53:38.649 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+03:53:38.649 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+03:53:39.052 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
+03:53:39.053 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+03:53:39.057 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 1 ms to scan 1 urls, producing 4 keys and 4 values
+03:53:39.059 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+03:53:39.060 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+03:53:39.063 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+03:53:39.063 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+03:53:39.064 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+03:53:40.211 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+03:53:40.218 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+03:53:41.363 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+03:53:42.519 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+03:53:42.520 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+03:53:42.655 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
+03:53:42.656 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.AbstractIntegrationTest - Application server for test has been started on a415a114-df62-4bc9-8aa3-fbe4d4faf592
+03:53:42.658 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.AbstractIntegrationTest - Adding subscription into DB for userId=ae9cb0f0-8892-11ec-ab8c-cf35954a1560, feedId=123456
+03:53:42.705 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing INSERT INTO subscriptions_by_user (userid,feedid) VALUES (ae9cb0f0-8892-11ec-ab8c-cf35954a1560,123456) IF NOT EXISTS with CL LOCAL_QUORUM/LOCAL_SERIAL
+03:53:43.063 [pool-8-thread-2] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing SELECT feedid FROM subscriptions_by_user WHERE userid=ae9cb0f0-8892-11ec-ab8c-cf35954a1560 with CL LOCAL_QUORUM/LOCAL_SERIAL
+03:53:43.363 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

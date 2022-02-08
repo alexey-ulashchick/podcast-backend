@@ -1,0 +1,53 @@
+{
+  "uid" : "97b184295e9b6fc",
+  "name" : "testInitialization()",
+  "historyId" : "55777215f73b49bd9fc6dcca4db5a60b",
+  "time" : {
+    "start" : 1644292378954,
+    "stop" : 1644292378964,
+    "duration" : 10
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "b122066a5a107754",
+      "name" : "log",
+      "source" : "b122066a5a107754.txt",
+      "type" : "text/plain",
+      "size" : 221
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.common.DependencyManagerTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.common.DependencyManagerTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "97b184295e9b6fc.json",
+  "parameterValues" : [ ]
+}

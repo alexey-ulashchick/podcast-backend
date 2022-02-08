@@ -1,0 +1,53 @@
+{
+  "uid" : "c05234d624348218",
+  "name" : "failWhenTokenIsMissing()",
+  "historyId" : "277b1ec1d472f8bedc43a17d30a77a9b",
+  "time" : {
+    "start" : 1644292445874,
+    "stop" : 1644292445880,
+    "duration" : 6
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "b93e3e265ad450aa",
+      "name" : "log",
+      "source" : "b93e3e265ad450aa.txt",
+      "type" : "text/plain",
+      "size" : 221
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.auth.AuthServiceTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.auth.AuthServiceTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c05234d624348218.json",
+  "parameterValues" : [ ]
+}

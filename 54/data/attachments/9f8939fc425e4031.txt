@@ -1,0 +1,3 @@
+03:54:05.667 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+03:54:05.808 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.auth.AuthServiceTest - Sign in request has been prepared
+03:54:05.870 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

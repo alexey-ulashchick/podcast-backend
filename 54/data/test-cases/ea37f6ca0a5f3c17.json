@@ -1,0 +1,53 @@
+{
+  "uid" : "ea37f6ca0a5f3c17",
+  "name" : "testPodcastServiceDoesNotWorkWithoutAuth()",
+  "historyId" : "87b164f462963af15480d9a25f494e64",
+  "time" : {
+    "start" : 1644292423369,
+    "stop" : 1644292434273,
+    "duration" : 10904
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "927be7dc90e9aa0",
+      "name" : "log",
+      "source" : "927be7dc90e9aa0.txt",
+      "type" : "text/plain",
+      "size" : 7104
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceIntegrationAuthTest"
+  }, {
+    "name" : "package",
+    "value" : "com.ulashchick.podcast.grpc.PodcastServiceIntegrationAuthTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "ea37f6ca0a5f3c17.json",
+  "parameterValues" : [ ]
+}
