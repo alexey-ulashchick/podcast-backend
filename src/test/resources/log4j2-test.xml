@@ -29,7 +29,7 @@
     <Loggers>
         <Root level="info">
             <AppenderRef ref="console"/>
-            <AppenderRef ref="rewrite"/>
+            <AppenderRef ref="allure"/>
             <AppenderRef ref="routing"/>
         </Root>
     </Loggers>
