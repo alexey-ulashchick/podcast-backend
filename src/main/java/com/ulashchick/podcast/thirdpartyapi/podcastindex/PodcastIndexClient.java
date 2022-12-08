@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 public class PodcastIndexClient {
   private static final String URL_PREFIX = "https://api.podcastindex.org/api/1.0/";
-  private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
+  private static final Logger logger = LoggerFactory.getLogger(PodcastIndexClient.class);
 
   private static final long TIMEOUT_S = 15;
   private final Supplier<HttpClient> clientSupplier;
