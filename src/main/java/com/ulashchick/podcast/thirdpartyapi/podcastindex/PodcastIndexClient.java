@@ -60,7 +60,7 @@ public class PodcastIndexClient {
 
     return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
         .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
-        .doOnSuccess(logger::info)
+        .doOnSuccess(recentFeeds -> logger.info(recentFeeds.toString()))
         .map(RecentFeeds::getFeeds);
   }
 
@@ -73,7 +73,7 @@ public class PodcastIndexClient {
 
     return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
         .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
-        .doOnSuccess(logger::info)
+        .doOnSuccess(recentFeeds -> logger.info(recentFeeds.toString()))
         .map(RecentFeeds::getFeeds);
   }
 
