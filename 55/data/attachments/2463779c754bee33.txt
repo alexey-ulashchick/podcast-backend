@@ -1,0 +1,2 @@
+17:19:49.876 [ForkJoinPool-1-worker-5] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+17:19:50.746 [ForkJoinPool-1-worker-5] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

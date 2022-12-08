@@ -1,0 +1,64 @@
+17:20:22.700 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+17:20:22.703 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Creating container for image: cassandra:latest
+17:20:22.736 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest is starting: 27610d0a619d80d201021e61098eb4d02e2278a3f8cb571ad7434a8b25403c5e
+17:20:29.139 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest started in PT6.43686S
+17:20:29.161 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 5 ms to scan 2 urls, producing 7 keys and 13 values
+17:20:29.163 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+17:20:29.166 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+17:20:29.168 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+17:20:29.205 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 36 ms to scan 2 urls, producing 7 keys and 60 values
+17:20:29.206 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+17:20:29.206 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+17:20:29.676 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
+17:20:29.677 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+17:20:29.678 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
+17:20:29.678 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+17:20:29.678 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+17:20:29.678 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+17:20:29.679 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+17:20:29.679 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+17:20:30.759 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+17:20:30.763 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+17:20:31.890 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+17:20:33.002 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+17:20:33.002 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+17:20:33.106 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49157]
+17:20:33.146 [pool-6-thread-1] ERROR com.ulashchick.podcast.auth.AuthInterceptor - Cannot authenticate user
+com.auth0.jwt.exceptions.JWTVerificationException: Authorization token is missing
+	at com.ulashchick.podcast.auth.AuthInterceptor.lambda$getAuthorizationHeader$0(AuthInterceptor.java:91) ~[main/:?]
+	at java.util.Optional.orElseThrow(Optional.java:408) ~[?:?]
+	at com.ulashchick.podcast.auth.AuthInterceptor.getAuthorizationHeader(AuthInterceptor.java:91) ~[main/:?]
+	at com.ulashchick.podcast.auth.AuthInterceptor.interceptCall(AuthInterceptor.java:61) ~[main/:?]
+	at io.grpc.ServerInterceptors$InterceptCallHandler.startCall(ServerInterceptors.java:244) ~[grpc-api-1.44.0.jar:1.44.0]
+	at io.grpc.internal.ServerImpl$ServerTransportListenerImpl.startWrappedCall(ServerImpl.java:703) ~[grpc-core-1.44.0.jar:1.44.0]
+	at io.grpc.internal.ServerImpl$ServerTransportListenerImpl.access$2200(ServerImpl.java:406) ~[grpc-core-1.44.0.jar:1.44.0]
+	at io.grpc.internal.ServerImpl$ServerTransportListenerImpl$1HandleServerCall.runInternal(ServerImpl.java:615) ~[grpc-core-1.44.0.jar:1.44.0]
+	at io.grpc.internal.ServerImpl$ServerTransportListenerImpl$1HandleServerCall.runInContext(ServerImpl.java:603) ~[grpc-core-1.44.0.jar:1.44.0]
+	at io.grpc.internal.ContextRunnable.run(ContextRunnable.java:37) ~[grpc-core-1.44.0.jar:1.44.0]
+	at io.grpc.internal.SerializingExecutor.run(SerializingExecutor.java:133) ~[grpc-core-1.44.0.jar:1.44.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[?:?]
+	at com.ulashchick.podcast.ContextCopyingThreadFactory.lambda$copyContextToRunnable$0(ContextCopyingThreadFactory.java:27) ~[main/:?]
+	at java.lang.Thread.run(Thread.java:829) [?:?]
+17:20:33.398 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL

@@ -1,0 +1,62 @@
+17:19:49.118 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test started
+17:19:51.068 [ForkJoinPool-1-worker-3] WARN  org.testcontainers.utility.TestcontainersConfiguration - Attempted to read Testcontainers configuration file at file:/home/runner/.testcontainers.properties but the file was not found. Exception message: FileNotFoundException: /home/runner/.testcontainers.properties (No such file or directory)
+17:19:53.266 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.dockerclient.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+17:19:53.284 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Docker host IP address is localhost
+17:19:53.331 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 20.10.21+azure-1
+  API Version: 1.41
+  Operating System: Ubuntu 22.04.1 LTS
+  Total Memory: 6943 MB
+17:19:53.347 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+17:19:55.242 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+17:19:55.242 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - Checking the system...
+17:19:55.243 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+17:19:55.309 [ForkJoinPool-1-worker-3] INFO  org.testcontainers.DockerClientFactory - ✔︎ Docker environment should have more than 2GB free disk space
+17:19:55.332 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Pulling docker image: cassandra:latest. Please be patient; this may take some time but only needs to be done once.
+17:20:01.811 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Creating container for image: cassandra:latest
+17:20:01.856 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest is starting: 800a4b2d86192c1994ed4864507fbdf1ab78ebd6e34aec369eb2ab41e8e86814
+17:20:13.462 [ForkJoinPool-1-worker-3] INFO  🐳 [cassandra:latest] - Container cassandra:latest started in PT18.147013S
+17:20:14.215 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 162 ms to scan 2 urls, producing 7 keys and 13 values
+17:20:14.308 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.AuthService
+17:20:14.358 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.PodcastService
+17:20:14.391 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Binding GrpcService: com.ulashchick.podcast.grpc.EchoService
+17:20:14.475 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 78 ms to scan 2 urls, producing 7 keys and 60 values
+17:20:14.484 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.ApplicationServerBuilder - Environment: test
+17:20:14.487 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Initializing cassandra session without keyspace
+17:20:15.741 [ForkJoinPool-1-worker-3] INFO  com.datastax.oss.driver.internal.core.DefaultMavenCoordinates - DataStax Java driver for Apache Cassandra(R) (com.datastax.oss:java-driver-core) version 4.13.0
+17:20:18.728 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
+17:20:18.728 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Installing schema
+17:20:18.729 [ForkJoinPool-1-worker-3] INFO  org.reflections.Reflections - Reflections took 0 ms to scan 1 urls, producing 4 keys and 4 values
+17:20:18.735 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/001-create-keyspace.cql
+17:20:18.740 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/002-use-keyspace.cql
+17:20:18.747 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/003-create-user-by-email-table.cql
+17:20:18.747 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.config.ConfigService - Loading: test/cql-init/004-create-subscriptions-by-user.cql
+17:20:18.748 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create keyspace if not exists podcast
+    with replication = {'class' : 'SimpleStrategy', 'replication_factor' : 1 }
+     and durable_writes = true;
+
+17:20:20.027 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+use podcast;
+
+17:20:20.058 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists users_by_email
+(
+    email      varchar primary key,
+    id         timeuuid,
+    firstName  varchar,
+    lastName   varchar,
+    imageUrl   varchar
+);
+
+17:20:21.332 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Executing: 
+create table if not exists subscriptions_by_user
+(
+    userId timeuuid,
+    feedId bigint,
+    primary key ((userId), feedId)
+);
+17:20:22.544 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraClient - Schema installed. Re-initializing cassandra session
+17:20:22.544 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Re-initializing session.
+17:20:22.963 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.common.persistance.CassandraSession - Connected to Cassandra cluster [localhost/127.0.0.1:49155]
+17:20:24.123 [ForkJoinPool-1-worker-3] INFO  com.ulashchick.podcast.testing.TestListener - Test finished: SUCCESSFUL
