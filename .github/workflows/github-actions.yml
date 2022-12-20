@@ -35,19 +35,6 @@ jobs:
           path: build/test-results/test/*.xml
           reporter: java-junit
 
-#      - name: Deploing Gradle Report
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: ./build/reports/tests/test
-
-#      - name: Publish Unit Test Results
-#        uses: EnricoMi/publish-unit-test-result-action@v1
-#        if: always()
-#        with:
-#          check_name: Unit Test Results [Summary & Failed]
-#          comment_mode: create new
-#          files: build/test-results/**/*.xml
       - name: Get Allure history
         uses: actions/checkout@v2
         if: always()
