@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.jackson.Jacksonized;
 
 @Getter
@@ -11,6 +12,7 @@ import lombok.extern.jackson.Jacksonized;
 @Jacksonized
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 public class Feed {
 
   private final long id;

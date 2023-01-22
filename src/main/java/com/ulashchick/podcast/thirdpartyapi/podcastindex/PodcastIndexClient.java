@@ -10,6 +10,8 @@ import com.ulashchick.podcast.thirdpartyapi.podcastindex.pojo.RecentFeeds;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.reactivex.Single;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.net.URI;
@@ -30,6 +32,7 @@ import java.util.stream.Collectors;
 
 public class PodcastIndexClient {
   private static final String URL_PREFIX = "https://api.podcastindex.org/api/1.0/";
+  private static final Logger logger = LoggerFactory.getLogger(PodcastIndexClient.class);
 
   private static final long TIMEOUT_S = 15;
   private final Supplier<HttpClient> clientSupplier;
@@ -57,6 +60,7 @@ public class PodcastIndexClient {
 
     return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
         .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
+        .doOnSuccess(recentFeeds -> logger.info(recentFeeds.toString()))
         .map(RecentFeeds::getFeeds);
   }
 
@@ -69,6 +73,7 @@ public class PodcastIndexClient {
 
     return Single.fromFuture(clientSupplier.get().sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString()))
         .map(response -> new ObjectMapper().readValue(response.body(), RecentFeeds.class))
+        .doOnSuccess(recentFeeds -> logger.info(recentFeeds.toString()))
         .map(RecentFeeds::getFeeds);
   }
 
